@@ -1,3 +1,6 @@
+h1, h2, h3, h4, h5, h6 {
+  font-family: sans-serif
+}
 blockquote {
   background: #f9f9f9;
   border-left: 8px solid #ccc;
@@ -7,10 +10,6 @@ blockquote {
 
 blockquote p {
   display: inline;
-}
-
-p {
-  font-family: Georgia, "Cambria", serif;
 }
 
 body {
@@ -43,6 +42,7 @@ body {
 }
 .post {
   color: #333;
+  font-family: Georgia, "Cambria", serif;
 }
 .posts {
   color:#666;
