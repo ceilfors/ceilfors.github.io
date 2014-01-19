@@ -1,6 +1,8 @@
 h1, h2, h3, h4, h5, h6 {
-  font-family: sans-serif
+  font-family: sans-serif;
+  text-align: left;
 }
+
 blockquote {
   background: #f9f9f9;
   border-left: 8px solid #ccc;
@@ -20,7 +22,7 @@ body {
   text-align: justify;
   width: 42em;
   margin: 3em auto 2em;
-  line-height: 1.5em;
+  line-height: 1.5;
 }
 
 .title a:hover {
