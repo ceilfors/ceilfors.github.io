@@ -2,6 +2,7 @@
 layout: post
 title:  "Why is substring method's end index exclusive?"
 tags: programming string
+comments: true
 ---
 
 Imagine you have a string `s = "01234"`. You want to extract the substring of "123" from it.
