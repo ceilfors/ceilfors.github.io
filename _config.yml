@@ -17,7 +17,7 @@ picture:
         media: "(min-width: 30em)"
         width: 200
       source_default:
-        width: 150
+        width: 100
     default:
       ppi: [1, 1.5]
       # source_lrg:
