@@ -92,7 +92,8 @@ Total working days waiting for email reply: 1 (first day)
 2014-02-17 UPS delivered my phone to me.  
 
 ## Diagnose your phone after you got it back
-{% img right {{page.id}}/box.jpg box %}
+
+{% picture portrait {{page.id}}/box.jpg class="right" %}
 So you've got your phone back. It comes back with a nice return packaging.
 You are happy. Stop right there! During my research,
 some of the unfortunate guys out there had sent their phone to HTC to fix the purple
