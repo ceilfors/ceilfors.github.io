@@ -1,5 +1,7 @@
-name: ceilfors
+name: ceilforsI will explain more of this in the last section.
 pygments: true
 markdown: redcarpet
 redcarpet:
- extensions: ["tables", "no_intra_emphasis"]
+  extensions: ["tables", "no_intra_emphasis"]
+image:
+  source: image
