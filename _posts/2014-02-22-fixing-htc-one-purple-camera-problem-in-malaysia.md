@@ -5,7 +5,7 @@ tags: android htc-one malaysia
 comments: true
 ---
 
-*tl;dr: I've got my phone fix by replacing the camera module by HTC in 14 working days.*
+*tl;dr: I've got my phone fixed by replacing the camera module by HTC in 14 working days.*
 
 **This post shares my experience on fixing this issue, and hopefully
 yours too. I will cover the tips before sending it over to HTC, what to expect from them,
@@ -87,11 +87,11 @@ Total working days waiting for email reply: 1 (first day)
 2014-02-11 Email sent for phone status request.  
 2014-02-12 Email received. Issue is fixed and will be couriered soon.  
 2014-02-14 Email sent for delivery date estimation request.  
-2014-02-14 UPS picked up my phone from HTC. (Knew this from the tracking number below)
+2014-02-14 UPS picked up my phone from HTC. (Knew this from the tracking number below)  
 2014-02-17 Email received with UPS tracking number.  
 2014-02-17 UPS delivered my phone to me.  
 
-## Diagnose your phone after you got it back
+## Diagnose your phone after you get it back
 
 {% picture portrait {{page.id}}/box.jpg class="right" %}
 So you've got your phone back. It comes back with a nice return packaging.
