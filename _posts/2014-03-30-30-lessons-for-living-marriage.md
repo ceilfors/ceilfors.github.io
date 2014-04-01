@@ -13,10 +13,10 @@ Karl Pillemer, a gerontologist and professor at Cornell spent over five years co
 information from over a thousand older Americans, age sixty-five and over. The project
 is called [Legacy Project][web] and it is still an ongoing project.
 He calls these older Americans as the 'expert' for various reason, mainly because *they have lived 
-their lives*. I'm particularly affected the most with the anecdotes from these experts,
+their lives*. I'm particularly affected the most by the anecdotes from these experts,
 and that's what make the book special. Pillemer 
 lets the experts speak for themselves through their direct quotes. The lessons resonate stronger
-when you hear an 80 years old woman talk with her own words. 
+when you hear an 80-year-old woman talk with her own words. 
 
 The lessons in this book stretches to a lot of categories like marriage, raising children, career,
 avoiding regrets, health and so much more. I will share a couple of my favorite lessons
