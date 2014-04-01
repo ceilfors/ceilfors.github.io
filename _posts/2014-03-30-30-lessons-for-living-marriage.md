@@ -14,7 +14,7 @@ information from over a thousand older Americans, age sixty-five and over. The p
 is called [Legacy Project][web] and it is still an ongoing project.
 He calls these older Americans as the 'expert' for various reason, mainly because *they have lived 
 their lives*. I'm particularly affected the most with the anecdotes from these experts,
-that's what make the book special. Pillemer 
+and that's what make the book special. Pillemer 
 lets the experts speak for themselves through their direct quotes. The lessons resonate stronger
 when you hear an 80 years old woman talk with her own words. 
 
@@ -25,7 +25,7 @@ to give you an idea of what will you get from the book.
 My first favorite lesson is the lesson that has made the experts' point of view towards life
 different from young people - **Time Is of the Essence**. It's about the awareness of *time*.
 We've been constantly reminded that *life is short* and we don't believe it.
-Why? Because the number of years left for your people seems infinite, and this is bad.
+Why? Because the number of years left for young people seems infinite, and this is bad.
 
 > "Looking at how younger people squander time, they are like members of a 
 desert tribe staring in dismay at our profligate use of water." (p. 205).
