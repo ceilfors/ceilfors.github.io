@@ -1,5 +1,5 @@
 name: ceilfors
-pygments: true
+higlighter: pygments
 markdown: redcarpet
 redcarpet:
   extensions: ["tables", "no_intra_emphasis"]
