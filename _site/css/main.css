@@ -14,8 +14,10 @@ blockquote p {
   display: inline;
 }
 
-body {
-  font-size: 85%;
+/* Override Pure CSS to support pygments. */
+pre {
+  white-space: pre;
+  word-wrap: normal;
 }
 
 .site {
