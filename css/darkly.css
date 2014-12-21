@@ -12,11 +12,13 @@
   -moz-border-radius: 3px; 
   -webkit-border-radius: 3px; 
   border-radius: 3px;
-  padding: 20px; 
+  /* padding: 20px; adapt to pure css */
+  padding-left: 20px; 
   background: #343642;
   color: #C1C2C3;
   display: block;
 }
+
 .highlight .hll { background-color: #ffc; }
 .highlight .gd { color: #2e3436; background-color: #0e1416; }
 .highlight .gr { color: #eeeeec; background-color: #c00; }
@@ -37,3 +39,17 @@
 .highlight .il { color: #8ae234; }
 .highlight .o { color: #989DAA; }
 .highlight .nv,.highlight .vc,.highlight .vg,.highlight .vi { color: #fff; }
+
+/* Override string colors as it was not set in Darkly */
+.highlight .s,
+.highlight .sb,
+.highlight .s1,
+.highlight .sx,
+.highlight .si,
+.highlight .sh,
+.highlight .se,
+.highlight .s2,
+.highlight .sd,
+.highlight .sc {
+  color: #A4D18A;
+}
