@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>
+        JUC 2015 - Europe
+    </title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css" type="text/css">
+    <link rel="stylesheet" href="/css/darkly.css" type="text/css">
+    <link rel="stylesheet" href="/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/css/image.css" type="text/css">
+
+</head>
+<body>
+    <div class="site">
+        <div class="container pure-g-r">
+            <div class="pure-u-1">
+                <header class="title">
+                    <h3>
+                        <a href="/">ceilfors</a>
+                    </h3>
+                </header>
+                <div class="content">
+                    
+<h1 class="post-title">JUC 2015 - Europe</h1>
+<span class="meta" style="color:grey">
+04 Jul 2015 - 
+Read time: 11 min.
+</span>
+<br />
+
+<div class="post">
+    <p>This blog contains the report of my attendance for JUC 2015 - Europe in London. I only wrote
+the bits that I find fresh to my brain and a set of keywords for researchability. More information
+is captured by workingwithdevs.com liveblog: <a href="http://workingwithdevs.com/liveblog-jenkins-conference-2015-1/">day 1</a>,
+<a href="http://workingwithdevs.com/liveblog-jenkins-conference-2015-2/">day 2</a> (do note that we attended different talks).</p>
+
+<h1>Deployment Pipeline</h1>
+
+<h2>Deployment techniques</h2>
+
+<p>A lot of talks in JUC were talking about <a href="http://martinfowler.com/bliki/BlueGreenDeployment.html">blue green deployment</a>
+i.e. Deploy green with new URL, slowly route everything to green, slowly remove blue when green is stable.
+At <a href="#d1pipeline">his talk</a>, @sufyaan_kazi shows that CloudFoundry can act as the blue green deployment&#39;s
+router implementation. CloudFoundry sells the idea that PaaS is the way to go for cloud as it will abstract
+out the cloud implementation hence not restricting your application to a single cloud. <a href="http://12factor.net/">12factor.net</a>
+is a recommended reading.</p>
+
+<p><a href="#d2key">@markusrendall</a> did a live demo to showcase their blue green deployment in AWS. This is the best
+live demo shown in JUC. He added a twitter button to his web application during the demo and deployed it live.
+The conference attendees can hit the URL live and see that
+50% of the hit don&#39;t see the twitter button in their web page. Accenture referred this technique as
+A/B deployment. Seems like <a href="https://cloudnative.io/blog/2015/02/the-dos-and-donts-of-bluegreen-deployment/">we haven&#39;t reached a consensus yet</a>
+on how we should call this technique.</p>
+
+<p>Another deployment technique is <a href="#d2noops">shown by @mariocruz</a> by using AWS Elastic Beanstalk. Elastic Beanstalk
+has an out of the box feature to <a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.CNAMESwap.html">instantly swap URL in between boxes</a>.
+In summary, you deploy the new application in a new box, gain some confidence, switch your application URL to
+your new application by a push of a button. As a CTO, he also shows the importance of how he can rollback
+this URL swap from his mobile, again with a push of a button.</p>
+
+<h2>Anti fragile design</h2>
+
+<p>Good mind shift from <a href="#d2key">@martincroker</a>, summary:</p>
+
+<ul>
+<li>Assume failure is unavoidable</li>
+<li>Focus on reducing failures impact, not reducing failures probability</li>
+<li>Reduce time to recover from failures</li>
+</ul>
+
+<h2>Feature flags</h2>
+
+<p>Other than the Elastic Beanstalk showcase, @mariocruz also encourage us to adopt feature flags
+for a smoother and a more flexible app deployment. I think
+this is a synonym to <a href="http://martinfowler.com/bliki/FeatureToggle.html">feature toggle</a>. He is using 
+Netflix Archaius for his feature toggle implementation.</p>
+
+<p>On the site note, he encourage the attendees repetitively that we
+should check out <a href="https://netflix.github.io/">Netflix OSS</a> as there are a lot of excellent freebies.</p>
+
+<h1>Containerization</h1>
+
+<h2>New currency: Docker</h2>
+
+<p>In the <a href="#d1key">d1key</a> and <a href="#d1tiger">d1tiger</a>, @kohsukekawa shows how he changed his deployment currency from
+wars to containers. This is an absolute game changer in continuous delivery paradigm, everyone in the
+deployment pipeline is interacting only with containers. Container is the new deployment package and
+Jenkins will be the one who is creating these containers.</p>
+
+<p>During the transition, Cloudbees was faced with some challenges and has made some Jenkins Docker plugins
+to tackle them:</p>
+
+<ul>
+<li><p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Build+and+Publish+plugin">CloudBees Docker Build and Publish</a><br>
+Adds a build step in Jenkins to build a Dockerfile and publish it to a docker registry.</p></li>
+<li><p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Hub+Notification">CloudBees Docker Hub Notification</a><br>
+One of the glue to enable Docker as a new deployment currency. This plugin adds a trigger
+in a Jenkins job to listen to changes in docker registry.</p></li>
+<li><p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Traceability">CloudBees Docker Traceability</a><br>
+We need some ways to identify which container is which when they are flowing through the pipeline. This plugin
+will help us trace the containers. It works like Jenkins fingerprint but for Docker containers.</p></li>
+<li><p><a href="https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Custom+Build+Environment+Plugin">CloudBees Docker Docker Custom Build Environment Plugin</a><br>
+Enables a job to build inside of a docker container. Supports dockerfile and image pulling from a repository.</p></li>
+</ul>
+
+<p>The sample application that @kohsukekawa used during the demo can be found here:</p>
+
+<ul>
+<li><p><a href="https://github.com/kohsuke/docker-jenkins-demo-base">docker-jenkins-demo-base</a><br>
+Contains the a server.xml that will be built onto a Docker container. This file is the file that
+he changed during the demo and being reflected after the deployment pipeline is completed.</p></li>
+<li><p><a href="https://github.com/kohsuke/docker-jenkins-demo-app">docker-jenkins-demo-app</a><br>
+The web application source code that is used for the demo. The change of the server.xml is reflected in the 
+HTTP response header. Contains <em>Jenkinsfile</em>, which is a workflow-plugin script; interesting file naming
+convention.</p></li>
+</ul>
+
+<h2>Container cluster</h2>
+
+<p><a href="#d2container">@CamundaBPM talk</a> talked about how they are running 6 Docker hosts as 1 swarm. The interesting bit is that 
+they are using <a href="https://wiki.jenkins-ci.org/display/JENKINS/Docker+Plugin">Docker Plugin</a> to point to
+<a href="https://github.com/docker/swarm">Docker swarm</a>. With this setup, the number of slaves are transparent
+to Jenkins and we can dynamically add more hosts to the swarm to scale Jenkins builds.</p>
+
+<p>In the <a href="#d1key">keynote</a> however, @kohsukekawa was announcing that they will support <a href="http://kubernetes.io/">kubernetes</a>.
+Kubernetes features seems to be an 
+<a href="http://stackoverflow.com/questions/27334934/what-is-the-difference-between-docker-swarm-and-kubernetes-mesophere">overlap</a>
+or even a superset of Docker swarm.</p>
+
+<h2>Pets and cattle</h2>
+
+<p>This is a funny analogy thrown by @martincroker during <a href="#d2key">his talk</a>.</p>
+
+<table><thead>
+<tr>
+<th>Pets</th>
+<th>Cattle</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Pets are given names like pussinboots.cern.ch</td>
+<td>Cattle are given numbers like vm0042.cern.ch</td>
+</tr>
+<tr>
+<td>They are unique, lovingly hand raised and cared for</td>
+<td>They are almost identical to other cattle</td>
+</tr>
+<tr>
+<td>When they get ill, you nurse them back to health</td>
+<td>When they get ill, you get another one</td>
+</tr>
+</tbody></table>
+
+<p><em>Credits for the table above from <a href="http://it20.info/2012/12/vcloud-openstack-pets-and-cattle/">it20.info</a></em></p>
+
+<p>Of course, he encourages the attendees to use more cattle. The live demo by @markusrendall was showing that
+all of their demo servers were cattles. They showcased a demo application that is using AWS Cloud Formation. When their JSON file
+is deployed in the demo, all of the servers, nginx, node app (with A/B deployment), Jenkins, etc, 8 VM
+with 4 separated subnets goes live. They had nothing but that single json file for all of those to be up. When those
+servers are up, @markusrendall continued with the demo and ended it by tearing down all those servers.</p>
+
+<h1>Automation test</h1>
+
+<h2>Real world automation test</h2>
+
+<p>There are lot of good stuffs from <a href="#d1butler">@viktorclerc talk</a>, check out his slides!</p>
+
+<p>Some of the best bits I grasped:</p>
+
+<ul>
+<li>Test reports must support and <em>consolidate</em> multiple test tools reports.
+Don&#39;t try to standardize testing tools, it&#39;s impossible to achieve. Let the testers/developers use
+any tools they want, we should do the hardwork to create a custom reporting in Jenkins. It&#39;s more
+important to have tests rather than spending effort standardizing everything. The product they are trying
+to sell to achieve this is <a href="https://xebialabs.com/products/xl-testview/">XL Test View</a>.</li>
+<li>Realise that in real world we can still deploy with failing tests, hence each of the tests need
+to be labeled properly and visible to everyone. For example if Safari test is failing and there 
+are only 2% of our customers are using Safari, we can deploy them with &quot;known failures&quot;. The Safari
+label here is important.</li>
+<li>The world is changing: Testing = Automation. Full stop, it&#39;s an equals symbol there. Testers are becoming developers.</li>
+<li>Speed of feedback is very important, radical parallelization is the key. Also kill the nightlies.</li>
+</ul>
+
+<h2>Automated test tools</h2>
+
+<p><a href="http://blog.codinghorror.com/working-with-the-chaos-monkey/">Chaos monkey</a> is used by @mariocruz
+to test his AWS instances. All these monkeys has now formed an army and become
+<a href="https://github.com/Netflix/SimianArmy/wiki">Simian Army</a>.</p>
+
+<p>An alternative to JMeter was used by @markusrendall during his live demo: <a href="http://gatling.io/">gatling</a>. Not much information
+about it were provided in the talk.</p>
+
+<p>Masoon Jan is using <a href="http://www.fitnesse.org/">FitNesse</a> as a tool to do an acceptance test. This test is integration in his
+deployment pipeline.</p>
+
+<h1>Jenkins optimization</h1>
+
+<h2>Workflow plugin</h2>
+
+<p>This plugin was boasted last year and shockingly has been adopted by a lot of speakers in JUC.
+Workflow plugin is developed by @tyvole and @kohsukekawa in CloudBees. Jenkins core&#39;s code has
+been modified a lot to support this plugin ever since the development of this plugin was started.
+Some of the plugin features are only available in Jenkins Enterprise e.g. checkpoints.</p>
+
+<h2>Jenkins Blueprint</h2>
+
+<p><a href="#d2rebuild">Jonathan Zenou</a> shared a blueprint for his entire Jenkins setup. The blueprint can be found
+<a href="http://www.ravellosystems.com/repo/blueprints/60391436">here</a>. Supposingly anyone can just
+use that blueprint, spin up Jenkins and browse around the configuration (I haven&#39;t tried this yet).
+He shared a lot of plugins that he used to tackle common problems in Jenkins.
+Most of these can also be seen in his slides.</p>
+
+<h2>Failure management</h2>
+
+<p>Lots of times developers don&#39;t bother to read the entire Jenkins output console and will ask you, the
+maintainer of Jenkins, to find out what the problem is. Most of the times the cause of the failure is obvious,
+but it is hard to find as they are in the middle of all other errors.
+<a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Failure+Analyzer">Build Failure Analyzer</a>
+provides a knowledge base by scanning your console output and provide a meaninful description of the error in 
+the build page. Over time your knowledge base will grow and you will have less context switch!</p>
+
+<p>Pushing for Continuous Integration requires dicipline from developers to fix the broken build as
+quick as possible.
+Showing a build failure with a big fat red panel will certainly help. Shared by <a href="#d1retailer">Masoon Jan</a>,
+he is using <a href="https://wiki.jenkins-ci.org/display/JENKINS/Build+Monitor+Plugin">Build Monitor Plugin</a> to achieve
+this.</p>
+
+<h2>Retaining Jenkins build history</h2>
+
+<p>In <a href="#d2release">his talk</a>, Robert McNulty was showing how he can retain Jenkins build
+history by using Groovy and Neo4j. He basically stores all of the build environment and any other specific
+information that he wants from a particular Jenkins build to Neo4j. After a certain
+period of time, this data can used for auditing or reviewing. He showed how Neo4j dashboard
+can display those data in an interesting graphs ouf of the box.</p>
+
+<h1>Software compliance</h1>
+
+<p>I didn&#39;t manage to capture much information here, but if there is one speaker that talks about
+this topic it&#39;s <a href="#d1enterprise">@IlkkaTurunen from Sonatype</a>. He showed how putting a colour and code for
+compliance in Jenkins dashboard would help. The importance of compliance for large financial
+or technology firms were also shown by some statistics in Maven Central e.g. average
+downloads with known vulnerabilities, percentage with known defective parts, component downloads
+with known defects older than 2013, percentage with known defects older than 2013, etc. I vaguely remembered
+that he was showing &quot;Application composition report&quot;, most likely it&#39;s a part of the software that
+they are selling called Sonatype CLM.</p>
+
+<h1>Others tools worth mentioning</h1>
+
+<ul>
+<li>Phabricrator: JIRA + Confluence + FishEye + Stash + HipChat all bundled together for free!</li>
+<li>Terraform: Like CloudFormation but cloud agnostic. Can be used for AWS and OpenStack. I might be oversimplifying, Google it out yourself.</li>
+<li>IBM Bluemix: PaaS from IBM.</li>
+</ul>
+
+<h1>Summary</h1>
+
+<p>Test code as a source code, Infrastructure as a code, everything as a code
+the new common language in DevOps is <a href="https://twitter.com/smeyen/status/613270593803259904">code</a>.</p>
+
+<h2>List of attended talks</h2>
+
+<p>Not all slides are made available by @jenkinsconf yet. Latest <a href="https://twitter.com/jenkinsconf/status/615500739264299008">update</a>.</p>
+
+<h3>Day 1</h3>
+
+<ol>
+<li>Keynote 1 (<a name="d1key">d1key</a>) - @singh_harpreet @kohsukekawa<br></li>
+<li>An Integrated Deployment Pipeline with Jenkins and Cloud Foundry (<a name="d1pipeline">d1pipeline</a>) - @sufyaan_kazi<br></li>
+<li>How to Optimize Automated Testing with Everyone&#39;s Favorite Butler (<a name="d1butler">d1butler</a>) - @viktorclerc - <a href="http://www.slideshare.net/xebialabs/how-to-optimize-automated-testing-with-everyones-favorite-butler-skeleton-v6-forupload">Slides</a><br></li>
+<li>Making Strides towards Enterprise-Scale DevOps...with Jenkins in Your Tool Chain (<a name="d1enterprise">d1enterprise</a>) - @IlkkaTurunen<br></li>
+<li>Bringing Continuous Delivery to Cloud-Scale with Jenkins, Docker and &quot;Tiger&quot; (<a name="d1tiger">d1tiger</a>) - @kohsukekawa @singh_harpreet<br></li>
+<li>Enabling Continuous Delivery for Major Retailers (<a name="d1retailer">d1retailer</a>) - Masood Jan<br></li>
+</ol>
+
+<h3>Day 2</h3>
+
+<ol>
+<li>Keynote 2: Why 50 deploys per day is essential (<a name="d2key">d2key</a>) - @martincroker @markusrendall - <a href="http://www.slideshare.net/MartinCroker/dev-ops-primer-v15-external">Slides</a><br></li>
+<li>Optimizing Your CI: Lessons Learned from a Successful Jenkins Rebuild (<a name="d2rebuild">d2rebuild</a>) - Jonathann Zenou - <a href="http://www.slideshare.net/jonathannzenou/juc-2015">Slides</a></li>
+<li>From DevOps to NoOps (<a name="d2noops">d2noops</a>) - @mariocruz<br></li>
+<li>Hey! What Did We Just Release? (<a name="d2release">d2release</a>) - Robert McNulty<br></li>
+<li>From Virtual Machines to Containers: Achieving Continuous Integration, Build Reproducibility, Isolation and Scalability (<a name="d2container">d2container</a>) - @CamundaBPM - <a href="http://de.slideshare.net/camunda/from-virtual-machines-to-containers">Slides</a><br></li>
+<li>Lightning talks<br></li>
+<li>Multi-Node Environment as a Jenkins Slave (Compound-Slave) (<a name="d2compound">d2compound</a>) - @dchernilevskiy<br></li>
+</ol>
+
+</div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ceilfors'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+                </div>
+                <footer class="footer">
+                    <span>Wisen Tanasa</span><br>
+                    <a href="https://github.com/ceilfors">github.com/ceilfors</a><br>
+                    <a href="https://twitter.com/ceilfors">twitter.com/ceilfors</a><br>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script src="/js/matchmedia.js"></script>
+    <script src="/js/picturefill.min.js"></script>    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-48262088-1', 'ceilfors.com');
+      ga('send', 'pageview');
+
+    </script>
+</body>
+</html>
