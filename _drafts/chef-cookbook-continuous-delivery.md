@@ -42,14 +42,27 @@ Diagram
 
 On every commit made to your git repository, a CI build will kick in the below build steps. You will also need to
 complete these steps in less than ten minutes in an ideal CD world.
+I would highly recommend putting all of the steps above to your `Rakefile` and let `rake` be the tool that
+define your build steps, especially because we are using various tools here during the build. Using rake
+will make it easier for developers to run the build locally before committing them.
+
+- Update cookbook dependencies
+
+    Before you execute any build steps below, make sure that you update your cookbook dependencies by
+    running the following commands:
+
+    ```
+    rm -f Berksfile.lock
+    berks install
+    ```
+
+    This step is important so that you'll always get the latest cookbook dependencies
+    based on the version constraints you have declared in metadata.rb.
+
+    We do not use `berks update` as the command would require you to have Berksfile.lock
+    to exist in your workspace, which is not necessarily true.
 
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
-
-- Update dependency
-
-  Remove Berksfile.lock if it's in your CI workspace. Then run berks install. Can
-  not use berks update and berks install Only used for environment cookbook
-  Check where will kitchen store the dependencies used for chefspec and kitchen!
 
 - Run unit test: [chefspec](https://docs.chef.io/chefspec.html)
 
@@ -65,13 +78,9 @@ complete these steps in less than ten minutes in an ideal CD world.
     - If using vagrant, check out [vagrant-cachier](http://fgrehm.viewdocs.io/vagrant-cachier/).
       vagrant-cachier is extremely helpful especially when you are downloading a lot of external
       files.
-    - If your CI tool support matrix job, use them. You will run each of the individual platform
-      test in parallel.
-
-I would highly recommend putting all of the steps above to your `Rakefile` and let `rake` be the tool that
-define your build steps, especially because we are using various tools here during the build. Using rake
-will make it easier for developers to run the build locally before committing them. Kitchen step can be
-made optional in CI as you will parallelise the test via matrix job.
+    - If your CI tool support matrix job, use them to test multiple platforms in parallel.
+      Do note that I find this rarely helpful in non open source cookbooks, as generally
+      you'll only support one platform.
 
 When the build steps were successful, a new _release candidate_ will be made.
 
@@ -111,6 +120,20 @@ When the build steps were successful, a new _release candidate_ will be made.
 
   Sitting beside your application. The build will go together with your application build.
   Extra step to commit your berksfile.lock
+
+# Deployment 
+
+Every cookbook change and application build. Chef push jobs or SSH. Would recommend chef push
+jobs to trigger chef-client from your CI.
+
+# Smoke test
+
+Your deployment will not complete without smoke tests. This test must be executed on every
+chef-client run you make
+
+It can be as simple as curl ing
+
+I'm using Chef audit mode for the smoke testing.
 
 # Promotion
 
