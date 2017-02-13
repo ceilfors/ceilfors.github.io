@@ -5,18 +5,12 @@ tags: chef
 comments: true
 ---
 
-This post captures my research and implementation to achieve Continuous Delivery with
-Chef. Do share and leave comments if you have a better approach towards achieving our goal.
-
-# Objective
-
-Achieving Continuous Delivery by using Chef as the tool for environment management, application
-configuration management and application deployment. Chef Cookbooks that you write will be released
-together with your applications.
+This post captures the journey of achieving Continuous Delivery surrounding Chef
+as the tool for environment management, application configuration management and application deployment.
 
 # Setup
 
-In this setup, I am using Chef with Chef Server. You will find that most of the commands
+I am using Chef with Chef Server. You will find that most of the commands
 written in this post are coupled with Chef Server, although you should be able to map it to
 Chef Zero/Solo if needed. The CI server that I'm using is Jenkins hence some of the terminologies I used
 might accidentally be Jenkins specific. I will try to make
@@ -29,6 +23,9 @@ you write, as opposed to having them all in one repo like [chef-repo](https://do
 Chef is recommending the usage of [Policyfile](https://docs.chef.io/policyfile.html) instead of Berkshelf*.
 If you are not familiar with Berkshelf and their cookbook patterns, I would recommend reading
 [this blog post](http://blog.vialstudios.com/the-environment-cookbook-pattern/).
+
+Some of the contents might seem trivial because throughout my journey, I discovered that
+new Chef users have no experience in Ruby (I was in this category) nor writing codes.
 
 # Deployment pipeline
 
@@ -46,23 +43,26 @@ I would highly recommend putting all of the steps above to your `Rakefile` and l
 define your build steps, especially because we are using various tools here during the build. Using rake
 will make it easier for developers to run the build locally before committing them.
 
+- Workspace clean up
+
+    Especially when you are using git, you want to avoid recloning your repository on every build
+    as it will be very slow. Clean up your workspace before you proceed on any build steps. Deleting
+    unversioned files, especially Berksfile.lock is particularly important.
+
 - Update cookbook dependencies
 
-    Before you execute any build steps below, make sure that you update your cookbook dependencies by
-    running the following commands:
+    Make sure that Berksfile.lock is deleted first (see previous step), then run `berks install`.
 
-    ```
-    rm -f Berksfile.lock
-    berks install
-    ```
-
-    This step is important so that you'll always get the latest cookbook dependencies
+    This step will ensure that you'll always be integrated with the latest cookbook dependencies
     based on the version constraints you have declared in metadata.rb.
 
     We do not use `berks update` as the command would require you to have Berksfile.lock
     to exist in your workspace, which is not necessarily true.
 
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
+
+    Adopt these tools early if you do not want to be buried in thousands of warnings later.
+    These tools will help you find unintended bugs and apply a coding standard and styles.
 
 - Run unit test: [chefspec](https://docs.chef.io/chefspec.html)
 
@@ -82,16 +82,50 @@ will make it easier for developers to run the build locally before committing th
       Do note that I find this rarely helpful in non open source cookbooks, as generally
       you'll only support one platform.
 
-When the build steps were successful, a new _release candidate_ will be made.
+# Environment Cookbook Build
 
-- Generate documentation
+Earlier in this post, I mentioned that you'll have one git repository for every cookbooks you write.
+There's an exception for *Environment Cookbooks*. This cookbook will sit beside your application
+source code. An example structure for a Maven project:
+
+```
+src\
+  main\
+    java\
+cookbook\
+  attributes\
+    default.rb
+  metadata.rb
+pom.xml
+```
+
+allow you to keep version in sync. attributes.rb can read pom.xml
+
+configuration files and binary will be in sync.
+
+# Release Candidate
+
+Every cookbook build you make should produce a release candidate, ready to be deployed to your targeted
+environments. A release candidate is created when a build is successful, that means all the tests
+we have captured in the previous sections passed.
+
+Below are the general steps that you should make after the build steps are completed:
+
+- Generate cookbook documentation
   
     At the time of writing, there are a lot of tools out there to document Chef cookbooks. Pick your own favourite,
-    I'm using [knife-cookbook-doc](http://realityforge.org/knife-cookbook-doc/)
+    I'm using [knife-cookbook-doc](http://realityforge.org/knife-cookbook-doc/) because it allows
+    cookbook attributes to be documented close to the source code. Other tools rely on the
+    maintenance of `metadata.rb`, which often be overlooked when your source code evolved.
 
 - Bump version on every build
 
-    Use [knife spork](https://github.com/jonlives/knife-spork): `knife spork bump COOKBOOK patch`
+    Bump your cookbook patch version on every build. Check out 
+    [knife spork](https://github.com/jonlives/knife-spork) which will then allow you to execute:
+
+    ```
+    knife spork bump COOKBOOK patch
+    ```
 
 - Commit
 
@@ -136,6 +170,8 @@ It can be as simple as curl ing
 I'm using Chef audit mode for the smoke testing.
 
 # Promotion
+
+Very important on safe deployment i.e. not deploying the latest all every environments
 
 Happens only to your enviornment cookbook.
 If you have multiple applications that are deployed to one server, you must have another application and
