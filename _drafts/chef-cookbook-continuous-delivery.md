@@ -27,6 +27,8 @@ If you are not familiar with Berkshelf and their cookbook patterns, I would reco
 Some of the contents might seem trivial because throughout my journey, I discovered that
 new Chef users have no experience in Ruby (I was in this category) nor writing codes.
 
+Berksfile source :server. Do not use git source as you do not want to pull unstable cookbook.
+
 # Deployment pipeline
 
 Diagram
@@ -43,21 +45,37 @@ I would highly recommend putting all of the steps above to your `Rakefile` and l
 define your build steps, especially because we are using various tools here during the build. Using rake
 will make it easier for developers to run the build locally before committing them.
 
+Below are the typical build steps that should have. The sequence is important.
+
 - Workspace clean up
 
     Especially when you are using git, you want to avoid recloning your repository on every build
     as it will be very slow. Clean up your workspace before you proceed on any build steps. Deleting
     unversioned files, especially Berksfile.lock is particularly important.
 
+- Bump version cookbook version
+
+    Bump your cookbook patch version on every build. Check out 
+    [knife spork](https://github.com/jonlives/knife-spork) which will then allow you to execute:
+
+    ```
+    knife spork bump COOKBOOK patch
+    ```
+
 - Update cookbook dependencies
 
-    Make sure that Berksfile.lock is deleted first (see previous step), then run `berks install`.
+    ```
+    berks install
+    ```
 
     This step will ensure that you'll always be integrated with the latest cookbook dependencies
     based on the version constraints you have declared in metadata.rb.
 
     We do not use `berks update` as the command would require you to have Berksfile.lock
     to exist in your workspace, which is not necessarily true.
+    You will also need to make sure that Berksfile.lock is deleted before you run `berks install`
+    command. This step is also needed to be executed only after you have bumped your cookbook
+    version because the Berksfile.lock file will contain your cookbook version too.
 
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
 
@@ -99,9 +117,14 @@ cookbook\
 pom.xml
 ```
 
-allow you to keep version in sync. attributes.rb can read pom.xml
-
-configuration files and binary will be in sync.
+Combining your environment cookbook with your application build will allow you to keep
+your application binaries and configuration files to be promoted and deployed together.
+This is important as you do not want these two things to diverge e.g. you might apply
+the wrong version of configuration file to the wrong application in production.
+To ensure their consistency,
+you can update the `cookbook/attributes/default.rb` file to point to the updated version
+declared in the pom.xml (your application will update its version on every build too).
+Doing this will reduce the risk of maintaining all of your environment objects manually.
 
 # Release Candidate
 
@@ -118,18 +141,13 @@ Below are the general steps that you should make after the build steps are compl
     cookbook attributes to be documented close to the source code. Other tools rely on the
     maintenance of `metadata.rb`, which often be overlooked when your source code evolved.
 
-- Bump version on every build
-
-    Bump your cookbook patch version on every build. Check out 
-    [knife spork](https://github.com/jonlives/knife-spork) which will then allow you to execute:
-
-    ```
-    knife spork bump COOKBOOK patch
-    ```
-
 - Commit
 
-    Commit those changes we made to `metadata.rb` and README.md (if using knife-cookbook-doc).
+    Commit those changes we made in the workspace:
+
+    - metadata.rb
+    - README.md if you have adopted knife-cookbook-doc
+    - Berksfile.lock if you are building an environment cookbook
 
 - Create a build tag
 
@@ -139,21 +157,16 @@ Below are the general steps that you should make after the build steps are compl
 
 - Push
 
-    Push your commit and build tag.
+    Push your commit and build tag to your Git server.
 
 - Chef server upload and freeze the version
   
-    Execute `berks apply` to upload your cookbook and freeze them. It is crucial for the upload to happen last,
+    Execute `berks upload` to upload your cookbook and freeze them. It is crucial for the upload to happen last,
     because you don't want anybody to use cookbooks that didn't pass the tests right?
 
 - Clean up
 
     Clean up tag and previous verion of cookbooks
-
-# Environment Cookbook Build
-
-  Sitting beside your application. The build will go together with your application build.
-  Extra step to commit your berksfile.lock
 
 # Deployment 
 
