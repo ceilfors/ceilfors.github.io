@@ -51,32 +51,40 @@ Below are the typical build steps that should have. The sequence is important.
 
     Especially when you are using git, you want to avoid recloning your repository on every build
     as it will be very slow. Clean up your workspace before you proceed on any build steps. Deleting
-    unversioned files, especially Berksfile.lock is particularly important.
+    unversioned files.
+
+    In Jenkins, this step can be done by Jenkins Git Plugin
 
 - Bump version cookbook version
 
-    Bump your cookbook patch version on every build. Check out 
-    [knife spork](https://github.com/jonlives/knife-spork) which will then allow you to execute:
+    ```
+    export COOKBOOK_NAME=`chef exec ruby -e 'require "chef/cookbook/metadata"; metadata = Chef::Cookbook::Metadata.new; metadata.from_file("metadata.rb"); puts metadata.name'`
+    knife spork bump \$COOKBOOK_NAME -o ..
+    knife spork check \$COOKBOOK_NAME -o .. --fail
+    ```
 
-    ```
-    knife spork bump COOKBOOK patch
-    ```
+    [knife spork](https://github.com/jonlives/knife-spork) is used here to bump
+    our cookbook patch version on every build.
 
 - Update cookbook dependencies
 
     ```
+    rm -f Berksfile.lock
     berks install
     ```
 
     This step will ensure that you'll always be integrated with the latest cookbook dependencies
     based on the version constraints you have declared in metadata.rb.
-
-    We do not use `berks update` as the command would require you to have Berksfile.lock
-    to exist in your workspace, which is not necessarily true.
-    You will also need to make sure that Berksfile.lock is deleted before you run `berks install`
-    command. This step is also needed to be executed only after you have bumped your cookbook
+    You will need to make sure that Berksfile.lock is deleted before you run `berks install`
+    command, failing to do this `berks install` will not update your Berksfile.lock file. Do note
+    that the *Workspace clean up* step will not clean Berksfile.lock file in your environment cookbook
+    build because the Berksfile.lock file will be versioned controlled. I'll cover more on this later.
+    This step is also needed to be executed only after you have bumped your cookbook
     version because the Berksfile.lock file will contain your cookbook version too.
 
+    We do not use `berks update` as the command would require you to have Berksfile.lock
+    to exist in your workspace, which is not necessarily true in a non-environment cookbook build.
+    
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
 
     Adopt these tools early if you do not want to be buried in thousands of warnings later.
