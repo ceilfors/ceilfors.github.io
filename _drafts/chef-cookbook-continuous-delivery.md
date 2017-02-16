@@ -27,8 +27,6 @@ If you are not familiar with Berkshelf and their cookbook patterns, I would reco
 Some of the contents might seem trivial because throughout my journey, I discovered that
 new Chef users have no experience in Ruby (I was in this category) nor writing codes.
 
-Berksfile source :server. Do not use git source as you do not want to pull unstable cookbook.
-
 # Deployment pipeline
 
 Diagram
@@ -64,7 +62,10 @@ Below are the typical build steps that should have. The sequence is important.
     ```
 
     [knife spork](https://github.com/jonlives/knife-spork) is used here to bump
-    our cookbook patch version on every build.
+    our cookbook patch version on every build. It is important that you 
+    bump your cookbook version before updating the cookbook dependencies in Berksfile.lock
+    because the Berksfile.lock will also contain your cookbook version that have just bumped
+    in this step.
 
 - Update cookbook dependencies
 
@@ -78,13 +79,26 @@ Below are the typical build steps that should have. The sequence is important.
     You will need to make sure that Berksfile.lock is deleted before you run `berks install`
     command, failing to do this `berks install` will not update your Berksfile.lock file. Do note
     that the *Workspace clean up* step will not clean Berksfile.lock file in your environment cookbook
-    build because the Berksfile.lock file will be versioned controlled. I'll cover more on this later.
-    This step is also needed to be executed only after you have bumped your cookbook
-    version because the Berksfile.lock file will contain your cookbook version too.
-
-    We do not use `berks update` as the command would require you to have Berksfile.lock
-    to exist in your workspace, which is not necessarily true in a non-environment cookbook build.
+    build because the Berksfile.lock file will be versioned controlled. Environment cookbook build
+    will be covered more in the next section.
     
+    You should also configure your Berksfile to download your upstream
+    cookbook dependencies from Chef Server:
+
+    ```
+    source :chef_server
+    ```
+
+    This is preferable as compared to pulling cookbooks from Git repository as you might have
+    pulled a version that didn't pass tests. If you would like to go fancier, you can also
+    setup your own Chef Supermarket although this will not be covered in this post.
+
+    You might asked why don't we just use `berks update` command. The reason is because
+    this command will require you to have Berksfile.lock
+    to exist in your workspace, which is not necessarily true in a non-environment cookbook build.
+    You can run `berks install` then `berks update` on every build, but this will be a slower process
+    as berks will take twice as much time to resolve your cookbook dependencies.
+
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
 
     Adopt these tools early if you do not want to be buried in thousands of warnings later.
@@ -100,13 +114,13 @@ Below are the typical build steps that should have. The sequence is important.
 
     Speeding up:
     - If the platforms that you support are all supported by docker, check out
-      [kitchen-dokken](https://github.com/someara/kitchen-dokken).
-    - If using vagrant, check out [vagrant-cachier](http://fgrehm.viewdocs.io/vagrant-cachier/).
-      vagrant-cachier is extremely helpful especially when you are downloading a lot of external
-      files.
-    - If your CI tool support matrix job, use them to test multiple platforms in parallel.
-      Do note that I find this rarely helpful in non open source cookbooks, as generally
-      you'll only support one platform.
+      [kitchen-dokken](https://github.com/someara/kitchen-dokken) driver.
+    - If using docker driver, check out [squid](http://www.squid-cache.org/) to
+      cache file downloads.
+    - If using vagrant driver, check out [vagrant-cachier](http://fgrehm.viewdocs.io/vagrant-cachier/)
+      to cache file downloads. It requires less configuration as compared to squid.
+    - If your CI tool support matrix job, use them to test multiple platforms or test suites
+      in parallel.
 
 # Environment Cookbook Build
 
