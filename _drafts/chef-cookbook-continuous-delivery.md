@@ -5,13 +5,14 @@ tags: chef
 comments: true
 ---
 
-This post captures the journey of achieving Continuous Delivery surrounding Chef
-as the tool for environment management, application configuration management and application deployment.
+My journey on achieving Continuous Delivery surrounding Chef
+as the tool for environment management, application configuration management and application deployment
+have not been an easy one. Documentations and resources surrounding this topic are quite scarce.
+I hope this writing will be helpful and do leave comments to other readers if you have found better
+ways of achieving what I'm trying to do.
 
-lack of sources in the internet. documentation. hopefuly it's helpful.
-
-Some of the contents might seem trivial because throughout my journey, I discovered that
-new Chef users have no experience in Ruby (I was in this category) nor writing codes.
+*For Ruby experts: Some of the tips I write might seem trivial because throughout my journey, I discovered that
+new Chef users have no experience in Ruby nor writing codes in Ruby. I was one of them.*
 
 # Setup
 
@@ -21,7 +22,7 @@ masterless Chef setup (Chef Zero or Solo) if needed.
 
 You will need a CI/CD server. Some of the terminologies or concepts I use might
 accidentally be Jenkins specific as that's the tool that I use. I will try to make
-this post as agnostic as possible due to the number of options we have today,
+explanation I use as agnostic as possible due to the number of options tools we have today,
 
 I'm using [Berkshelf](https://docs.chef.io/berkshelf.html) as the dependency management tool for my chef
 cookbooks.
@@ -33,19 +34,19 @@ concepts I use will refer to that blog post.
 *Do note that at the time of writing,
 Chef is recommending the usage of [Policyfile](https://docs.chef.io/policyfile.html) instead of Berkshelf*.
 
-Your own written cookbooks will be resolved via Chef Server. You should have the following statement
+Your own written cookbooks will be resolved by Berkshelf via Chef Server. You should have the following statement
 in all of your Berksfile:
 
 ```ruby
 source :chef_server
 ```
 
-Chef Server source is preferable as compared to pulling cookbooks from Git repository as you will
+Chef Server source is preferable to pulling cookbooks from Git repository as you will
 always want to take the your own latest cookbook and will not want to pull
 a version that didn't pass its tests. If you would like to go fancier, you can also
-setup your own Chef Supermarket although this will not be covered in this post.
+setup your own Chef Supermarket although I will not be covering that.
 
-# The Deployment Pipeline
+# Deployment Pipeline
 
 Diagram
 
@@ -53,10 +54,11 @@ Diagram
 - Every cookbook build
 - Every promotion
 
-# The Build
+# Cookbook Build
 
-On every commit made to your git repository, a CI build will kick start the below build steps. You will also need to
-complete these steps in less than ten minutes in an ideal CD world.
+On every commit made to your git repository, a CI build will kick start a series of build steps.
+Ideally, you will want to
+complete these build steps in less than ten minutes.
 I would recommend putting all of the steps below to a `Rakefile` and
 let [`rake`](https://github.com/ruby/rake) be the tool that
 define your build steps, especially because we are using various tools here during the build. Using rake
@@ -66,10 +68,10 @@ Here are the typical build steps that you should have in sequential order:
 
 - Workspace clean up
 
-    Do note delete your entire build workspace as you would want to avoid
+    Don't delete your entire build workspace as you would want to avoid
     recloning your repository on every build. It will be very slow.
-    Clean up your workspace before you proceed on any build steps by undoing all of the changes
-    from the previous buildi and deleting all of the unversioned files.
+    Clean up your workspace before you proceed on any build steps by reverting all of the changes
+    done by the previous build and deleting all of the unversioned files.
 
 - Bump version cookbook version
 
@@ -97,7 +99,7 @@ Here are the typical build steps that you should have in sequential order:
     You will need to make sure that Berksfile.lock is deleted before you run `berks install`
     command. `berks install` will not update Berksfile.lock.
 
-    You might ask why don't we just use `berks update` command. The reason is because
+    You might ask why don't we just use `berks update` command in this step. The reason is because
     this command will require you to have Berksfile.lock
     to exist in your workspace, which is not necessarily true in a non-environment cookbook build.
     You can also run `berks install` then `berks update` on every build, but this will be a slower process
@@ -106,7 +108,8 @@ Here are the typical build steps that you should have in sequential order:
 - Lint your cookbook: [cookstyle](https://docs.chef.io/cookstyle.html) and [foodcritic](http://www.foodcritic.io/).
 
     Adopt these tools early if you do not want to be buried in thousands of warnings later.
-    These tools will help you find unintended bugs and enforce coding standards.
+    These tools will help you find unintended bugs and enforce coding standards. These tools are essential
+    if you do not have ruby background.
 
 - Run unit test: [chefspec](https://docs.chef.io/chefspec.html)
 
@@ -131,29 +134,32 @@ Here are the typical build steps that you should have in sequential order:
 Earlier in this post, I mentioned that you'll have one git repository for every cookbooks you write.
 There's an exception for *Environment Cookbooks* (again, read [this blog post][pattern] if you haven't read it already
 to get a better understanding on this cookbook pattern). This cookbook will sit beside your application
-source code. An example structure for a Maven project:
-
-```
-src\
-  main\
-    java\
-cookbook\
-  attributes\
-    default.rb
-  metadata.rb
-pom.xml
-```
-
-On top of all the build steps in a normal cookbook build, an environment cookbook build will
-have an additional build steps required:
-
-- application build, versioning, blah
-- updating attribute file, etc
+source code.
 
 Combining your environment cookbook with your application build will allow you to keep
 your application binaries and configuration files to be promoted and deployed together.
 This is important as you do not want these two things to diverge e.g. applying
 the wrong version of configuration file to the wrong version of application in production.
+
+An example structure for a Maven project:
+
+```
+src/
+  main/
+    java/
+cookbook/
+  attributes/
+    default.rb
+  metadata.rb
+pom.xml
+```
+
+On top of all the build steps in a normal cookbook build outlined in the previous section,
+an environment cookbook build has additional build steps:
+
+- The application build that produces your software. These typically are the binaries that
+  you would be deploying with Chef.
+- Updating cookbook cookbook/attributes/default.rb to point to your application version.
 
 You would normally have your application version stored in `cookbook/attributes/default.rb`.
 Because they are kept together now in one repository,
@@ -165,10 +171,10 @@ to be deployed in each environments.
 # Release Candidate
 
 Every cookbook build you make should produce a release candidate, ready to be deployed to your targeted
-environments. A release candidate is created when a build is successful, that means all the tests
+environments. A new release candidate is created when a build is successful, that means all the tests
 we have captured in the previous sections passed.
 
-Below are the general steps that you should make after the build steps are completed:
+Here are the general steps that you should make after the build steps are completed:
 
 - Generate cookbook documentation
   
@@ -177,32 +183,28 @@ Below are the general steps that you should make after the build steps are compl
     cookbook attributes to be documented close to the source code. Other tools rely on the
     maintenance of `metadata.rb`, which often be overlooked when your source code evolved.
 
-- Commit
+- Git commit: Commit those changes we made so far.
 
-    Commit those changes we made in the workspace:
-
-    - metadata.rb
-    - README.md if you have adopted knife-cookbook-doc
-    - Berksfile.lock if you are building an environment cookbook
-
-- Create a build tag
+- Create a new build tag
 
     Tag your commit with your current CI build number. These _build tags_ will later be used
     for promotion process. The tag naming convention that we are using here is build/[build number] e.g.
     build/100, build/101, build/102, and so on.
 
-- Push
-
-    Push your commit and build tag to your Git server.
+- Git push: Push your commit and build tag to your Git server.
 
 - Chef server upload and freeze the version
   
-    Execute `berks upload` to upload your cookbook and freeze them. It is crucial for the upload to happen last,
+    Execute `berks upload` to upload and freeze your cookbook. It is crucial for the upload to happen last,
     because you don't want anybody to use cookbooks that didn't pass the tests right?
 
 - Clean up
 
-    Clean up tag and previous verion of cookbooks
+    Delete your old build tags, based on your retention policy. You might also want to clean cookbooks
+    that are old enough and is not used by any environments. I personally have not done this as I
+    have not seen the need of it yet, probably due to how good
+    [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
+    is handling thousands of cookbook versions we have.
 
 # Deployment 
 
