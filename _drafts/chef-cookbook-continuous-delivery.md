@@ -206,10 +206,27 @@ Here are the general steps that you should make after the build steps are comple
     [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
     is handling thousands of cookbook versions we have.
 
-# Deployment 
+# Deployment
 
-Every cookbook change and application build. Chef push jobs or SSH. Would recommend chef push
-jobs to trigger chef-client from your CI.
+Once you have uploaded your cookbooks to Chef Server, you are ready to move on the next stage
+of your deployment pipeline which finally involve deployments. The first deployment
+after the cookbook builds would occur in your *Acceptance Stage*. And naturally, this step is about
+executing the command `chef-client` to your acceptance test environment.
+
+The deployment here must be automatically triggered when your environment cookbook build
+is completed. No manual intervention should be involved in this step, hence the trigger should
+always pick up the latest cookbook that you have just uploaded. For the latest cookbook to 
+always be taken, you can simply assign the acceptance test environment to not have any cookbook
+version constraints.
+
+The simplest execution of `chef-client` can be done from your CI server by excuting `knife ssh`.
+[Knife SSH](https://docs.chef.io/knife_ssh.html)
+would normally be sufficient when you only have one node to be executed at. When you
+have more than multiple nodes that you need to deploy to at one time, I would recommend using
+[push jobs](https://docs.chef.io/push_jobs.html). Multiple nodes scenario would usually
+occur when your acceptance test environment is matured enough to match the production environments.
+You will suffer from knife ssh bad handling of status reports when hitting multiple nodes i.e.
+it is hard to determine the node has deployment failure.
 
 # Smoke test
 
