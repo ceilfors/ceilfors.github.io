@@ -210,23 +210,51 @@ Here are the general steps that you should make after the build steps are comple
 
 Once you have uploaded your cookbooks to Chef Server, you are ready to move on the next stage
 of your deployment pipeline which finally involve deployments. The first deployment
-after the cookbook builds would occur in your *Acceptance Stage*. And naturally, this step is about
-executing the command `chef-client` to your acceptance test environment.
+after the cookbook builds would occur in your *Acceptance Stage*.
 
 The deployment here must be automatically triggered when your environment cookbook build
-is completed. No manual intervention should be involved in this step, hence the trigger should
-always pick up the latest cookbook that you have just uploaded. For the latest cookbook to 
-always be taken, you can simply assign the acceptance test environment to not have any cookbook
-version constraints.
+is completed successfully. No manual intervention should be involved in this step unless
+you have a strong reason to do so.
 
-The simplest execution of `chef-client` can be done from your CI server by excuting `knife ssh`.
-[Knife SSH](https://docs.chef.io/knife_ssh.html)
-would normally be sufficient when you only have one node to be executed at. When you
-have more than multiple nodes that you need to deploy to at one time, I would recommend using
-[push jobs](https://docs.chef.io/push_jobs.html). Multiple nodes scenario would usually
-occur when your acceptance test environment is matured enough to match the production environments.
-You will suffer from knife ssh bad handling of status reports when hitting multiple nodes i.e.
-it is hard to determine the node has deployment failure.
+Here are the typical steps that will be executed when the deployment is triggered:
+
+- Download Berksfile.lock from a build tag
+
+    In this step, you'll need to download the Berksfile.lock that has been
+    committed to your environment cookbook build tag. You will need to find the newest build
+    tag and then hit your Git Server to download that file. Because this deployment job will be triggered
+    by its upstream build job, you can pass down the build number and that will the latest build tag
+    that you would want to pull from.
+
+    For example if Bitbucket Server used, you can hit the following API to download Berksfile.lock
+    from build 100:
+    https://bitbucket.example.com/projects/cd/repos/application/browse/cookbook?at=refs/tags/build/100&raw
+
+- Lock the Chef Environment cookbook constraints
+
+    ```
+    berks apply application_acceptance
+    ```
+
+    Once the Berksfile.lock is downloaded, you would be able to excute berks apply to your acceptance
+    environment without the full cookbook source code.
+
+- Execute chef-client
+
+    ```
+    knife ssh "chef_environment:application_acceptance" "sudo chef-client"
+    ```
+
+    The simplest execution of `chef-client` can be done from your CI server by excuting `knife ssh`.
+    [Knife SSH](https://docs.chef.io/knife_ssh.html)
+    would normally be sufficient when you only have one node to be executed at.
+
+    Multiple nodes scenario would usually occur when your acceptance test environment is matured enough
+    to match the production environments. When you
+    have more than multiple nodes, I would recommend using
+    [push jobs](https://docs.chef.io/push_jobs.html).
+    You will suffer from knife ssh bad handling of status reports when hitting multiple nodes i.e.
+    it is hard to determine the node has deployment failure.
 
 # Smoke test
 
