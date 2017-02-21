@@ -258,12 +258,24 @@ Here are the typical steps that will be executed when the deployment is triggere
 
 # Smoke test
 
-Your deployment will not complete without smoke tests. This test must be executed on every
-chef-client run you make
+Your deployment will not complete without smoke tests. Smoke tests must be executed on every
+chef-client run you make. The smoke tests you write should run quick to verify your deployment
+and not involve any application data modification. Example smoke testing scope:
 
-It can be as simple as curl ing
+- check version deployed
 
-I'm using Chef audit mode for the smoke testing.
+    can also include build number
+
+- check deployment status
+
+- curl
+    
+    If you are develping a web application, the result of the deployment should make
+    a page served somewhere. Curl the main page and make sure that it returns 200.
+
+Tools
+- Serverspec
+- or audit mode. Maybe not right, but we use it because of chef push, etc. convenient.
 
 # Promotion
 
