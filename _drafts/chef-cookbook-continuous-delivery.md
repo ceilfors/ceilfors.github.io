@@ -262,11 +262,22 @@ Your deployment will not complete without smoke tests. Smoke tests must be execu
 chef-client run you make. The smoke tests you write should run quick to verify your deployment
 and not involve any application data modification. Example smoke testing scope:
 
-- check version deployed
+- Check the application version deployed
 
-    can also include build number
+    If you are deploying a command line application, check that `app --version` returns
+    the correct version. If you are deploying a web application, make sure that the version
+    written in the footer or somewhere in the web page has the correct version. You get the gist.
 
-- check deployment status
+- Check deployment status
+
+    You can normally prompt web containers for the status of the deployment that you have
+    just completed. For example in JBoss AS, you can query the status by using
+    its cli tool and make sure that it doesn't
+    return `FAILED` status:
+
+    ```
+    jboss-cli.sh --connect command="deployment-info"
+    ```
 
 - curl
     
