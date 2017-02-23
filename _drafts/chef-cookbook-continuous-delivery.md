@@ -258,9 +258,20 @@ Here are the typical steps that will be executed when the deployment is triggere
 
 # Smoke test
 
-Your deployment will not complete without smoke tests. Smoke tests must be executed on every
-chef-client run you make. The smoke tests you write should run quick to verify your deployment
-and not involve any application data modification. Example smoke testing scope:
+Your deployment will not complete without smoke tests execution. Smoke tests must be executed after every
+chef-client run you make. The smoke tests you write should run fast to verify that your deployment
+is successful, in less than 1 minute.
+They also should not involve any application data modification.
+
+You have a couple of options to execute those smoke tests: [Serverspec](http://serverspec.org/) via Rake,
+[Inspec](http://inspec.io/) via its CLI, or 
+Inspec via [Chef Audit](https://docs.chef.io/analytics.html).
+I'm using Inspec via Chef Audit even when it is not intuitively something that Chef Audit is
+meant to be used for. This approach is recommended as you can use it in conjunction with push jobs
+hence eliminating the need of establishing a SSH connection from your CI/CD server to your nodes.
+You can enable audits in `client.rb` or a command line argument for `chef-client`.
+
+Example smoke tests:
 
 - Check the application version deployed
 
