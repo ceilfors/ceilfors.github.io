@@ -8,6 +8,13 @@ picture:
   attr:
     itemprop: "image"
   presets:
+    full:
+      ppi: [1, 1.5]
+      source_full:
+        media: "(min-width: 30em)"
+        width: 748
+      source_default:
+        width: 500
     portrait:
       ppi: [1, 1.5]
       source_med:

@@ -48,7 +48,11 @@ setup your own Chef Supermarket although I will not be covering that.
 
 # Deployment Pipeline
 
-Diagram
+Here is the full example of a deployment pipeline when it is implemented with Chef.
+
+![Deployment pipeline]({{ site.url }}/assets/image/chef-cookbook-continuous-delivery/drawio-deployment-pipeline.png)
+
+The shapes highlighted in blue are the topic that will be covered in this post.
 
 - Every application build
 - Every cookbook build
