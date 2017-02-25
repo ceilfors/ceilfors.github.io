@@ -249,6 +249,11 @@ Here are the typical steps that will be executed when the deployment is triggere
     knife ssh "chef_environment:application_acceptance" "sudo chef-client"
     ```
 
+    This is the step where the your environment configuration will be managed
+    and deployment of your application binary will happen.
+    A recipe would download the application from your binary repository, with the version specified
+    in your cookbook.
+
     The simplest execution of `chef-client` can be done from your CI server by excuting `knife ssh`.
     [Knife SSH](https://docs.chef.io/knife_ssh.html)
     would normally be sufficient when you only have one node to be executed at.
