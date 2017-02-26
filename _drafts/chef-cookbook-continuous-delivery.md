@@ -11,8 +11,8 @@ have not been an easy one. Documentations and resources surrounding this topic a
 I hope this writing will be helpful and do leave comments to other readers if you have found better
 ways of achieving what I'm trying to do.
 
-*For Ruby experts: Some of the tips I write might seem trivial because throughout my journey, I discovered that
-new Chef users have no experience in Ruby nor writing codes in Ruby. I was one of them.*
+*For Ruby experts: Some of the tips I write might seem trivial because I discovered that
+new Chef users sometimes have no experience writing codes in Ruby. I was one of them.*
 
 # Setup
 
@@ -52,7 +52,7 @@ Here is the full example of a deployment pipeline when it is implemented with Ch
 
 ![Deployment pipeline]({{ site.url }}/assets/image/chef-cookbook-continuous-delivery/drawio-deployment-pipeline.png)
 
-The shapes highlighted in blue are the topic that will be covered in this post.
+The blue colored shapes are the topics that I will cover in this post.
 
 - Every application build
 - Every cookbook build
@@ -137,10 +137,11 @@ Here are the typical build steps that you should have in sequential order:
 
 Earlier in this post, I mentioned that you'll have one git repository for every cookbooks you write.
 There's an exception for *Environment Cookbooks* (again, read [this blog post][pattern] if you haven't read it already
-to get a better understanding on this cookbook pattern). This cookbook will sit beside your application
-source code.
+to get a better understanding on this cookbook pattern). This cookbook sits beside your application
+source code, hence two of the different project types sharing one build process.
 
-Combining your environment cookbook with your application build will allow you to keep
+Combining your environment cookbook with your application build (or application assembly build)
+will allow you to keep
 your application binaries and configuration files to be promoted and deployed together.
 This is important as you do not want these two things to diverge e.g. applying
 the wrong version of configuration file to the wrong version of application in production.
@@ -165,7 +166,7 @@ an environment cookbook build has additional build steps:
   you would be deploying with Chef.
 - Updating cookbook cookbook/attributes/default.rb to point to your application version.
 
-You would normally have your application version stored in `cookbook/attributes/default.rb`.
+I would normally have my application version stored in `cookbook/attributes/default.rb`.
 Because they are kept together now in one repository,
 you can update the `cookbook/attributes/default.rb` file to point to the updated version
 declared in the pom.xml (after the pom.xml version is updated of course).
@@ -210,17 +211,17 @@ Here are the general steps that you should make after the build steps are comple
     [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
     is handling thousands of cookbook versions we have.
 
-# Deployment
+# Environment Configuration and Deployment
 
 Once you have uploaded your cookbooks to Chef Server, you are ready to move on the next stage
-of your deployment pipeline which finally involve deployments. The first deployment
+of your deployment pipeline. The first environment configuration and deployment
 after the cookbook builds would occur in your *Acceptance Stage*.
 
-The deployment here must be automatically triggered when your environment cookbook build
+This phase must be automatically triggered when your environment cookbook build
 is completed successfully. No manual intervention should be involved in this step unless
 you have a strong reason to do so.
 
-Here are the typical steps that will be executed when the deployment is triggered:
+Here are the typical steps that will be executed when this phase is triggered:
 
 - Download Berksfile.lock from a build tag
 
@@ -232,7 +233,10 @@ Here are the typical steps that will be executed when the deployment is triggere
 
     For example if Bitbucket Server used, you can hit the following API to download Berksfile.lock
     from build 100:
+
+    ```
     https://bitbucket.example.com/projects/cd/repos/application/browse/cookbook?at=refs/tags/build/100&raw
+    ```
 
 - Lock the Chef Environment cookbook constraints
 
@@ -276,9 +280,9 @@ You have a couple of options to execute those smoke tests: [Serverspec](http://s
 [Inspec](http://inspec.io/) via its CLI, or 
 Inspec via [Chef Audit](https://docs.chef.io/analytics.html).
 I'm using Inspec via Chef Audit even when it is not intuitively something that Chef Audit is
-meant to be used for. This approach is recommended as you can use it in conjunction with push jobs
+meant to be used for. This approach is good as you can use it in conjunction with push jobs
 hence eliminating the need of establishing a SSH connection from your CI/CD server to your nodes.
-You can enable audits in `client.rb` or a command line argument for `chef-client`.
+You can enable chef audit mode in `client.rb` or a command line argument for `chef-client`.
 
 Example smoke tests:
 
@@ -286,7 +290,8 @@ Example smoke tests:
 
     If you are deploying a command line application, check that `app --version` returns
     the correct version. If you are deploying a web application, make sure that the version
-    written in the footer or somewhere in the web page has the correct version. You get the gist.
+    written in the footer or somewhere in the web page has the correct version by `curl`-ing.
+    You get the gist.
 
 - Check deployment status
 
@@ -299,16 +304,9 @@ Example smoke tests:
     jboss-cli.sh --connect command="deployment-info"
     ```
 
-- curl
-    
-    If you are develping a web application, the result of the deployment should make
-    a page served somewhere. Curl the main page and make sure that it returns 200.
-
-Tools
-- Serverspec
-- or audit mode. Maybe not right, but we use it because of chef push, etc. convenient.
-
 # Promotion
+
+When your acceptance stage has passed. Promotion button promote to UAT, Capacity and Production.
 
 Very important on safe deployment i.e. not deploying the latest all every environments
 
