@@ -304,30 +304,35 @@ Example smoke tests:
     jboss-cli.sh --connect command="deployment-info"
     ```
 
-# Promotion
+# Promotion Button
 
-When your acceptance stage has passed. Promotion button promote to UAT, Capacity and Production.
+This is the final stage of our deployment pipeline where the trigger of the build is not automated.
+You will need to make sure that your application binaries, application configuration, environment
+configuration and deployment scripts to be tagged for reproducibility in the future. I will not be covering
+application binaries promotion in this post as it's out of topic.
 
-Very important on safe deployment i.e. not deploying the latest all every environments
+If you have followed all of the previous chapters above, everything that we
+need will have a single entry point, which is our environment cookbook. Here are the typical steps that
+you would have:
 
-Happens only to your enviornment cookbook.
-If you have multiple applications that are deployed to one server, you must have another application and
-environment cookbook build that targets those environments.
-This is because of the way berks apply work, which is by design. It would remove all of the 
-previous cookbook constraints before applying a new one. Hence if you are applying berks apply
-twice with a different cookbook, you'll get unexpected result.
+- Promote environment cookbook
 
-- Download Berksfile.lock from build tag
+    This step promotes our environment cookbook's git build tag to become a release tag.
+    Basically if you have we are to promote build number 100,
+    we are to make `release/100` git tag, from `build/100` git tag. This should be 
+    achieved via REST API to avoid recloning your entire git repository.
 
-    Do not git clone. Example usage of bitbucket rest api of raw download file.
+    Important because build tag is temporal and will be deleted by cookbook build.
 
-- berks apply
+- Promote all upstream cookbook dependencies
 
-    
+    Think about a disaster scenario that hits your Chef Server. Would you be able to recover
+    all of the cookbook dependencies that is needed by your environment cookbook? If you are confident
+    that your Chef Server is resilient enough, you can't skip this step, otherwise you will need
+    to promote all of your dependencies found in your environment cookbook's Berksfile.lock.
 
-- Promote build tag
 
-    If you are promoting the release to production. REST API usage here is beneficial as you do
-    not want to clone the entire git repository just to create a tag.
+
+    look up if you can find info from chef server on which tag is deployed just like Artifactory.
 
 [pattern]: http://blog.vialstudios.com/the-environment-cookbook-pattern/
