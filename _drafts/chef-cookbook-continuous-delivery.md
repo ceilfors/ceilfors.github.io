@@ -286,14 +286,13 @@ You can enable chef audit mode in `client.rb` or a command line argument for `ch
 
 Example smoke tests:
 
-- Check the application version deployed
+- Test the environment
 
-    If you are deploying a command line application, check that `app --version` returns
-    the correct version. If you are deploying a web application, make sure that the version
-    written in the footer or somewhere in the web page has the correct version by `curl`-ing.
-    You get the gist.
+    You can test various aspects of your environment here. Confirm that you can
+    retrieve data from your database. `ping` or `curl` through every services that you are dependent
+    on to make sure that there are up and making sure that the firewall is cleared.
 
-- Check deployment status
+- Assert deployment status
 
     You can normally prompt web containers for the status of the deployment that you have
     just completed. For example in JBoss AS, you can query the status by using
@@ -303,6 +302,13 @@ Example smoke tests:
     ```
     jboss-cli.sh --connect command="deployment-info"
     ```
+
+- Assert the application version
+
+    If you are deploying a command line application, check that `app --version` returns
+    the correct version. If you are deploying a web application, make sure that the version
+    written in the footer or somewhere in the web page has the correct version by `curl`-ing.
+    You get the gist.
 
 # Promotion Button
 
