@@ -146,10 +146,11 @@ source code, hence two of the different project types sharing one build process.
 Combining your environment cookbook and your application build (or application assembly build)
 will allow you to promote and deploy
 your application binaries and configuration files together.
-This is important as you do not want these two things to diverge e.g. applying
-the wrong version of configuration file to the wrong version of application in production.
+This is important as you do not want these two things to diverge i.e. applying
+the wrong version of configuration files to the wrong version of application in production due
+to manual human intervention.
 
-An example structure for a Maven project:
+An example structure of a Maven project that contains an environment cookbook:
 
 ```
 src/
@@ -165,7 +166,7 @@ pom.xml
 On top of all the build steps in a normal cookbook build outlined in the previous section,
 an environment cookbook build has additional build steps:
 
-- The application build that produces your software. These typically are the binaries that
+- The application build. This step will of course produce the binaries that
   you would be deploying with Chef.
 - Updating cookbook cookbook/attributes/default.rb to point to your application version.
 
@@ -173,9 +174,7 @@ The attribute which Chef will use to determine which version of your application
 is stored in `cookbook/attributes/default.rb`.
 Because they are kept together now in one repository,
 you can update the `cookbook/attributes/default.rb` file to point to the updated version
-declared in the pom.xml (after the pom.xml version is updated of course).
-Doing this will reduce the risk of manually entering the application versions
-to be deployed in each environments.
+declared in the pom.xml (after the pom.xml version is updated).
 
 # Release Candidate
 
