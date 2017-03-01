@@ -84,8 +84,8 @@ Here are the typical build steps that you should have in sequential order:
 
     ```
     export COOKBOOK_NAME=`chef exec ruby -e 'require "chef/cookbook/metadata"; metadata = Chef::Cookbook::Metadata.new; metadata.from_file("metadata.rb"); puts metadata.name'`
-    knife spork bump \$COOKBOOK_NAME -o ..
-    knife spork check \$COOKBOOK_NAME -o .. --fail
+    knife spork bump $COOKBOOK_NAME -o ..
+    knife spork check $COOKBOOK_NAME -o .. --fail
     ```
 
     [knife spork](https://github.com/jonlives/knife-spork) is used here to bump
