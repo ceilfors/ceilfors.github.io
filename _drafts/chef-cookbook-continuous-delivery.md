@@ -5,9 +5,9 @@ tags: chef
 comments: true
 ---
 
-My journey on achieving Continuous Delivery surrounding Chef
+The journey I had on achieving Continuous Delivery using Chef
 as the tool for environment management, application configuration management and application deployment
-have not been an easy one. Documentations and resources surrounding this topic are quite scarce.
+have not been easy. Documentations and resources surrounding this topic are quite scarce.
 I hope this writing will be helpful and do leave comments to other readers if you have found better
 ways of achieving what I'm trying to do.
 
@@ -22,7 +22,7 @@ masterless Chef setup (Chef Zero or Solo) if needed.
 
 You will need a CI/CD server. Some of the terminologies or concepts I use might
 accidentally be Jenkins specific as that's the tool that I use. I will try to make
-explanation I use as agnostic as possible due to the number of options tools we have today,
+explanation I use as agnostic as possible due to the high number of CI/CD server options we have today,
 
 I'm using [Berkshelf](https://docs.chef.io/berkshelf.html) as the dependency management tool for my chef
 cookbooks.
@@ -31,32 +31,34 @@ you have, as opposed to having them all in one repo a.k.a. [chef-repo](https://d
 If you are not familiar with Berkshelf and its cookbook patterns, I would recommend reading
 [this blog post][pattern] as most of the
 concepts I use will refer to that blog post.
-*Do note that at the time of writing,
-Chef is recommending the usage of [Policyfile](https://docs.chef.io/policyfile.html) instead of Berkshelf*.
+Do note that at the time of writing,
+Chef is recommending the usage of [Policyfile](https://docs.chef.io/policyfile.html) instead of Berkshelf.
 
-Your own written cookbooks will be resolved by Berkshelf via Chef Server. You should have the following statement
+Your own written cookbooks (those that aren't deployed to the public supermarket)
+will be resolved by Berkshelf via Chef Server. You should have the following statement
 in all of your Berksfile:
 
 ```ruby
 source :chef_server
 ```
 
-Chef Server source is preferable to pulling cookbooks from Git repository as you will
-always want to take the your own latest cookbook and will not want to pull
-a version that didn't pass its tests. If you would like to go fancier, you can also
+We will only upload our cookbooks once they have a successful build, hence using Chef Sever as a dependency source
+will ensure that our upstream cookbook dependencies are stable.
+If you would like to go fancier, you can also
 setup your own Chef Supermarket although I will not be covering that.
 
 # Deployment Pipeline
 
-Here is the full example of a deployment pipeline when it is implemented with Chef.
+Here is the full example of a deployment pipeline when it is implemented with Chef:
 
 ![Deployment pipeline]({{ site.url }}/assets/image/chef-cookbook-continuous-delivery/drawio-deployment-pipeline.png)
 
-The blue colored shapes are the topics that I will cover in this post.
+The blue colored shapes are the topics that I will cover in this post. All of the arrows that you see
+in the diagram are automatic triggers in your CI/CD server, except the arrow with dotted line that points to Production
+Stage.
 
-- Every application build
-- Every cookbook build
-- Every promotion
+Observe the confluence of two build streams in the Commit Stage. Any change that happens on your cookbook
+must trigger your acceptance test even when there is no change in your application.
 
 # Cookbook Build
 
@@ -66,7 +68,8 @@ complete these build steps in less than ten minutes.
 I would recommend putting all of the steps below to a `Rakefile` and
 let [`rake`](https://github.com/ruby/rake) be the tool that
 define your build steps, especially because we are using various tools here during the build. Using rake
-will make it easier for developers to run the build locally before committing them.
+will make it easier for developers to run the build steps locally and make sure that they are successful
+before committing them.
 
 Here are the typical build steps that you should have in sequential order:
 
@@ -77,7 +80,7 @@ Here are the typical build steps that you should have in sequential order:
     Clean up your workspace before you proceed on any build steps by reverting all of the changes
     done by the previous build and deleting all of the unversioned files.
 
-- Bump version cookbook version
+- Bump cookbook version
 
     ```
     export COOKBOOK_NAME=`chef exec ruby -e 'require "chef/cookbook/metadata"; metadata = Chef::Cookbook::Metadata.new; metadata.from_file("metadata.rb"); puts metadata.name'`
@@ -129,7 +132,7 @@ Here are the typical build steps that you should have in sequential order:
     - If using docker driver, check out [squid](http://www.squid-cache.org/) to
       cache file downloads.
     - If using vagrant driver, check out [vagrant-cachier](http://fgrehm.viewdocs.io/vagrant-cachier/)
-      to cache file downloads. It requires less configuration as compared to squid.
+      to cache file downloads.
     - If your CI tool support matrix job, use them to test multiple platforms or test suites
       in parallel.
 
@@ -140,9 +143,9 @@ There's an exception for *Environment Cookbooks* (again, read [this blog post][p
 to get a better understanding on this cookbook pattern). This cookbook sits beside your application
 source code, hence two of the different project types sharing one build process.
 
-Combining your environment cookbook with your application build (or application assembly build)
-will allow you to keep
-your application binaries and configuration files to be promoted and deployed together.
+Combining your environment cookbook and your application build (or application assembly build)
+will allow you to promote and deploy
+your application binaries and configuration files together.
 This is important as you do not want these two things to diverge e.g. applying
 the wrong version of configuration file to the wrong version of application in production.
 
@@ -166,7 +169,8 @@ an environment cookbook build has additional build steps:
   you would be deploying with Chef.
 - Updating cookbook cookbook/attributes/default.rb to point to your application version.
 
-I would normally have my application version stored in `cookbook/attributes/default.rb`.
+The attribute which Chef will use to determine which version of your application to be deployed
+is stored in `cookbook/attributes/default.rb`.
 Because they are kept together now in one repository,
 you can update the `cookbook/attributes/default.rb` file to point to the updated version
 declared in the pom.xml (after the pom.xml version is updated of course).
