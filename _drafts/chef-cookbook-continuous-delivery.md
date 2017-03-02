@@ -178,18 +178,17 @@ declared in the pom.xml (after the pom.xml version is updated).
 
 # Release Candidate
 
-Every cookbook build you make should produce a release candidate, ready to be deployed to your targeted
-environments. A new release candidate is created when a build is successful, that means all the tests
-we have captured in the previous sections passed.
+Every successful cookbook build should produce a release candidate, ready to be run to your targeted
+environments. All the tests we have captured in the previous sections passed.
 
-Here are the general steps that you should make after the build steps are completed:
+Here are the general steps that you should make after the build steps are completed to create a release candidate:
 
 - Generate cookbook documentation
   
     At the time of writing, there are a lot of tools out there to document Chef cookbooks. Pick your own favourite,
     I'm using [knife-cookbook-doc](http://realityforge.org/knife-cookbook-doc/) because it allows
     cookbook attributes to be documented close to the source code. Other tools rely on the
-    maintenance of `metadata.rb`, which often be overlooked when your source code evolved.
+    maintenance of `metadata.rb`, which often be overlooked when your source code evolves.
 
 - Git commit: Commit those changes we made so far.
 
@@ -201,14 +200,14 @@ Here are the general steps that you should make after the build steps are comple
 
 - Git push: Push your commit and build tag to your Git server.
 
-- Chef server upload and freeze the version
+- Chef server upload and version freeze
   
     Execute `berks upload` to upload and freeze your cookbook. It is crucial for the upload to happen last,
     because you don't want anybody to use cookbooks that didn't pass the tests right?
 
 - Clean up
 
-    Delete your old build tags, based on your retention policy. You might also want to clean cookbooks
+    Delete your old build tags based on your build retention policy. You might also want to clean cookbooks
     that are old enough and is not used by any environments. I personally have not done this as I
     have not seen the need of it yet, probably due to how good
     [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
