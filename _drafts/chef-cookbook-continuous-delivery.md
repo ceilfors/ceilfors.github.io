@@ -218,17 +218,15 @@ Here are the general steps that you should make after the build steps are comple
     [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
     is handling thousands of cookbook versions we have.
 
-# Environment Configuration and Deployment
+# Chef Run
 
 Once you have uploaded your cookbooks to Chef Server, you are ready to move on the next stage
-of your deployment pipeline. The first environment configuration and deployment
-after the cookbook builds would occur in your *Acceptance Stage*.
-
-This phase must be automatically triggered when your environment cookbook build
+of your deployment pipeline. The Chef Run phase will cover your environment configuration, application
+configuration and application deployment. This phase must be automatically triggered when your environment cookbook build
 is completed successfully. No manual intervention should be involved in this step unless
-you have a strong reason to do so.
+you are running the phase in production.
 
-Here are the typical steps that will be executed when this phase is triggered:
+Using Acceptance Stage as an example target stage, here are the typical steps that will be executed:
 
 - Download Berksfile.lock from a build tag
 
@@ -251,19 +249,23 @@ Here are the typical steps that will be executed when this phase is triggered:
     berks apply application_acceptance
     ```
 
-    Once the Berksfile.lock is downloaded, you would be able to excute berks apply to your acceptance
-    environment without the full cookbook source code.
+    Once the Berksfile.lock is downloaded, you would be able to excute `berks apply` to your acceptance
+    environment without the full cookbook source code. This step is essential to ensure the consistency
+    of your `chef-client` run in multiple machines.
 
-- Execute chef-client
+    Note that `berks apply` will remove all of the previous cookbook constraints before applying a new one.
+    If you have multiple applications that are deployed to one machine, you must have an
+    environment cookbook that combines these two applications.
+
+- Chef Run
 
     ```
     knife ssh "chef_environment:application_acceptance" "sudo chef-client"
     ```
 
-    This is the step where the your environment configuration will be managed
-    and deployment of your application binary will happen.
-    A recipe would download the application from your binary repository, with the version specified
-    in your cookbook.
+    This step, of course, is the place where everything chef related would happen. On the deployment part
+    of your recipe, you would download the application from your binary repository (with the version
+    specified in your environment cookbook) then deploy them.
 
     The simplest execution of `chef-client` can be done from your CI server by excuting `knife ssh`.
     [Knife SSH](https://docs.chef.io/knife_ssh.html)
@@ -280,7 +282,7 @@ Here are the typical steps that will be executed when this phase is triggered:
 
 Your deployment will not complete without smoke tests execution. Smoke tests must be executed after every
 chef-client run you make. The smoke tests you write should run fast to verify that your deployment
-is successful, in less than 1 minute.
+is successful, ideally in less than 1 minute.
 They also should not involve any application data modification.
 
 You have a couple of options to execute those smoke tests: [Serverspec](http://serverspec.org/) via Rake,
