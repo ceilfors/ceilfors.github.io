@@ -190,6 +190,11 @@ Here are the general steps that you should make after the build steps are comple
     cookbook attributes to be documented close to the source code. Other tools rely on the
     maintenance of `metadata.rb`, which often be overlooked when your source code evolves.
 
+- Update metadata.rb
+
+    Update the `source_url` in your metadata.rb to point to your build tag URL, which will be soon
+    created in the next steps.
+
 - Git commit: Commit those changes we made so far.
 
 - Create a new build tag
@@ -312,35 +317,49 @@ Example smoke tests:
     written in the footer or somewhere in the web page has the correct version by `curl`-ing.
     You get the gist.
 
-# Promotion Button
+# Promotion to Production
 
 This is the final stage of our deployment pipeline where the trigger of the build is not automated.
 You will need to make sure that your application binaries, application configuration, environment
 configuration and deployment scripts to be tagged for reproducibility in the future. I will not be covering
 application binaries promotion in this post as it's out of topic.
 
+Based on the example deployment pipeline given above, this button will be the only manual step that
+will be pushed in your deployment pipeline. The promote to production button will typically be pressed
+after the acceptance tests and exploratory tests have passed.
+
 If you have followed all of the previous chapters above, everything that we
 need will have a single entry point, which is our environment cookbook. Here are the typical steps that
 you would have:
 
-- Promote environment cookbook
+- Promote the environment cookbook
 
     This step promotes our environment cookbook's git build tag to become a release tag.
     Basically if you have we are to promote build number 100,
     we are to make `release/100` git tag, from `build/100` git tag. This should be 
     achieved via REST API to avoid recloning your entire git repository.
 
-    Important because build tag is temporal and will be deleted by cookbook build.
+    Important because build tags will be deleted by your cookbook build once they are old enough.
 
 - Promote all upstream cookbook dependencies
 
-    Think about a disaster scenario that hits your Chef Server. Would you be able to recover
+    Think about a disaster scenario that might hit your Chef Server. Would you be able to recover
     all of the cookbook dependencies that is needed by your environment cookbook? If you are confident
-    that your Chef Server is resilient enough, you can't skip this step, otherwise you will need
-    to promote all of your dependencies found in your environment cookbook's Berksfile.lock.
+    that your Chef Server is resilient enough, you can skip this step, otherwise you will need
+    to promote all of your dependencies found in your environment cookbook's Berksfile.lock. Failing to do so,
+    you will not have any release tag for your upstream cookbooks.
 
+    To lookup the upstream cookbook build tags based on your Berksfile.lock, you can hit Chef Server and
+    query their metadata. This can be done by using `knife cookbook show` which would return `source_url`
+    from your metadata.rb (This information would only be returned if you have followed the Release Candidate
+    section correctly of course):
 
+    ```
+    knife cookbook show library-cookbook-foobar 0.1.1
+    ```
 
-    look up if you can find info from chef server on which tag is deployed just like Artifactory.
+    Once you have retrieved all of the upstream build tags, promote them the same way like how you have promoted
+    the environment cookbook's build tag.
+
 
 [pattern]: http://blog.vialstudios.com/the-environment-cookbook-pattern/
