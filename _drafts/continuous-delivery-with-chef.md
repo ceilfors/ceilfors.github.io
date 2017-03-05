@@ -195,7 +195,7 @@ Here are the general steps that you should make after the build steps are comple
     Update the `source_url` in your metadata.rb to point to your build tag URL, which will be soon
     created in the next steps.
 
-- Git commit: Commit those changes we made so far.
+- Git commit: Commit those changes we made so far, including those done in the previous section.
 
 - Create a new build tag
 
@@ -290,7 +290,7 @@ You have a couple of options to execute those smoke tests: [Serverspec](http://s
 Inspec via [Chef Audit](https://docs.chef.io/analytics.html).
 I'm using Inspec via Chef Audit even when it is not intuitively something that Chef Audit is
 meant to be used for. This approach is good as you can use it in conjunction with push jobs
-hence eliminating the need of establishing a SSH connection from your CI/CD server to your nodes.
+hence eliminating the need of establishing an SSH connection from your CI/CD server to your nodes.
 You can enable chef audit mode in `client.rb` or a command line argument for `chef-client`.
 
 Example smoke tests:
@@ -301,7 +301,7 @@ Example smoke tests:
     retrieve data from your database. `ping` or `curl` through every services that you are dependent
     on to make sure that there are up and making sure that the firewall is cleared.
 
-- Assert deployment status
+- Assert the deployment status
 
     You can normally prompt web containers for the status of the deployment that you have
     just completed. For example in JBoss AS, you can query the status by using
@@ -321,7 +321,7 @@ Example smoke tests:
 
 # Promotion to Production
 
-This is the final stage of our deployment pipeline where the trigger of the build is not automated.
+This is the final stage of our deployment pipeline where the trigger of the phase is not automated.
 You will need to make sure that your application binaries, application configuration, environment
 configuration and deployment scripts to be tagged for reproducibility in the future. I will not be covering
 application binaries promotion in this post as it's out of topic.
@@ -338,7 +338,7 @@ you would have:
 
     This step promotes our environment cookbook's git build tag to become a release tag.
     Basically if you have we are to promote build number 100,
-    we are to make `release/100` git tag, from `build/100` git tag. This should be 
+    we are to make `release/100` git tag out of `build/100` git tag. This should be 
     achieved via REST API to avoid recloning your entire git repository.
 
     Important because build tags will be deleted by your cookbook build once they are old enough.
