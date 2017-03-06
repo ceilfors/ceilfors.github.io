@@ -228,7 +228,7 @@ you are running the phase in production.
 
 Using Acceptance Stage as an example target stage, here are the typical steps that will be executed:
 
-- Download Berksfile.lock from a build tag
+- Download Berksfile.lock from a build tag (or release tag)
 
     In this step, you'll need to download the Berksfile.lock that has been
     committed to your environment cookbook build tag. You will need to find the newest build
@@ -341,7 +341,8 @@ you would have:
     we are to make `release/100` git tag out of `build/100` git tag. This should be 
     achieved via REST API to avoid recloning your entire git repository.
 
-    Important because build tags will be deleted by your cookbook build once they are old enough.
+    This step is necessary because your build tags will be deleted by your cookbook build once they
+    are old enough.
 
 - Promote all upstream cookbook dependencies
 
