@@ -3,32 +3,7 @@ higlighter: pygments
 markdown: redcarpet
 redcarpet:
   extensions: ["tables", "no_intra_emphasis"]
-picture:
-  source: image/_fullsize
-  attr:
-    itemprop: "image"
-  presets:
-    full:
-      ppi: [1, 1.5]
-      source_full:
-        media: "(min-width: 30em)"
-        width: 748
-      source_default:
-        width: 500
-    portrait:
-      ppi: [1, 1.5]
-      source_med:
-        media: "(min-width: 40em)"
-        width: 250
-      source_med:
-        media: "(min-width: 30em)"
-        width: 200
-      source_default:
-        width: 100
-    default:
-      ppi: [1, 1.5]
-      source_med:
-        media: "(min-width: 30em)"
-        width: 200
-      source_default:
-        width: 125
+gems:
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-redirect-from

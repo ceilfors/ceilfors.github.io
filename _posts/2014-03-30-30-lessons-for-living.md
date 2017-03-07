@@ -3,7 +3,8 @@ layout: post
 title:  "30 Lessons for Living by Karl Pillemer, Ph.D."
 tags: book reading
 comments: true
-alias: /2014/03/30/30-lessons-for-living-marriage.html
+redirect_from:
+- /2014/03/30/30-lessons-for-living-marriage.html
 ---
 
 I must admit [30 Lessons for Living][book] has influenced the way I think and the decisions

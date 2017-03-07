@@ -1,5 +1,5 @@
 source "https://rubygems.org"
 
 gem 'jekyll'
-gem 'mini_magick'
 gem 'redcarpet'
+gem 'jekyll-redirect-from'

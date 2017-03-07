@@ -93,7 +93,8 @@ Total working days waiting for email reply: 1 (first day)
 
 ## Diagnose your phone after you get it back
 
-{% picture portrait {{page.id}}/box.jpg class="right" %}
+![Return box]({{ site.url }}/assets/image/{{page.id}}/box.jpg)
+
 So you've got your phone back. It comes back with a nice return packaging.
 You are happy. Stop right there! During my research,
 some of the unfortunate guys out there had sent their phone to HTC to fix the purple
