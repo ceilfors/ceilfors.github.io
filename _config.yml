@@ -1,9 +1,3 @@
 name: ceilfors
-higlighter: pygments
-markdown: redcarpet
-redcarpet:
-  extensions: ["tables", "no_intra_emphasis"]
 gems:
-  - jekyll-redirect-from
-whitelist:
   - jekyll-redirect-from

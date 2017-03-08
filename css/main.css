@@ -23,6 +23,10 @@ pre {
   white-space: pre;
   word-wrap: normal;
 }
+/* Make darkly theme compatible with rouge highlighter. */
+pre.highlight {
+  padding: 15px;
+}
 
 .site {
   text-align: justify;
