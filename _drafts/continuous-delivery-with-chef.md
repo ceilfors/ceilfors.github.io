@@ -82,7 +82,7 @@ Here are the typical build steps that you should have in sequential order:
 
 - Bump cookbook version
 
-    ```
+    ```shell
     export COOKBOOK_NAME=`chef exec ruby -e 'require "chef/cookbook/metadata"; metadata = Chef::Cookbook::Metadata.new; metadata.from_file("metadata.rb"); puts metadata.name'`
     knife spork bump $COOKBOOK_NAME -o ..
     knife spork check $COOKBOOK_NAME -o .. --fail
@@ -96,7 +96,7 @@ Here are the typical build steps that you should have in sequential order:
 
 - Update cookbook dependencies
 
-    ```
+    ```shell
     rm -f Berksfile.lock
     berks install
     ```
@@ -245,7 +245,7 @@ Using Acceptance Stage as an example target stage, here are the typical steps th
 
 - Lock the Chef Environment cookbook constraints
 
-    ```
+    ```shell
     berks apply application_acceptance
     ```
 
@@ -259,7 +259,7 @@ Using Acceptance Stage as an example target stage, here are the typical steps th
 
 - Chef Run
 
-    ```
+    ```shell
     knife ssh "chef_environment:application_acceptance" "sudo chef-client"
     ```
 
@@ -308,7 +308,7 @@ Example smoke tests:
     its cli tool and make sure that it doesn't
     return `FAILED` status:
 
-    ```
+    ```shell
     jboss-cli.sh --connect command="deployment-info"
     ```
 
@@ -357,7 +357,7 @@ you would have:
     from your metadata.rb (This information would only be returned if you have followed the Release Candidate
     section correctly of course):
 
-    ```
+    ```shell
     knife cookbook show library-cookbook-foobar 0.1.1
     ```
 
