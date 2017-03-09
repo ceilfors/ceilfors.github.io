@@ -11,9 +11,6 @@ have not been easy. Documentations and resources surrounding this topic are quit
 I hope this writing will be helpful and do leave comments to other readers if you have found better
 ways of achieving what I'm trying to do.
 
-*For Ruby experts: Some of the tips I write might seem trivial because I discovered that
-new Chef users sometimes have no experience writing codes in Ruby. I was one of them.*
-
 # Setup
 
 The usage of Chef in this post utilises Chef Server. You will find that most of the commands
