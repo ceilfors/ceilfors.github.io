@@ -51,7 +51,7 @@ setup your own Chef Supermarket although I will not be covering that.
 
 Here is the full example of a deployment pipeline when it is implemented with Chef:
 
-![Deployment pipeline]({{ site.url }}/assets/image/continuous-delivery-with-chef/drawio-deployment-pipeline.png)
+![Deployment pipeline]({{ site.url }}/assets/image/{{page.id}}/drawio-deployment-pipeline.png)
 
 The blue colored shapes are the topics that I will cover in this post. All of the arrows that you see
 in the diagram are automatic triggers in your CI/CD server, except the arrow with dotted line that points to Production
