@@ -18,23 +18,27 @@ Looking back to all those years, I'm capturing the learnings in this post.
 - Too many times including managements
 - slicing
 
-# Passion will get you far
+# Don't hide your passion
 Most of us live in a non-programmer-friendly society.
 We have words like geek or nerd which have negative connation to diss programmers. You are socially
 expected to have 'life' after work. Of course, programming is not counted as 'life'. On the other hand,
 most of the programmers I know are introverts, meaning they are quiet and will naturally not talk
-about their passions. These two factors cause a vicious cycle
-which worsen our society.
+about their passions. These two factors cause a vicious cycle which worsen our society.
 
-- Seniors helped me grew. I was hired.
-- Passion will get you far, Annan pairing, yip Wan helping etc. Finally kicked out.
-- Passion from manager trumps KPI, ***REMOVED*** ***REMOVED***
-- Focusing your passion, show graph of mine and average humans 
+To break that vicous cycle, we, who have passion in programming, should break out of our introvert bubble.
+Talk about your passion more and don't be shy saying what you are doing at home.
+You might not change the society much, but you would inspire the others who love
+programming to do the same. There are
+a lot of good things that wouldn't have happened if I did not show my passion.
+I've got to know a lot of good programmers. I 
+met passionate managers who have kindly given me guidance. Heck, it might be
+why I got my job in the first place; Experian does not hire fresh graduates.
 
 # You don't get what you don't ask
 - role
 - salary
 - job scope
+- It should be more natural for us programmer to negotiate with data?
 
 # The recipe to fail
 - Multiple stakeholders
