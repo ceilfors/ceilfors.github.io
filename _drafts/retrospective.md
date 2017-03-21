@@ -7,16 +7,31 @@ comments: true
 After working for 7.5 years for Experian, I'm finally moving on to the second job of my life.
 Looking back to all those years, I'm capturing the learnings in this post.
 
-# Incremental change
-- Will always work
-- Hard to convince
-- page designer, buttons aesthetic, control feature
-- Walking skeleton
-- Deployment pipeline incremental change
-- Jenkins migration 
-- Draw diagram
-- Too many times including managements
-- slicing
+Anecdotal.
+
+# The walking skeleton must walk
+![Walking Skeleton]({{ site.url }}/assets/image/skeleton.gif)
+*gif is copied from [this codeclimate blog](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton)*
+
+A walking skeleton is a practice that would work in various aspects of software development.
+It would work in feature developments, deployment pipeline creation, or infrastructure
+migration.
+Creating a walking skeleton is about implementing the smallest possible amount of work to get
+all of the important elements in place, *end-to-end*. More often than not, these skeletons
+will not have their legs even after a couple of iterations. The practices required
+for a skeleton to walk has proven to be hard, if not requiring a mastery.
+
+The tendency of a new requirement is normally a running skeleton with gold plated feet. Slicing user
+stories vertically and prioritising the slices is the key success. A lot of the user stories I've
+seen are unfortunately sliced horizontally, which will not produce an end-to-end product.
+Slicing vertically also applies in a deployment pipeline. The user stories you are doing
+might only gold plate your build pipeline before you move on to your deployment, which will delay
+the simplest end-to-end deployment pipeline that you can have earlier.
+
+Once you have mastered creating a walking skeleton, you'll have to convince
+your stakeholders or product owners. They will feel uncomfortable
+if your team is delivering the very first feature as you'll be laying out
+the invisible foundations. 
 
 # Don't hide your passion
 Most of us live in a non-programmer-friendly society.
