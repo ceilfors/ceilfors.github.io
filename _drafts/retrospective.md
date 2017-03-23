@@ -25,7 +25,7 @@ I've got to know a lot of good programmers. I
 met passionate managers who have kindly given me guidance. Heck, it might be
 why I got my job in the first place.
 
-# You don't get what you don't ask (do provide data)
+# You don't get what you don't ask (ask with data)
 
 I had met colleagues who would complaint about how underpaid they are.
 The innocent me would ask, "Why don't you ask for more?". More often than not, the answers
@@ -35,7 +35,7 @@ I'd get back is:
 
 There are way too many people I met whom somehow expect good things to just happen.
 They would work hard, then just expect people to notice what they've done without
-telling anybody. In an ideal world, yes, you will get feedback or rewarded. Most of
+telling anybody. In an ideal world, yes, you will get feedback or rewarded, but most of
 us will not have that luxury. I would like to think that this issue correlates again
 to the fact that us programmers are mostly introverts. 
 
@@ -56,48 +56,41 @@ there are a lot of problems that can be solved with my software engineering expe
 I was then involved in the existing team for half day per two weeks for a few months.
 After I have provided enough data
 and evidence that I'm suitable for the role, I asked for a full time role change.
-
-When I was a build engineer, I also asked for my job scope to be changed by
-including more *engineering* and reduced *administration*. I gathered data from the internet
-on various companies that are hiring build engineers then ask for the change.
+After the role change, I also asked for my job scope to be changed by
+including more *engineering* and reducing *administration* tasks. I gathered data from the internet
+on various companies' build engineers job description then ask for the change.
 
 # The power that's left unused
 
 Many of us have little knowledge of what the management team is
-responsible for. We know that they are there to *manage*, but nobody has told us what
-there is to be *managed*. Us naughty kids? Slapping us on our wrist when we are in trouble, is that
-managing?
+responsible for. We know that they are there to *manage*, but we do not know what
+there is to be *managed*.
 
-> The manager’s function is not to make people work, but to make it possible for people to work.
+> The manager’s function is not to make people work, but to make it possible for people to work.  
+  ― *Tom DeMarco, Peopleware*
 
-A good manager understands the need of *flow*, the hard-to-gain state where a knowledge worker would be able
-to get complex works done. It is the development managers' job to ensure that all of the engineers
-are able to enter the *flow* state.
-It is too easy for you managers' to be unsympathetic about no-flow problems, because you work in interrupt mode.
-Don't be proud that you can work in a fully context switching mode, because you don't need them in the first place.
-When you see an engineer wearing an earphone, you might think that you have been successfully created a
-happy working place that allow people to listen to music and having a good time. Wait, maybe because
-the office is too noisy and he's struggling to be in flow? Have noticed that your voice is getting louder now
-and blocking people to get in flow, after the office restructuring? Gosh, why is my colleague
-bringing their own fans. Also, someone please stop that guy who is walking around in the
-office making loud jokes. All of the employees will love you when they can
-get in the flow, and you have the power to do so.
+To be a good manager, you'll need to understand *flow*, the hard-to-gain state where a knowledge workers
+would be able to get complex works done. It is the development managers' job to ensure that all of the engineers
+are able to enter the flow state.
+It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
+because you work in interrupt mode; because you don't need flow. You will need to be
+more observant of the office environment. When you see an engineer wearing an earphone,
+maybe he's wearing to enjoy music, maybe the office is too noisy. All of the engineers will love you
+when they can get their daily dose of flow. Use your power.
 
 I once heard from a manager about how surprised he were about
-the team is not being able to focus on their work. Now the sad thing is, after a couple of months
-of working together, he eventually said that this problem is not solvable as it is a cultural issue.
-Because a culture is not changeable right? Or is it? Definitely someone from higher up have the power
-to do so. Yes, because the C-Suite is always responsible for the work culture.
+a team that is incapable of focusing on their work due to the high number of disruptions
+occurring in the day. Now the sad thing is, after a couple of months
+of working, he eventually said that this problem is not solvable as it is a cultural issue.
+This is another example of an unused power. It is not this particular manger's fault
+of course, it's not something changeable by someone on his pay grade.
+Ultimately if a change of culture is needed, the C-Suite must be the one who initiated it.
 
-A couple of times, I struggled to work with another department in the organisation.
-Our VP is going head to head with the other department's VP because of the conflict of interests
-and priorities. Of course, there's no result.
+Often times, I struggled to work with another department due to the conflicts of interests and priorities.
+Our manager went on an discussion with the other department's manager. Of course, there's no result.
 The two departments have a different goal, which is reflected in their KPI.
-But who should have the power in the first place to set the common goal?
-Do they even know that this kind of problem exists?
-
-Probably the better question is, why do managers not *manage* when it is their only job?
-But they certainly always look very busy! What is it that's more important than management? Ah! Stretch goals.
+Someone somewhere would have used the unused power, to set the common goal in the first place.
+That would make the collaboration effortless.
 
 # The trivial mistakes on team structure
 
