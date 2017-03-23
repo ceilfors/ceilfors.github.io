@@ -4,25 +4,26 @@ title:  "7 Years in Retrospect"
 comments: true
 ---
 
-After working for 7.5 years for Experian, I'm finally moving on to the second job of my life.
-I'm capturing the learnings and observation throughout that years here, something
-that I'll be able to look back on to remind myself in the future. I hope it is useful
-to you too.
+After 7 years of working for Experian, I'm finally moving on to the second job of my life.
+I'm capturing the learnings and observations throughout those years here, something
+that I'll be able to look back on to remind myself in the future.
 
 # Don't hide your passion
+
 Most of us live in a non-programmer-friendly society.
 We have words like geek or nerd which have negative connotation to dis programmers. You are socially
-expected to have 'life' after work. Of course, programming is not counted as 'life'. On the other hand,
+expected to have *life* after work. Of course, programming or contributing to open source
+are not counted as *life*. On the other hand,
 most of the programmers I know are introverts, meaning they are quiet and will naturally not talk
 about their passions. These two factors cause a vicious cycle which worsen our society.
 
-To break that vicious cycle, we who have passion in programming, should break out of our introvert bubble.
+To break that vicious cycle, we who love programming, should break out of our introvert bubble.
 Talk about your passion more and don't be shy saying what you are doing at home.
 You might not change the society much, but you would inspire the others who love
 programming to do the same. There are
 a lot of good things that wouldn't have happened in my career if I did not show my passion.
 I've got to know a lot of good programmers. I 
-met passionate managers who have kindly given me guidance. Heck, it might be
+met passionate managers who have kindly given me guidance. It might be
 why I got my job in the first place.
 
 # You don't get what you don't ask (ask with data)
@@ -33,11 +34,11 @@ I'd get back is:
 
 > "That will never happen."
 
-There are way too many people I met whom somehow expect good things to just happen.
-They would work hard, then just expect people to notice what they've done without
-telling anybody. In an ideal world, yes, you will get feedback or rewarded, but most of
-us will not have that luxury. I would like to think that this issue correlates again
-to the fact that us programmers are mostly introverts. 
+There are way too many people I met whom somehow expect good things to just suddenly happen.
+In an ideal world, yes, you will get what you want without asking, but most of
+us will not have that luxury. You'll have to ask for what you want. If you don't
+really know what you really want yourself, I would suggest you to figure out your
+[hygiene factors and motivators](https://en.wikipedia.org/wiki/Two-factor_theory).
 
 Now, I don't claim to be a negotiation guru, but the simplest thing you can do is just
 go into your one-to-one meeting and say:
@@ -50,17 +51,17 @@ and figuring out what you want.
 Be reasonable of course, it only works when you think that you have
 given more than what the company gives you.
 
-Looking back, I have also switched my role to become a build engineer because
+Looking back, I have switched my role to become a build engineer because
 I asked for it. Initially I only asked for a part time role as I figured that
-there are a lot of problems that can be solved with my software engineering expertise.
-I was then involved in the existing team for half day per two weeks for a few months.
-After I have provided enough data
-and evidence that I'm suitable for the role, I asked for a full time role change.
-After the role change, I also asked for my job scope to be changed by
+there are a lot of room of improvements which can be solved with my software engineering expertise.
+I was then involved in the build engineering team.
+After I have provided enough data and evidence that I'm suitable for the role during that part time hours,
+I finally asked for a full time role change.
+Even after the role change, I asked for my job scope to be changed by
 including more *engineering* and reducing *administration* tasks. I gathered data from the internet
-on various companies' build engineers job description then ask for the change.
+on various companies' build engineer job descriptions then ask for the change.
 
-# The power that's left unused
+# The unused power
 
 Many of us have little knowledge of what the management team is
 responsible for. We know that they are there to *manage*, but we do not know what
@@ -69,7 +70,8 @@ there is to be *managed*.
 > The manager’s function is not to make people work, but to make it possible for people to work.  
   ― *Tom DeMarco, Peopleware*
 
-To be a good manager, you'll need to understand *flow*, the hard-to-gain state where a knowledge workers
+To be a good manager, you'll need to understand "[flow](http://softwareengineering.stackexchange.com/a/43124/147900)",
+the hard-to-gain state where a knowledge workers
 would be able to get complex works done. It is the development managers' job to ensure that all of the engineers
 are able to enter the flow state.
 It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
@@ -84,37 +86,40 @@ occurring in the day. Now the sad thing is, after a couple of months
 of working, he eventually said that this problem is not solvable as it is a cultural issue.
 This is another example of an unused power. It is not this particular manger's fault
 of course, it's not something changeable by someone on his pay grade.
-Ultimately if a change of culture is needed, the C-Suite must be the one who initiated it.
+Ultimately if a change of culture is needed, the C-Suite must be the one who is responsible
+for making sure that it is successful.
 
 Often times, I struggled to work with another department due to the conflicts of interests and priorities.
 Our manager went on an discussion with the other department's manager. Of course, there's no result.
-The two departments have a different goal, which is reflected in their KPI.
-Someone somewhere would have used the unused power, to set the common goal in the first place.
-That would make the collaboration effortless.
+The two departments have a different goal, which is reflected in the difference of their KPI.
+Someone somewhere would have used the unused power to set the common goal.
 
 # The trivial mistakes on team structure
 
-I've worked with multiple teams throughout my career, some of the decision mistakes
-we made now look very trivial but shamefully still happened.
+I've worked with multiple teams throughout my career here. Mistakes on team
+structure have not been uncommon and not hard to be avoided if managed properly.
 
-Placing multiple stakeholders with different interests and priorities in a team will not work. There is a reason
-why a team should be composed of one, instead of many, product owner.
+Placing multiple stakeholders in one team will not work.
+All of them will have different interests and priorities which will cause a disruption
+to the team. There is a reason why a team should be composed of one,
+instead of many, product owner. If you
+are one of the stakeholder for your team, get together with the other stakeholders and
+set your priorities and vision right.
 
-For a team to jell properly, all of the team members must be 100% allocated to the team.
-When everything is important, nothing will be important. One team member's failure of commitment
+For a team to jell properly, all of the team members must be fully 100% allocated to the team.
+Otherwise when everything is important, nothing will be important. One team member's failure of commitment
 will lead to the whole team's failure of commitment. The not-100% team member will also have
-multiple stakeholders, see the previous paragraph.
+multiple stakeholders, which will lead to previous paragraph's problem.
 
-A remote team would work if all of the team members are all self-motivated. There are a lot
-of things that you won't be able to do otherwise co-located.
-Of course, all of the above must be satisfied.
-
-Fragmentation of time zones in a team is not the most painful part of a remote team,
-cultural differences are. Work hard to adapt yourselves.
+A remote team would work if all of the team members are all self-motivated. Do not bother
+setting up a remote team if you don't gain
+[access to better talent pools](https://martinfowler.com/articles/remote-or-co-located.html).
+Of course, all of the above must be satisfied for the remote team to be successful.
 
 # The battle for a walking skeleton
 
-A walking skeleton would work well in various aspects of software development.
+A [walking skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
+would work well in various aspects of software development.
 It would work in feature developments, deployment pipeline creation, or infrastructure
 migration. Pretty much anything that you can think of.
 Creating a walking skeleton is about implementing the smallest possible amount of work to get
