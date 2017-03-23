@@ -23,7 +23,7 @@ programming to do the same. There are
 a lot of good things that wouldn't have happened in my career if I did not show my passion.
 I've got to know a lot of good programmers. I 
 met passionate managers who have kindly given me guidance. Heck, it might be
-why I got my job in the first place; Experian does not hire fresh graduates.
+why I got my job in the first place.
 
 # You don't get what you don't ask (do provide data)
 
@@ -108,10 +108,9 @@ Placing multiple stakeholders with different interests and priorities in a team 
 why a team should be composed of one, instead of many, product owner.
 
 For a team to jell properly, all of the team members must be 100% allocated to the team.
-When everything is important, nothing will be important. When a team member is not fully assigned
-to a single team, they will have multiple stakeholders. One team member's failure of commitment
+When everything is important, nothing will be important. One team member's failure of commitment
 will lead to the whole team's failure of commitment. The not-100% team member will also have
-multiple stakeholders, see first paragraph.
+multiple stakeholders, see the previous paragraph.
 
 A remote team would work if all of the team members are all self-motivated. There are a lot
 of things that you won't be able to do otherwise co-located.
@@ -159,7 +158,7 @@ telling you that it is unacceptable to SSH to each of the servers manually and e
 and how necessary it is to have the button. Again, slicing the requirement down, the Ops can
 write a simple command to SSH to multiple servers to execute the command remotely. It is too
 easy for people to neglect the value of what we are trying to deliver in the first place and
-blinded on the perfect vision.
+blinded by the perfect vision.
 
 Mastering all these practices are not the end of the game. You'll have to convince
 your stakeholders and product owners. I've met stakeholders who believe that the skeleton
