@@ -47,8 +47,8 @@ requirement can now be de-prioritised. Second, you'll have a purist
 telling you that it is unacceptable to SSH to each of the servers manually and execute the script
 and how necessary it is to have the button. Again, slicing the requirement down, the Ops can
 write a simple command to SSH to multiple servers to execute the command remotely. It is too
-easy for people to neglect the value of what we are trying to deliver in the first place and only
-focused on the perfect vision.
+easy for people to neglect the value of what we are trying to deliver in the first place and
+blinded on the perfect vision.
 
 Mastering all these practices are not the end of the game. You'll have to convince
 your stakeholders and product owners. I've met stakeholders who believe that the skeleton
@@ -80,41 +80,104 @@ I've got to know a lot of good programmers. I
 met passionate managers who have kindly given me guidance. Heck, it might be
 why I got my job in the first place; Experian does not hire fresh graduates.
 
-# You don't get what you don't ask
-- role
-- salary
-- job scope
-- It should be more natural for us programmer to negotiate with data?
+# You don't get what you don't ask (do provide data)
 
-# The recipe to fail
-- Multiple stakeholders
-- team allocation, 100%, no commitment
-- Fragmentation of time
-- Bureaucracy
-- You can do things remotely, only with the best people.
+I had met colleagues who would complaint about how underpaid they are.
+The innocent me would ask: "Why don't you ask for more?". More often than not, the answers
+I'd get back is:
+
+> "That will never happen."
+
+There are way too many people I met whom somehow expect good things to just happen.
+They would work hard, then just expect people to notice what they've done without
+telling anybody. In an ideal world, yes, you will get feedback or rewarded. Most of
+us will not have that luxury. I would like to think that this issue correlates again
+to the fact that us programmers are mostly introverts. 
+
+Now, I don't claim to be a negotiation guru, but the simplest thing you can do is just
+go into your one-to-one meeting and say:
+
+> "I'm feeling underpaid."
+
+There are definitely better ways of getting a raise, but the problem in the first place
+is you, thinking that your manager is a psychic who are capable of reading your mind
+and figuring out what you want.
+Be reasonable of course, it only works when you think that you have
+given more than what the company gives you.
+
+Looking back, I have also switched my role to become a build engineer because
+I asked for it. Initially I only asked for a part time role as I figured that
+there are a lot of problems that can be solved with my software engineering expertise.
+I was then involved in the existing team for half day per two weeks for a few months.
+After I have provided enough data
+and evidence that I'm suitable for the role, I asked for a full time role change.
+
+When I was a build engineer, I also asked for my job scope to be changed by
+including more *engineering* and reduced *administration*. I gathered data from the internet
+on various companies that are hiring build engineers then ask for the change.
+
+# The trivial mistakes on team structure
+
+I've worked with multiple teams throughout my career, some of the decision mistakes
+we made now look very trivial but shamefully still happened.
+
+Placing multiple stakeholders with different interests and priorities in a team will not work. There is a reason
+why a team should be composed of one, instead of many, product owner.
+
+For a team to jell properly, all of the team members must be 100% allocated to the team.
+When everything is important, nothing will be important. When a team member is not fully assigned
+to a single team, they will have multiple stakeholders. One team member's failure of commitment
+will lead to the whole team's failure of commitment. The not-100% team member will also have
+multiple stakeholders, see first paragraph.
+
+A remote team would work if all of the team members are all self-motivated. There are a lot
+of things that you won't be able to do otherwise co-located.
+Of course, all of the above must be satisfied.
+
+Fragmentation of time zones in a team is not the most painful part of a remote team,
+cultural differences are. Work hard to adapt yourselves.
 
 # Productivity
+
 - 15 mins rule, save people time: when you're stuck on something ... you have to try to solve the problem all by yourself for 15 min, but then when the 15 minutes are up you have to ask for help. Failure to do the former wastes people's time, failure to ask for help wastes your time.
 - Set your own deadline
 - Importance of work prioritise
 - Work in batch.
 
-# Reactive Management
-- Difference between alignment and micro management. If your team is not deviating, you achieve 101 micro management
-- jargon abuse: cross functional team recently
-- change of priority
-- theory of constraint
--- the phoenix project e.g. microservices
-- High performing manager, neglecting their reporting lines
-- accountability, focus on management
-- Hiring: Find Dev who loves business challenges, not having fun on tech
+# The power that's left unused
 
-# Value Chain / Impact
-- Open Source
-- Stack overflow
-- If you write more than once, write a blog
+Many of us have little knowledge of what the management team is
+responsible for. We know that they are there to *manage*, but nobody has told us what
+there is to be *managed*. Us naughty kids? Slapping us on our wrist when we are in trouble, is that
+managing?
 
-Career capital
-- Switch of build engineering
-- Self organization
-- Related to productivity?
+> The manager’s function is not to make people work, but to make it possible for people to work.
+
+A good manager understands the need of *flow*, the hard-to-gain state where a knowledge worker would be able
+to get complex works done. It is the development managers' job to ensure that all of the engineers
+are able to enter the *flow* state.
+It is too easy for you managers' to be unsympathetic about no-flow problems, because you work in interrupt mode.
+Don't be proud that you can work in a fully context switching mode, because you don't need them in the first place.
+When you see an engineer wearing an earphone, you might think that you have been successfully created a
+happy working place that allow people to listen to music and having a good time. Wait, maybe because
+the office is too noisy and he's struggling to be in flow? Have noticed that your voice is getting louder now
+and blocking people to get in flow, after the office restructuring? Gosh, why is my colleague
+bringing their own fans. Also, someone please stop that guy who is walking around in the
+office making loud jokes. All of the employees will love you when they can
+get in the flow, and you have the power to do so.
+
+I once heard from a manager about how surprised he were about
+the team is not being able to focus on their work. Now the sad thing is, after a couple of months
+of working together, he eventually said that this problem is not solvable as it is a cultural issue.
+Because a culture is not changeable right? Or is it? Definitely someone from higher up have the power
+to do so. Yes, because the C-Suite is always responsible for the work culture.
+
+A couple of times, I struggled to work with another department in the organisation.
+Our VP is going head to head with the other department's VP because of the conflict of interests
+and priorities. Of course, there's no result.
+The two departments have a different goal, which is reflected in their KPI.
+But who should have the power in the first place to set the common goal?
+Do they even know that this kind of problem exists?
+
+Probably the better question is, why do managers not *manage* when it is their only job?
+But they certainly always look very busy! What is it that's more important than management? Ah! Stretch goals.
