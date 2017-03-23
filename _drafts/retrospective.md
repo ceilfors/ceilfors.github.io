@@ -113,8 +113,6 @@ Fragmentation of time zones in a team is not the most painful part of a remote t
 cultural differences are. Work hard to adapt yourselves.
 
 # The battle for a walking skeleton
-![Walking Skeleton]({{ site.url }}/assets/image/skeleton.gif)
-*gif is copied from [this codeclimate blog](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton)*
 
 A walking skeleton would work well in various aspects of software development.
 It would work in feature developments, deployment pipeline creation, or infrastructure
