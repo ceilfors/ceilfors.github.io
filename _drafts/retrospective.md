@@ -83,7 +83,7 @@ why I got my job in the first place; Experian does not hire fresh graduates.
 # You don't get what you don't ask (do provide data)
 
 I had met colleagues who would complaint about how underpaid they are.
-The innocent me would ask: "Why don't you ask for more?". More often than not, the answers
+The innocent me would ask, "Why don't you ask for more?". More often than not, the answers
 I'd get back is:
 
 > "That will never happen."
