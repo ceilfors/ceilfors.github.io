@@ -174,11 +174,3 @@ One final thing to note, one of the success indicator is a constant change of pr
 Your stakeholders will be a priority changing addict. Make sure that you don't leave technical debts
 behind. They will not realise what you have done to the business,
 which is reducing a huge opportunity cost in the long run.
-
-# Productivity
-
-- 15 mins rule, save people time: when you're stuck on something ... you have to try to solve the problem all by yourself for 15 min, but then when the 15 minutes are up you have to ask for help. Failure to do the former wastes people's time, failure to ask for help wastes your time.
-- Set your own deadline
-- Importance of work prioritise
-- Work in batch.
-
