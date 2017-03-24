@@ -50,8 +50,8 @@ There are definitely better ways of getting a raise, but the problem in the firs
 is you, thinking that your manager is a psychic who are capable of reading your mind
 and figuring out what you want.
 Be reasonable of course, it only works when you think that you have
-given more than what the company gives you. This is the part where you have to provide
-enough data.
+given more than what the company gives you. You might not even need to justify anything
+if you have shown the quality of your work.
 
 Looking back, I have switched my role to become a build engineer because
 I asked for it. Initially I only asked for a part time role as I figured that
