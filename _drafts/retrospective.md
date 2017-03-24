@@ -82,8 +82,8 @@ All of the engineers will love you when they can get their daily dose of flow. U
 
 I once heard from a manager about how surprised he were about
 a team that is incapable of focusing on their work due to the high number of disruptions
-occurring in the day. Now the sad thing is, 
-he eventually said that this problem is not solvable as it is a cultural issue.
+occurring in a day.
+He eventually said that this problem is not solvable as it is a cultural issue.
 This is another example of an unused power. It is not this particular manger's fault
 of course, it's not something changeable by someone on his pay grade.
 Ultimately if a change of culture is needed, the C-Suite must be the one who is responsible
@@ -96,15 +96,12 @@ Someone somewhere would have used the unused power to set the common goal.
 
 # The mistakes on team structure
 
-I've worked with multiple teams throughout my career and I have observed that avoidable
-mistakes made to team structure have been made by experienced manager.
-
 Placing multiple stakeholders in one team will not work.
 All of them will have different interests and priorities which will cause a disruption
 to the team. There is a reason why a team should be composed of one,
 instead of many, product owner. If you
 are one of the stakeholder for your team, get together with the other stakeholders, then
-set your priorities and vision right. When everything is important, nothing will be important.
+set your priorities and vision right. When everything is important, nothing will ever be important.
 
 For a team to jell properly, all of the team members must be 100% allocated to the team.
 One team member's failure of commitment
@@ -119,9 +116,9 @@ Of course, all of the above must be satisfied for the remote team to be successf
 # Use a walking skeleton whenever you can
 
 A [walking skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
-would work well in various aspects of software development.
-Based on my experience, it would work in feature developments, deployment pipeline creation, or infrastructure
-migration. Pretty much anything that you can think of.
+works well in various aspects of software development.
+Based on my experience, it would work in feature developments, deployment pipeline creations, or infrastructure
+migrations. Pretty much anything that you can think of.
 Creating a walking skeleton is about implementing the smallest possible amount of work to get
 all of the important elements in place, *end-to-end*, then moving all of those elements
 in parallel together. Slicing user stories vertically, prioritising the slices, and separating
@@ -131,12 +128,13 @@ these practices have proven to be hard, if not requiring a mastery.
 The tendency of a new requirement is a running skeleton with gold plated feet.
 I've also met stakeholders who believe that the skeleton
 legs must be perfected before you are developing its skull.
-Sometimes people just forget about the meaning of a user story.
-Be more observant and raise your concerns when these happens, and break the
-requirement down rigorously.
+Be more observant and raise your concerns when these happens, then break the
+requirement down rigorously. Blinded by the perfect vision, it is too easy for people
+to neglect the value of what we are trying to deliver in the first place. It is always amazing to see
+what seemingly incomplete is actually delivering values when you are slicing
+your requirements down and let the skeleton walk.
 
 Interesting thing to note, one of the success indicator is a constant change of priority.
 Your stakeholders will be a priority changing addict, so make sure that you don't leave technical debts
 behind. They will not realise what you have done to the business,
-which is reducing a huge opportunity cost in the long run. It is always amazing to see
-what seemingly incomplete is actually delivering values.
+which is reducing a huge opportunity cost in the long run.
