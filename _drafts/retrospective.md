@@ -116,7 +116,7 @@ setting up a remote team if you don't gain
 [access to better talent pools](https://martinfowler.com/articles/remote-or-co-located.html).
 Of course, all of the above must be satisfied for the remote team to be successful.
 
-# Use walking skeleton whenever you can
+# Use a walking skeleton whenever you can
 
 A [walking skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
 would work well in various aspects of software development.
