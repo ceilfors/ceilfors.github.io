@@ -63,10 +63,6 @@ on various companies' build engineer job descriptions then ask for the change.
 
 # Utilise your unused power
 
-Many of us have little knowledge of what the management team is
-responsible for. We know that they are here to *manage*, but we do not know what
-there is to be *managed*.
-
 > The manager’s function is not to make people work, but to make it possible for people to work.  
   ― *Tom DeMarco, Peopleware*
 
