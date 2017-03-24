@@ -19,12 +19,13 @@ about their passions. These two factors cause a vicious cycle which worsen our s
 
 To break that vicious cycle, we who love programming, should break out of our introvert bubble.
 Talk about your passion more and don't be shy talking about what you are developing at home.
+Give some tech talks to your department.
 You might not change the society much, but you would inspire the others who love
 programming to do the same. There are
 a lot of good things that wouldn't have happened in my career if I did not show my passion.
 I've got to know a lot of good programmers. I 
 met passionate managers who have kindly given me guidance. It might be
-why I got my job in the first place.
+why I was hired.
 
 # You don't get what you don't ask
 
@@ -49,7 +50,8 @@ There are definitely better ways of getting a raise, but the problem in the firs
 is you, thinking that your manager is a psychic who are capable of reading your mind
 and figuring out what you want.
 Be reasonable of course, it only works when you think that you have
-given more than what the company gives you.
+given more than what the company gives you. This is the part where you have to provide
+enough data.
 
 Looking back, I have switched my role to become a build engineer because
 I asked for it. Initially I only asked for a part time role as I figured that
@@ -72,8 +74,8 @@ would be able to get complex works done. It is the development managers' job to 
 are able to enter the flow state.
 It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
 because you work in interrupt mode where no flow is needed. You will need to be
-more observant to the office environment. When you see an engineer wearing earphones,
-maybe he's not wearing them to enjoy music, instead, maybe the office is too noisy.
+more observant to the office environment. For example, when you see an engineer wearing earphones,
+maybe the office is too noisy and he's struggling to concentrate.
 All of the engineers will love you when they can get their daily dose of flow. Use your power.
 
 I once heard from a manager about how surprised he were about
@@ -82,13 +84,15 @@ occurring in a day.
 He eventually said that this problem is not solvable as it is a cultural issue.
 This is another example of an unused power. It is not this particular manger's fault
 of course, it's not something changeable by someone on his pay grade.
-Ultimately if a change of culture is needed, the C-Suite must be the one who is responsible
-for making sure that it is successful.
+Ultimately if a change of culture is needed, the power is owned by the C-Suite.
 
 Often times, I struggled to work with another department due to the conflicts of interests and priorities.
 Our manager went on an discussion with the other department's manager. Of course, there's no result.
-The two departments have a different goal, which is reflected in the difference of their KPI.
-Someone somewhere would have used the unused power to set the common goal.
+The two departments have a different goal, which is reflected in the difference of their KPIs.
+Someone somewhere should have used the unused power to set the common goal.
+
+Remember, the people below your pay grade often are struggling with problems that can only be solved by you
+(without them realising).
 
 # The mistakes on team structure
 
@@ -128,9 +132,8 @@ Be more observant and raise your concerns when these happens, then break the
 requirement down rigorously. Blinded by the perfect vision, it is too easy for people
 to neglect the value of what we are trying to deliver in the first place. It is always amazing to see
 what seemingly incomplete is actually delivering values when you are slicing
-your requirements down and let the skeleton walk.
+your requirements down correctly and let the skeleton walk.
 
 Interesting thing to note, one of the success indicator is a constant change of priority.
 Your stakeholders will be a priority changing addict, so make sure that you don't leave technical debts
-behind. They will not realise what you have done to the business,
-which is reducing a huge opportunity cost in the long run.
+behind.
