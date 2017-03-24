@@ -18,7 +18,7 @@ most of the programmers I know are introverts, meaning they are quiet and will n
 about their passions. These two factors cause a vicious cycle which worsen our society.
 
 To break that vicious cycle, we who love programming, should break out of our introvert bubble.
-Talk about your passion more and don't be shy saying what you are doing at home.
+Talk about your passion more and don't be shy talking about what you are developing at home.
 You might not change the society much, but you would inspire the others who love
 programming to do the same. There are
 a lot of good things that wouldn't have happened in my career if I did not show my passion.
@@ -61,10 +61,10 @@ Even after the role change, I asked for my job scope to be changed by
 including more *engineering* and reducing *administration* tasks. I gathered data from the internet
 on various companies' build engineer job descriptions then ask for the change.
 
-# The unused power
+# Utilise your unused power
 
 Many of us have little knowledge of what the management team is
-responsible for. We know that they are there to *manage*, but we do not know what
+responsible for. We know that they are here to *manage*, but we do not know what
 there is to be *managed*.
 
 > The manager’s function is not to make people work, but to make it possible for people to work.  
@@ -75,15 +75,15 @@ the hard-to-gain state where a knowledge workers
 would be able to get complex works done. It is the development managers' job to ensure that all of the engineers
 are able to enter the flow state.
 It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
-because you work in interrupt mode; because you don't need flow. You will need to be
-more observant of the office environment. When you see an engineer wearing an earphone,
-maybe he's wearing to enjoy music, maybe the office is too noisy. All of the engineers will love you
-when they can get their daily dose of flow. Use your power.
+because you work in interrupt mode where no flow is needed. You will need to be
+more observant to the office environment. When you see an engineer wearing earphones,
+maybe he's not wearing them to enjoy music, and maybe the office is too noisy instead.
+All of the engineers will love you when they can get their daily dose of flow. Use your power.
 
 I once heard from a manager about how surprised he were about
 a team that is incapable of focusing on their work due to the high number of disruptions
-occurring in the day. Now the sad thing is, after a couple of months
-of working, he eventually said that this problem is not solvable as it is a cultural issue.
+occurring in the day. Now the sad thing is, 
+he eventually said that this problem is not solvable as it is a cultural issue.
 This is another example of an unused power. It is not this particular manger's fault
 of course, it's not something changeable by someone on his pay grade.
 Ultimately if a change of culture is needed, the C-Suite must be the one who is responsible
@@ -94,78 +94,49 @@ Our manager went on an discussion with the other department's manager. Of course
 The two departments have a different goal, which is reflected in the difference of their KPI.
 Someone somewhere would have used the unused power to set the common goal.
 
-# The trivial mistakes on team structure
+# The mistakes on team structure
 
-I've worked with multiple teams throughout my career here. Mistakes on team
-structure have not been uncommon and not hard to be avoided if managed properly.
+I've worked with multiple teams throughout my career and I have observed that avoidable
+mistakes made to team structure have been made by experienced manager.
 
 Placing multiple stakeholders in one team will not work.
 All of them will have different interests and priorities which will cause a disruption
 to the team. There is a reason why a team should be composed of one,
 instead of many, product owner. If you
-are one of the stakeholder for your team, get together with the other stakeholders and
-set your priorities and vision right.
+are one of the stakeholder for your team, get together with the other stakeholders, then
+set your priorities and vision right. When everything is important, nothing will be important.
 
-For a team to jell properly, all of the team members must be fully 100% allocated to the team.
-Otherwise when everything is important, nothing will be important. One team member's failure of commitment
+For a team to jell properly, all of the team members must be 100% allocated to the team.
+One team member's failure of commitment
 will lead to the whole team's failure of commitment. The not-100% team member will also have
 multiple stakeholders, which will lead to previous paragraph's problem.
 
-A remote team would work if all of the team members are all self-motivated. Do not bother
+A remote team would work if all of the team members are all self-motivated. Also consider not
 setting up a remote team if you don't gain
 [access to better talent pools](https://martinfowler.com/articles/remote-or-co-located.html).
 Of course, all of the above must be satisfied for the remote team to be successful.
 
-# The battle for a walking skeleton
+# Use walking skeleton whenever you can
 
 A [walking skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
 would work well in various aspects of software development.
-It would work in feature developments, deployment pipeline creation, or infrastructure
+Based on my experience, it would work in feature developments, deployment pipeline creation, or infrastructure
 migration. Pretty much anything that you can think of.
 Creating a walking skeleton is about implementing the smallest possible amount of work to get
-all of the important elements in place, *end-to-end*, then move all of those elements
+all of the important elements in place, *end-to-end*, then moving all of those elements
 in parallel together. Slicing user stories vertically, prioritising the slices, and separating
 concerns are the key for a successful walking skeleton. Based on my experience,
 these practices have proven to be hard, if not requiring a mastery.
 
 The tendency of a new requirement is a running skeleton with gold plated feet.
-This is fine until an inexperienced team is breaking down requirements to user stories
-horizontally without realising the implications.
-Sometimes people just forget about the meaning of a *user story*, it is not
-a synonym for a task. Be more observant and raise your concerns when these happens.
+I've also met stakeholders who believe that the skeleton
+legs must be perfected before you are developing its skull.
+Sometimes people just forget about the meaning of a user story.
+Be more observant and raise your concerns when these happens, and break the
+requirement down rigorously.
 
-Slicing vertically can also be applied in a implementation of a deployment pipeline.
-Unfortunately the tasks you might be assigned to might only be gold plating your build
-pipeline before you move on to your deployment, which will delay the simplest
-implementation of an end-to-end deployment pipeline.
-One of the concrete example I'd like to share is my experience in automating
-our deployment. The requirement is simple: we would like to be able to a trigger
-deployment to multiple production servers with a push of a button (no prior automation had been done).
-
-Sounds simple right? Nope.
-
-First, you'll have security and compliance concerns because
-your CI/CD server will need to be able to establish remote connections to all of your production servers.
-Believe it or not, we finally didn't implement any button in our CI/CD server after we sliced the requirement down.
-The value of automating the deployment process itself has already brought 80% if not 95% of the value;
-the script is then triggered manually by the Ops that already has access to the servers. The button
-requirement can now be de-prioritised. Second, you'll have a purist
-telling you that it is unacceptable to SSH to each of the servers manually and execute the script
-and how necessary it is to have the button. Again, slicing the requirement down, the Ops can
-write a simple command to SSH to multiple servers to execute the command remotely. It is too
-easy for people to neglect the value of what we are trying to deliver in the first place and
-blinded by the perfect vision.
-
-Mastering all these practices are not the end of the game. You'll have to convince
-your stakeholders and product owners. I've met stakeholders who believe that the skeleton
-legs must be able to run forever before you are developing its skull.
-Creating a walking skeleton would also mean that you are laying out the invisible
-foundations upfront (slower initial progress) which would make the stakeholders feel
-uncomfortable if your team is delivering the very first
-feature. Explain the benefits they will get in the
-longer term and manage their expectations right.
-
-One final thing to note, one of the success indicator is a constant change of priority.
-Your stakeholders will be a priority changing addict. Make sure that you don't leave technical debts
+Interesting thing to note, one of the success indicator is a constant change of priority.
+Your stakeholders will be a priority changing addict, so make sure that you don't leave technical debts
 behind. They will not realise what you have done to the business,
-which is reducing a huge opportunity cost in the long run.
+which is reducing a huge opportunity cost in the long run. It is always amazing to see
+what seemingly incomplete is actually delivering values.
