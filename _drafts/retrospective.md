@@ -26,7 +26,7 @@ I've got to know a lot of good programmers. I
 met passionate managers who have kindly given me guidance. It might be
 why I got my job in the first place.
 
-# You don't get what you don't ask (ask with data)
+# You don't get what you don't ask
 
 I had met colleagues who would complaint about how underpaid they are.
 The innocent me would ask, "Why don't you ask for more?". More often than not, the answers
