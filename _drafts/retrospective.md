@@ -77,7 +77,7 @@ are able to enter the flow state.
 It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
 because you work in interrupt mode where no flow is needed. You will need to be
 more observant to the office environment. When you see an engineer wearing earphones,
-maybe he's not wearing them to enjoy music, and maybe the office is too noisy instead.
+maybe he's not wearing them to enjoy music, instead, maybe the office is too noisy.
 All of the engineers will love you when they can get their daily dose of flow. Use your power.
 
 I once heard from a manager about how surprised he were about
