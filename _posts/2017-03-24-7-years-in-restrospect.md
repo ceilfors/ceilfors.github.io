@@ -68,12 +68,12 @@ on various companies' build engineer job descriptions then ask for the change.
 > The manager’s function is not to make people work, but to make it possible for people to work.  
   ― *Tom DeMarco, Peopleware*
 
-To be a good manager, you'll need to understand "[flow](http://softwareengineering.stackexchange.com/a/43124/147900)",
+Good managers understand "[flow](http://softwareengineering.stackexchange.com/a/43124/147900)",
 the hard-to-gain state where a knowledge workers
 would be able to get complex works done. It is the development managers' job to ensure that all of the engineers
 are able to enter the flow state.
-It is too easy for you to be unsympathetic about no-flow problems if you are a manager,
-because you work in interrupt mode where no flow is needed. You will need to be
+It is too easy for managers to be unsympathetic about no-flow problems,
+because they work in interrupt mode where no flow is needed. If you are a manager, you will need to be
 more observant to the office environment. For example, when you see an engineer wearing earphones,
 maybe the office is too noisy and he's struggling to concentrate.
 All of the engineers will love you when they can get their daily dose of flow. Use your power.
@@ -83,11 +83,11 @@ a team that is incapable of focusing on their work due to the high number of dis
 occurring in a day.
 He eventually said that this problem is not solvable as it is a cultural issue.
 This is another example of an unused power. It is not this particular manger's fault
-of course, it's not something changeable by someone on his pay grade.
+of course, as this is not a power that he has.
 Ultimately if a change of culture is needed, the power is owned by the C-Suite.
 
 Often times, I struggled to work with another department due to the conflicts of interests and priorities.
-Our manager went on an discussion with the other department's manager. Of course, there's no result.
+Our manager went on an discussion with the other department's manager. Unfortunately there were no result.
 The two departments have a different goal, which is reflected in the difference of their KPIs.
 Someone somewhere should have used the unused power to set the common goal.
 
@@ -99,9 +99,9 @@ Remember, the people below your pay grade often are struggling with problems tha
 Placing multiple stakeholders in one team will not work.
 All of them will have different interests and priorities which will cause a disruption
 to the team. There is a reason why a team should be composed of one,
-instead of many, product owner. If you
-are one of the stakeholder for your team, get together with the other stakeholders, then
-set your priorities and vision right. When everything is important, nothing will ever be important.
+instead of many, product owner. Multiple stakeholders should get together
+before confusing the team and determine which goal is the most important one.
+When everything is important, nothing will ever be important.
 
 For a team to jell properly, all of the team members must be 100% allocated to the team.
 One team member's failure of commitment
