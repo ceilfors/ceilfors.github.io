@@ -24,8 +24,8 @@ You might not change the society much, but you would inspire the others who love
 programming to do the same. There are
 a lot of good things that wouldn't have happened in my career if I did not show my passion.
 I've got to know a lot of good programmers. I 
-met passionate managers who have kindly given me guidance. It might be
-why I was hired despite being a fresh graduate.
+met passionate managers who have kindly given me guidance.
+It might be why I was hired as a Software Engineer despite being a fresh graduate.
 
 # You don't get what you don't ask
 
