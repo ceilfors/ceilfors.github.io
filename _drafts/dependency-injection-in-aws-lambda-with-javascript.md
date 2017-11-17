@@ -14,15 +14,15 @@ You'd like to make sure that this Lambda is unit tested and the number 1000 is u
 const TwitterService = require('./lib/twitter-service')
 
 exports.handler = function (event, context, callback) {
-  const twitterService = new TwitterService()
-  twitterService.getLatestTweets(1000)
+  const twitterService = new TwitterService('password')
+  return twitterService.getLatestTweets(1000)
     .then(tweets => {
       callback(null, tweets)
     })
 }
 ```
 
-This is a classic violation of Dependency inverstion principle as the `new` keyword is clearly shouting
+As you can see, this is a classic violation of Dependency inverstion principle as the `new` keyword is clearly shouting
 in the code. Unfotunately there's no way we can extract this out easily.
 
 One hack I found is the fact that all export object in Node is actually is singleton.
@@ -30,10 +30,10 @@ One hack I found is the fact that all export object in Node is actually is singl
 ```javascript
 const TwitterService = require('./lib/twitter-service')
 
-exports.deps = {twitterService: new TwitterService()}
+exports.deps = {twitterService: new TwitterService('password')}
 
 exports.handler = function (event, context, callback) {
-  deps.twitterService.getLatestTweets(1000)
+  return exports.deps.twitterService.getLatestTweets(1000)
     .then(tweets => {
       callback(null, tweets)
     })
@@ -42,11 +42,33 @@ exports.handler = function (event, context, callback) {
 
 Then in your test, you would then be able to change the `deps` object to your mock.
 
+```javascript
+const lambda = require('./lambda')
+...
+
+describe('lambda', function () { 
+  it('should get tweets for user 1000', function () {
+    lambda.deps.twitterService.getLatestTweets = sinon.stub()
+    const twitterService = lambda.deps.twitterService
+    twitterService.getLatestTweets.returns(Promise.resolve())
+    return lambda.handler({}, {}, () => {}).then(_ => {
+      expect(twitterService.getLatestTweets).to.be.calledWithExactly(1000)
+    })
+  })
+})
+```
+
 Why does this work? This is because exports in Node is singleton. Require will retrieve the same object.????
 Investigate the correct reasoning.
 
-So this is working until you find that you'll need to grab some secrets from SSM for example.
-You'd struggle because then, that Object is created live promise chain etc.
+So this is working until you find that you'll need to read the 'password' for the TwitterService from somewhere else like file or SSM for example.
+You'd struggle because then, that Object is created live promise chain etc. Unfortunately, this is when this model gets quite messy. This is what you'll end up having.
+
+
+
+
+This approach of dependency injection would also work with ES2015 modules (presuming you are transpiling your lambda code), this will also work. See example below.
+
 
 You can easily change it to become a promise and use the fact that the object is still a singleton.
 
