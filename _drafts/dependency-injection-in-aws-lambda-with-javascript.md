@@ -7,9 +7,10 @@ tags: aws di ioc lambda serverless
 Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
 This post will run through you a simple idea on how to achieve it with JavaScript.
 
-Imagine that you have a Lambda that will always return a list of tweets from a certain user.
-You'd like to make sure that this Lambda is unit tested by verifying that the number 1000 is used when
-tweets are being retrieved.
+Imagine that we have a Lambda that will always return a list of tweets from a certain user.
+In our unit test, we'd like to make sure that this Lambda is unit tested by verifying that
+the number 1000 (think user id) is used when tweets are being retrieved. The Lambda then
+will be written like so:
 
 ```javascript
 const TwitterService = require('./lib/twitter-service')
@@ -23,31 +24,40 @@ exports.handler = (event, context, callback) => {
 }
 ```
 
-As you can see, this is a classic violation of Dependency inverstion principle as the `new` keyword is clearly shouting
-in the code, waiting to be extracted out.
+As you can see, this is a classic violation of Dependency Inverstion Principle as the `new` keyword is
+clearly shouting in the code, waiting to be extracted out.
 
-I could not found a clean and easy way to inject my module to a handler, due to the fact that you will need to satisfy
-the contract of AWS handler function. The challenging part is you only have one entry point in Lambdas, which is
-the handler function. From this one entry point, you'll have to be able to bootstrap the dependencies in runtime and
-mock them in test.
+Now here is the challenge. This handler function is an entry point for both injecting the
+dependencies and running the function. This
+is a unique condition. In an ideal world you'd like your function to just focus on running
+the function and let someone else inject the dependencies for you, hence the ease of mocking
+the dependencies in tests. Due to this reason, I could not found a clean way to inject
+the dependencies of our handler function.
 
-One hack I found is the fact that all module.exports object in Node is actually is cached when you require a module, which can be then
-treated as a pretend singleton.
+# Module caching
+
+The workaround I'm using now is utilising the fact that modules are cached, hence it can be treated
+as a pretend singleton. From [NodeJS documentation](https://nodejs.org/api/modules.html#modules_caching):
+
+> Modules are cached after the first time they are loaded. This means (among other things) that every call to require('foo') will get exactly the same object returned, if it would resolve to the same file.
+
+In short, we can simply abuse this behaviour by exposing (exporting) objects that we would like to override.
+In our scenario, this is the twitterService object:
 
 ```javascript
 const TwitterService = require('./lib/twitter-service')
 
-exports.deps = {twitterService: new TwitterService('password')}
+exports.twitterService = new TwitterService('password')
 
 exports.handler = (event, context, callback) => {
-  return exports.deps.twitterService.getLatestTweets(1000)
+  return exports.twitterService.getLatestTweets(1000)
     .then(tweets => {
       callback(null, tweets)
     })
 }
 ```
 
-Then in your test, you would then be able to change the `deps` object to your mock.
+Then in your test, you would then be able to mock twitterService out now:
 
 ```javascript
 const lambda = require('./lambda')
@@ -57,8 +67,8 @@ describe('lambda', function () {
   let twitterService
 
   beforeEach('mock dependency', function () {
-    lambda.deps.twitterService.getLatestTweets = sinon.mock()
-    twitterService = lambda.deps.twitterService
+    lambda.twitterService.getLatestTweets = sinon.mock()
+    twitterService = lambda.twitterService
   })
 
   it('should get tweets for user 1000', function () {
@@ -70,9 +80,6 @@ describe('lambda', function () {
 })
 ```
 
-Why does this work? This is because exports in Node is singleton. Require will retrieve the same object.????
-Investigate the correct reasoning.
-
 Although there are quite a number of IoC libraries or frameworks out there, I find that
 most of them are too overly complicated for my need hence the idea shown here will not be using
 any NPM packages. Lambdas that are split well should not have a lot of dependencies to be managed.
@@ -80,7 +87,7 @@ any NPM packages. Lambdas that are split well should not have a lot of dependenc
 Don't really like Proxyquire as it feels too hacky. If I move my file around my proxyquire will break.
 I'm also not a big fan of rewire.
 
-# More complicated example
+# Final solution
 
 So this is working until you find that you'll need to read the 'password' for the TwitterService from somewhere else like file or SSM for example.
 You'd struggle because then, that Object is created live promise chain etc. Which means your code will be executed before it's mocked out. Unfortunately, this is when this model gets quite messy. This is what you'll end up having.
@@ -144,6 +151,9 @@ to
 ```javascript
 import * as lambda from './lambda'
 ```
+
+# Other libraries
+
 
 You would typically want your [Lambda handler logic to be dumb][best-practice] and put your domain logic in a separated module. This would allow you to unit test your handler behaviour independently.
 
