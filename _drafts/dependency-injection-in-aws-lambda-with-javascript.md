@@ -27,24 +27,24 @@ exports.handler = (event, context, callback) => {
 As you can see, this is a classic violation of Dependency Inverstion Principle as the `new` keyword is
 clearly shouting in the code, waiting to be extracted out.
 
-# Simple idea: Exporting the dependencies
+# The exports object
 
-Now here is the challenge. This handler function is an entry point for both injecting the
+Now here is the challenge. AWS Lambda handler function is an entry point for both injecting the
 dependencies and running the function. This
-is a unique condition. In an ideal world you'd like your function to just focus on running
-the function and let someone else inject the dependencies for you, hence the ease of mocking
+is a unique condition. In an ideal world, your function can just focus on running
+the function and someone else will inject the dependencies for you, hence the ease of mocking
 the dependencies in tests. Due to this reason, I could not found a clean way to inject
 the dependencies of our handler function.
 
-Although there are quite a number of IoC libraries or frameworks out there, I find that
-most of them are an overkill for my need hence the idea shown here will not be using
-any NPM packages. Lambdas that are split well should not have a lot of dependencies to be managed.
+Here is a simple idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
 
-The idea: Just like any object, object is returned by a require and you can override it's object.
+> Functions and objects are added to the root of a module by specifying additional properties on the special `exports` object.
 
-We can abuse the fact that the object `module.exports` by NodeJS is actually just another object.
-
-In our scenario, that is the twitterService object:
+We forgot that Node.js module system is so simple that the `exports` that we would normally use
+export functions is basically just an object. That means just like any other objects, you would
+be able to set and override its default properties and mock them out. Here is the simple idea:
+*Let's promote our dependency to become the module's property*.
+In our scenario, that is the twitterService:
 
 ```javascript
 const TwitterService = require('./lib/twitter-service')
@@ -52,16 +52,14 @@ const TwitterService = require('./lib/twitter-service')
 exports.twitterService = new TwitterService('password')
 
 exports.handler = (event, context, callback) => {
-  return exports.twitterService.getLatestTweets(1000)
+  return exports.twitterService.getLatestTweets(1000) // Note that we are using exports.twitterService here
     .then(tweets => {
       callback(null, tweets)
     })
 }
 ```
 
-The key here is to use `exports.twitterService` in your handler function.
-
-Then in your test, you would then be able to mock twitterService out now:
+Back to our test, we can now mock the `twitterService` easily:
 
 ```javascript
 const lambda = require('./lambda')
@@ -83,6 +81,8 @@ describe('lambda', function () {
   })
 })
 ```
+
+satisfied original goal to test 1000 bla bla bla
 
 # 'Promise' a convention
 
@@ -150,6 +150,11 @@ import * as lambda from './lambda'
 ```
 
 # Other libraries
+Although there are quite a number of IoC libraries or frameworks out there, I find that
+most of them are an overkill for my need hence the idea shown here will not be using
+any NPM packages. Lambdas that are split well should not have a lot of dependencies to be managed.
+
+
 Don't really like Proxyquire as it feels too hacky. If I move my file around my proxyquire will break.
 I'm also not a big fan of rewire.
 
