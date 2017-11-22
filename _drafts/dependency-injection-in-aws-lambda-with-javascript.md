@@ -59,7 +59,8 @@ exports.handler = (event, context, callback) => {
 }
 ```
 
-Back to our test, we can now mock the `twitterService` easily:
+Back to our test, we can now mock the `twitterService` easily and verify that
+the number 1000 is used, which was the original unit test goal in this post:
 
 ```javascript
 const lambda = require('./lambda')
@@ -71,10 +72,10 @@ describe('lambda', function () {
   beforeEach('mock dependency', function () {
     lambda.twitterService.getLatestTweets = sinon.mock()
     twitterService = lambda.twitterService
+    twitterService.getLatestTweets.returns(Promise.resolve())
   })
 
   it('should get tweets for user 1000', function () {
-    twitterService.getLatestTweets.returns(Promise.resolve())
     return lambda.handler({}, {}, () => {}).then(_ => {
       expect(twitterService.getLatestTweets).to.be.calledWithExactly(1000)
     })
@@ -82,9 +83,18 @@ describe('lambda', function () {
 })
 ```
 
-satisfied original goal to test 1000 bla bla bla
-
 # 'Promise' a convention
+
+Notice the code example we've been using:
+
+```javascript
+exports.twitterService = new TwitterService('password')
+```
+
+This is a bad practice as we are storing our twitter password as plaintext (Yes I know that twitter
+authentication requires more than this, I'm just using this as an example secret), hence potentially
+the need of reading the secrets from a AWS Service such as SSM. The convention that we had 
+in the previous section will not suffice.
 
 So this is working until you find that you'll need to read the 'password' for the TwitterService from somewhere else like file or SSM for example.
 You'd struggle because then, that Object is created live promise chain etc. Which means your code will be executed before it's mocked out. Unfortunately, this is when this model gets quite messy. This is what you'll end up having.
@@ -138,7 +148,9 @@ describe('lambda', function () {
 
 This approach of dependency injection would also work with ES2015 modules (presuming you are transpiling your lambda code), this will also work. See example below.
 
-Just replace
+Ok this is not actually working, the mock deps is not cached or something.
+
+Just replace 
 
 ```javascript
 const lambda = require('./lambda')
