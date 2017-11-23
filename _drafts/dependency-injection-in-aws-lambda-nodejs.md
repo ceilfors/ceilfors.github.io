@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Dependency Injection in AWS Lambda with JavaScript"
+title: "Dependency Injection in AWS Lambda (Node.js)"
 tags: aws di ioc lambda serverless
 ---
 
 Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
-This post will run through you a simple idea on how to achieve it with JavaScript.
+This post will run through you a simple idea on how to achieve it with Node.js.
 
 Imagine that we have a Lambda that will always return a list of tweets from a certain user.
 In our unit test, we'd like to make sure that this Lambda is unit tested by verifying that
@@ -40,8 +40,8 @@ Here is a simple idea, from the the [node documentation](https://nodejs.org/api/
 
 > Functions and objects are added to the root of a module by specifying additional properties on the special `exports` object.
 
-We forgot that Node.js module system is so simple that the `exports` that we would normally use
-export functions is basically just an object. That means just like any other objects, you would
+We often forget that Node.js module system is so simple that the `exports` that we would normally use
+to export functions is basically just an object. That means just like any other objects, you would
 be able to set and override its default properties and mock them out. Here is the simple idea:
 *Let's promote our dependency to become the module's property*.
 In our scenario, that is the twitterService:
@@ -52,7 +52,8 @@ const TwitterService = require('./lib/twitter-service')
 exports.twitterService = new TwitterService('password')
 
 exports.handler = (event, context, callback) => {
-  return exports.twitterService.getLatestTweets(1000) // Note that we are using exports.twitterService here
+  // Note that we are using exports.twitterService here
+  return exports.twitterService.getLatestTweets(1000)
     .then(tweets => {
       callback(null, tweets)
     })
@@ -96,16 +97,19 @@ authentication requires more than this, I'm just using this as an example secret
 the need of reading the secrets from a AWS Service such as SSM. The convention that we had 
 in the previous section will not suffice.
 
-So this is working until you find that you'll need to read the 'password' for the TwitterService from somewhere else like file or SSM for example.
-You'd struggle because then, that Object is created live promise chain etc. Which means your code will be executed before it's mocked out. Unfortunately, this is when this model gets quite messy. This is what you'll end up having.
+Additionally, the code that we have previously will always run before it is mocked. If you have a
+heavy operation within TwitterService's constructor, it will be run first before your test is started as
+this is the nature of `require`.
 
-You can easily change it to become a promise and use the fact that the object is still a singleton.
+Because of these two problems, I have a convention that I always use now to export my dependencies:
 
-The code
+* Export a function, so that the heavy operation will not run until you call it
+* Return a promise, so that you can have async operation when bootstrapping the dependency e.g. reading files, hitting other AWS service, etc.
+
+The code then would now look like this:
+
 ```javascript
-const TwitterService = require('./lib/twitter-service')
-
-const getPassword = Promise.resolve('password')
+...
 
 exports.deps = () => {
   return getPassword().then(password =>
@@ -122,41 +126,42 @@ exports.handler = (event, context, callback) => {
 }
 ```
 
+Notice that `getPassword()` will not be called until you call `deps()` in the handler function, and
+because we will be mocking `deps` in our unit test, `getPassword()` will never be called until it is
+deployed:
 
-The test
 ```javascript
-const lambda = require('./lambda')
 ...
-
-describe('lambda', function () {
-  let twitterService
-
   beforeEach('mock dependency', function () {
     const deps = {twitterService: {getLatestTweets: sinon.mock()}}
     lambda.deps = () => Promise.resolve(deps)
     twitterService = deps.twitterService
-  })
-
-  it('should get tweets for user 1000', function () {
     twitterService.getLatestTweets.returns(Promise.resolve())
-    return lambda.handler({}, {}, () => {}).then(_ => {
-      expect(twitterService.getLatestTweets).to.be.calledWithExactly(1000)
-    })
   })
-})
+...
 ```
 
-This approach of dependency injection would also work with ES2015 modules (presuming you are transpiling your lambda code), this will also work. See example below.
+The rest of the test code looks the same.
 
-Ok this is not actually working, the mock deps is not cached or something.
+# ES2015 import/export
 
-Just replace 
+This approach of dependency injection would also work with ES2015 modules
+if you are planning to transpile your code. 
+
+In your production code:
 
 ```javascript
-const lambda = require('./lambda')
+...
+const deps = () => {
+  ...
+const handler = (event, context, callback) => {
+  return exports.deps().then(deps => {
+  ...
+export { deps, handler }
 ```
 
-to
+Do note that you still have to use `exports.deps()`. Then in the test code, replace require with ES2015 import:
+
 ```javascript
 import * as lambda from './lambda'
 ```
