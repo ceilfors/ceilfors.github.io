@@ -166,13 +166,15 @@ Do note that you still have to use `exports.deps()`. Then in the test code, repl
 import * as lambda from './lambda'
 ```
 
-# Other libraries
+# Frameworks or libraries
 Although there are quite a number of IoC libraries or frameworks out there, I find that
-most of them are an overkill for my need hence the idea shown here will not be using
-any NPM packages. Lambdas that are split well should not have a lot of dependencies to be managed.
+most of them are an overkill for my need so far. I believe that Lambdas that are designed
+well should be very small and contained that you would not have a lot of dependencies which are
+too difficult to be managed.
 
-
-Don't really like Proxyquire as it feels too hacky. If I move my file around my proxyquire will break.
-I'm also not a big fan of rewire.
-
-[best-practice]: http://docs.aws.amazon.com/lambda/latest/dg/best-practices.html#function-code
+There are also libraries like `proxyquire` or `rewire` which can be used to monkey patch your unit test.
+They are all working and can be used, I however am finding that my unit tests that are written with
+these libraries will have too much of implementation leak.
+Too much of internals are to be exposed in the unit tests to enable the monkey patching. For example with proxyquire,
+you'll have to know that twitterService is required from `'./lib/twitter-service'`. If you are moving your file
+around, you'll also have to change your unit test.
