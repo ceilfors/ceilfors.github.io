@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "Dependency Injection in AWS Lambda (Node.js)"
+title: "Dependency Injection in AWS Lambda Handler (Node.js)"
 tags: aws di ioc lambda serverless
 ---
 
 Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
-This post will run through you a simple idea on how to achieve it with Node.js.
+This post will run through you a clean simple idea on how to achieve it with Node.js without the use
+of any framework or library.
 
 Imagine that we have a Lambda that will always return a list of tweets from a certain user.
 In our unit test, we'd like to make sure that this Lambda is unit tested by verifying that
@@ -36,14 +37,14 @@ the function and someone else will inject the dependencies for you, hence the ea
 the dependencies in tests. Due to this reason, I could not found a clean way to inject
 the dependencies of our handler function.
 
-Here is a simple idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
+Here is the simple idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
 
 > Functions and objects are added to the root of a module by specifying additional properties on the special `exports` object.
 
 We often forget that Node.js module system is so simple that the `exports` that we would normally use
 to export functions is basically just an object. That means just like any other objects, you would
-be able to set and override its default properties and mock them out. Here is the simple idea:
-*Let's promote our dependency to become the module's property*.
+be able to set and override its default properties and mock them out. *Let's promote our
+dependency to become the module's property*.
 In our scenario, that is the twitterService:
 
 ```javascript
