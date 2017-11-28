@@ -10,8 +10,8 @@ of any framework or library.
 
 Imagine that we have a Lambda that will always return a list of tweets from a certain user.
 In our unit test, we'd like to make sure that this Lambda is unit tested by verifying that
-the number 1000 (think user id) is used when tweets are being retrieved. The Lambda then
-will be written like so:
+the number 1000 (think user id) is used when tweets are being retrieved. The handler is
+written like this:
 
 ```javascript
 const TwitterService = require('./lib/twitter-service')
@@ -25,7 +25,7 @@ exports.handler = (event, context, callback) => {
 }
 ```
 
-As you can see, this is a classic violation of Dependency Inverstion Principle as the `new` keyword is
+As you can see, this is a classic violation of Dependency Inversion Principle as the `new` keyword is
 clearly shouting in the code, waiting to be extracted out.
 
 # The exports object
@@ -53,13 +53,14 @@ const TwitterService = require('./lib/twitter-service')
 exports.twitterService = new TwitterService('password')
 
 exports.handler = (event, context, callback) => {
-  // Note that we are using exports.twitterService here
   return exports.twitterService.getLatestTweets(1000)
     .then(tweets => {
       callback(null, tweets)
     })
 }
 ```
+
+Note that the handler function is now using `exports.twitterService`.
 
 Back to our test, we can now mock the `twitterService` easily and verify that
 the number 1000 is used, which was the original unit test goal in this post:
@@ -95,12 +96,12 @@ exports.twitterService = new TwitterService('password')
 
 This is a bad practice as we are storing our twitter password as plaintext (Yes I know that twitter
 authentication requires more than this, I'm just using this as an example secret), hence potentially
-the need of reading the secrets from a AWS Service such as SSM. The convention that we had 
+the need of reading the secrets from somewhere else such as SSM. The convention that we had 
 in the previous section will not suffice.
 
-Additionally, the code that we have previously will always run before it is mocked. If you have a
-heavy operation within TwitterService's constructor, it will be run first before your test is started as
-this is the nature of `require`.
+On top of that, the code that we have previously will always run before it is mocked. If you have a
+heavy or IO operation within TwitterService's constructor, it will be run first before your test is started as
+this is the nature of `require`. 
 
 Because of these two problems, I have a convention that I always use now to export my dependencies:
 
@@ -147,7 +148,9 @@ The rest of the test code looks the same.
 # ES2015 import/export
 
 This approach of dependency injection would also work with ES2015 modules
-if you are planning to transpile your code. 
+if you are planning to transpile your code. The solution I provide here is not
+the most ideal one as it's using the `exports` object. At the point of writing, ESM is still
+in experimental mode hence I haven't tried to make it work with the true ESM syntax.
 
 In your production code:
 
@@ -176,6 +179,6 @@ too difficult to be managed.
 There are also libraries like `proxyquire` or `rewire` which can be used to monkey patch your unit test.
 They are all working and can be used, I however am finding that my unit tests that are written with
 these libraries will have too much of implementation leak.
-Too much of internals are to be exposed in the unit tests to enable the monkey patching. For example with proxyquire,
-you'll have to know that twitterService is required from `'./lib/twitter-service'`. If you are moving your file
-around, you'll also have to change your unit test.
+For example with proxyquire,
+you'll have to know that twitterService is required from `'./lib/twitter-service'`, which
+would mean you'll have to change your unit test if you are moving your file around.
