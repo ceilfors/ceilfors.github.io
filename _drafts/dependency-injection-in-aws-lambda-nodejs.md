@@ -145,29 +145,41 @@ deployed:
 
 The rest of the test code looks the same.
 
-# ES2015 import/export
+# ES6 import/export
 
-This approach of dependency injection would also work with ES2015 modules
-if you are planning to transpile your code. The solution I provide here is not
-the most ideal one as it's using the `exports` object. At the point of writing, ESM is still
-in experimental mode hence I haven't tried to make it work with the true ESM syntax.
+If you are transpiling your code (AWS Lambda only supports NodeJS 6.10),
+this approach of dependency injection would also work with ES6 modules. The solution
+I'm going to provide here is however not tested in non-transpiled ES6 as it is still
+in experimental mode at the time of writing. So be aware that it might not work in the
+future.
 
-In your production code:
+We lose `exports` object in ES6 modules, which one one of the key idea outlined in the
+previous section, hence we need to introduce another object for our own usage.
+To do so, you can simply change the `deps` to become an object that have one function,
+in the lambda code:
 
 ```javascript
 ...
-const deps = () => {
-  ...
-const handler = (event, context, callback) => {
-  return exports.deps().then(deps => {
-  ...
-export { deps, handler }
+export const deps = { init: () => {
+  return getPassword.then(password =>
+    ({ twitterService: new TwitterService(password) }))
+}}
+...
+export const handler = (event, context, callback) => {
+  return deps.init().then(deps => {
+...
 ```
 
-Do note that you still have to use `exports.deps()`. Then in the test code, replace require with ES2015 import:
+Notice how similar `exports.deps()` and `deps.init()` are as we are essentially applying
+the same concept here. Then in the unit test:
 
 ```javascript
 import * as lambda from './lambda'
+...
+  beforeEach('mock dependency', function () {
+    const deps = {twitterService: {getLatestTweets: sinon.mock()}}
+    lambda.deps.init = () => Promise.resolve(deps)
+...
 ```
 
 # Frameworks or libraries
