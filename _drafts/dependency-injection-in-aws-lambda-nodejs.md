@@ -37,13 +37,13 @@ the function and someone else will inject the dependencies for you, hence the ea
 the dependencies in tests. Due to this reason, I could not found a clean way to inject
 the dependencies of our handler function.
 
-Here is the simple idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
+Here is an idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
 
 > Functions and objects are added to the root of a module by specifying additional properties on the special `exports` object.
 
-We often forget that Node.js module system is so simple that the `exports` that we would normally use
+We often forget that Node.js module system (or CommonJS) is so simple that the `exports` that we would normally use
 to export functions is basically just an object. That means just like any other objects, you would
-be able to set and override its default properties and mock them out. *Let's promote our
+be able to override its default properties to mock them out. *Let's promote our
 dependency to become the module's property*.
 In our scenario, that is the twitterService:
 
@@ -63,7 +63,7 @@ exports.handler = (event, context, callback) => {
 Note that the handler function is now using `exports.twitterService`.
 
 Back to our test, we can now mock the `twitterService` easily and verify that
-the number 1000 is used, which was the original unit test goal in this post:
+the number 1000 is used, which was the original goal of this post:
 
 ```javascript
 const lambda = require('./lambda')
@@ -108,7 +108,7 @@ Because of these two problems, I have a convention that I always use now to expo
 * Export a function, so that the heavy operation will not run until you call it
 * Return a promise, so that you can have async operation when bootstrapping the dependency e.g. reading files, hitting other AWS service, etc.
 
-The code then would now look like this:
+With this convention, the code then would now look like this:
 
 ```javascript
 ...
