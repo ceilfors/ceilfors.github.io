@@ -37,14 +37,14 @@ the function and someone else will inject the dependencies for you, hence the ea
 the dependencies in tests. Due to this reason, I could not found a clean way to inject
 the dependencies of our handler function.
 
-Here is an idea, from the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
+From the the [node documentation](https://nodejs.org/api/modules.html#modules_modules):
 
 > Functions and objects are added to the root of a module by specifying additional properties on the special `exports` object.
 
 We often forget that Node.js module system (or CommonJS) is so simple that the `exports` that we would normally use
 to export functions is basically just an object. That means just like any other objects, you would
-be able to override its default properties to mock them out. *Let's promote our
-dependency to become the module's property*.
+be able to override its default properties to mock them out. Here is an idea, let's try to promote our
+dependency to become the module's property!
 In our scenario, that is the twitterService:
 
 ```javascript
@@ -95,17 +95,17 @@ exports.twitterService = new TwitterService('password')
 ```
 
 This is a bad practice as we are storing our twitter password as plaintext (Yes I know that twitter
-authentication requires more than this, I'm just using this as an example secret), hence potentially
-the need of reading the secrets from somewhere else such as SSM. The convention that we had 
-in the previous section will not suffice.
+authentication requires more than this, I'm just using this as an example), hence potentially
+the need of reading the secrets from somewhere else. The convention that we had 
+previously will not suffice.
 
-On top of that, the code that we have previously will always run before it is mocked. If you have a
+On top of that, the code that we have above will always run before it is mocked. If you have a
 heavy or IO operation within TwitterService's constructor, it will be run first before your test is started as
-this is the nature of `require`. 
+this is the nature of `require`.
 
 Because of these two problems, I have a convention that I always use now to export my dependencies:
 
-* Export a function, so that the heavy operation will not run until you call it
+* Export a function instead of object, so that the heavy operation will not run until you call it
 * Return a promise, so that you can have async operation when bootstrapping the dependency e.g. reading files, hitting other AWS service, etc.
 
 With this convention, the code then would now look like this:
@@ -143,18 +143,16 @@ deployed:
 ...
 ```
 
-The rest of the test code looks the same.
-
 # ES6 import/export
 
 If you are transpiling your code (AWS Lambda only supports NodeJS 6.10),
 this approach of dependency injection would also work with ES6 modules. The solution
 I'm going to provide here is however not tested in non-transpiled ES6 as it is still
-in experimental mode at the time of writing. So be aware that it might not work in the
+in experimental mode at the time of writing, so be aware that it might not work in the
 future.
 
 We lose `exports` object in ES6 modules, which one one of the key idea outlined in the
-previous section, hence we need to introduce another object for our own usage.
+previous sections, hence we need to introduce another object for our own usage.
 To do so, you can simply change the `deps` to become an object that have one function,
 in the lambda code:
 
