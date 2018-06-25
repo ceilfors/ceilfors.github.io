@@ -47,12 +47,10 @@ Benefits:
 
 ## Unit Testing
 
-With Laconia
-
-Testing with Laconia. There is no need to use proxyquire or rewire.
-Or clunky singleton abuse.
-Explicit run with a different context.
-Run function.
+Let's see how we can test the lambda code that we have written in the previous section.
+As unit testing is a first class citizen in Laconia, Laconia
+provides `run` method to run your Lambda handler code without worrying on
+your dependencies instantiation. Let's see the following example.
 
 ```js
 const lambda = require("./lambda");
@@ -60,13 +58,15 @@ const lambda = require("./lambda");
 let twitterService;
 
 beforeEach("mock dependency", () => {
-  twitterService = { getLatestTweets: sinon.mock() };
+  // No `exports` hack anymore
+  twitterService = { getLatestTweets: jest.mock() };
   twitterService.getLatestTweets.returns(Promise.resolve());
 });
 
 it("should get tweets for user 1000", () => {
+  // No need to require a different function to test your logic
   return lambda.run({ twitterService });
-  expect(twitterService.getLatestTweets).to.be.calledWithExactly(1000);
+  expect(twitterService.getLatestTweets).toBeCalledWith(1000);
 });
 ```
 
@@ -99,3 +99,10 @@ Configuring environment variable is a global variable.
 as I believe a well written Lambda is small.
 
 It's just an object, everything is always available and controlled via destructuring.
+
+## Conclusion
+
+Unit testing is a first class citizen in Laconia, hence there is no need to use any
+additional testing library to mock the dependency creation step. There is also no need
+to have a workaround like exporting the _real handler_ function differently or using
+the `exports` object like what I have covered in my previous test.
