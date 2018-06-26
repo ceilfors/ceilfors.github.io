@@ -72,26 +72,37 @@ it("should get tweets for user 1000", () => {
 
 ## The Laconia Context
 
-Very simple and importance concept in Laconia.
-Start to see that event, and context are not in sights anymore.
-These are now built-in into LaconiaContext.
+When you use Laconia, your dependencies will live around an object
+called LaconiaContext. LaconiaContext is the object that we have been
+destructuring in handler function to retrieve `twitterService`,
+and the object that we have created in the unit test to pass `twitterService`.
 
-These are the objects that has been passed around.
-`laconiaContext` is a parameter that is accepted by
-`run(laconiaContext)`
-laconia(fn(`laconiaContext`))
+_Everything that your Lambda needs_ will be contained by LaconiaContext.
+This is a very simple and important concept in Laconia. Notice how AWS `event` and
+`context` objects are not in sights anymore. These AWS objects lives inside LaconiaContext.
+Intuitively, they are accessible in your handler function via `event` and `context`
+keys:
 
-To retrieve AWS original event and context
-LaconiaContext also provides this.
+```js
+const handler = ({ event, context }) => {};
+```
 
-Example {event, context}
+It is very common to configure your Lamdba via environment variables. LaconiaContext
+also contains the `process.env` object and make it available via `env` key:
 
-The intention of LaconiaContext is to provide everything that your Lambda
-would need, hence explicitly showing what your dependencies are. This includes
-environment variables which is a very common way of configuring your Lambda.
+```js
+const handler = ({ env }) => {
+  console.log(env.MY_ENV_VAR);
+};
+```
 
-Configuring environment variable is a global variable.
-`env` is also available to be injected
+You might ask why would I need to access my environment variables this way?
+This is again due to testability. If you use `process.env`, you'd have to set
+the enviroment variables you need in your unit test. You'll also have to make sure
+that you are resetting the environment variables after your test run to make sure that
+it doesn't interfere with your other test scenarios for example.
+
+TBD Lastly of corse is your dependency
 
 ## Lightweightness
 
