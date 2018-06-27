@@ -11,6 +11,8 @@ that I have set for myself in my previous blog post](https://www.ceilfors.com/20
 The `exports` object usage feels quite hacky both in the production and unit test code.
 Ever since then I've been developing a micro framework to
 tackle this problem, it's called [Laconia](https://github.com/ceilfors/laconia).
+It's taking a lightweight approach to solve the problem, hence the size of the framework is
+currently only about 12 KB when zipped.
 
 I'm going to a use a similar example code that I have used in my previous blog post again,
 but do note that it's not a direct comparison as AWS Lambda now supports Node 8 hence async/await
@@ -37,13 +39,6 @@ const handler = ({ twitterService }) => {
 // Bootstrap laconia
 exports.handler = laconia(handler).register(deps);
 ```
-
-Benefits:
-
-1.  there is an explicit split of responsibility of the dependencies creations and who uses them.
-2.  Your handler code will no longer need to call the `deps` function as it will now be called by `laconia`.
-3.  Easier to test which will be shown in the next section
-4.  Declaring what you need is a simple as using the destructuring syntax
 
 ## Unit Testing
 
@@ -97,23 +92,25 @@ const handler = ({ env }) => {
 ```
 
 You might ask why would I need to access my environment variables this way?
-This is again due to testability. If you use `process.env`, you'd have to set
+This is again due to testability. If you use `process.env` in your code, you'd have to set
 the enviroment variables you need in your unit test. You'll also have to make sure
 that you are resetting the environment variables after your test run to make sure that
 it doesn't interfere with your other test scenarios for example.
 
-TBD Lastly of corse is your dependency
+## Closing
 
-## Lightweightness
+Laconia makes it possible for you to semantically split the responsibility
+of dependencies creation and your handler logic. Declaring the dependencies that
+you need in the handler function is made lightweight by just using destructuring.
 
-`new` is still happening. Laconia don't aim to create these instances for you
-as I believe a well written Lambda is small.
-
-It's just an object, everything is always available and controlled via destructuring.
-
-## Conclusion
+I also believe that a well written Lambda should be small and cohesive, hence
+there should not be a need of having an automatic dependencies wiring. This is reflected
+by the need of creating those objects manually in your code.
 
 Unit testing is a first class citizen in Laconia, hence there is no need to use any
 additional testing library to mock the dependency creation step. There is also no need
 to have a workaround like exporting the _real handler_ function differently or using
 the `exports` object like what I have covered in my previous test.
+
+Lastly, Laconia is still very new, please comment if you have any feedback on this
+framework!
