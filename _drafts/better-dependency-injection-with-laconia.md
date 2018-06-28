@@ -5,20 +5,24 @@ tags: aws di ioc lambda serverless laconia laconia
 comments: true
 ---
 
-Dependency Injection is an important pattern, but unfortunately I was not
-satisfied with any of the approach that I have found, [including the convention
-that I have set for myself in my previous blog post](https://www.ceilfors.com/2017/12/03/dependency-injection-in-aws-lambda-nodejs.html).
-The `exports` object usage feels quite hacky both in the production and unit test code.
-Ever since then I've been developing a micro framework to
-tackle this problem, it's called [Laconia](https://github.com/ceilfors/laconia).
-It's taking a lightweight approach to solve the problem, hence the size of the framework is
-currently only about 12 KB when zipped.
+Dependency Injection is an important design pattern in any software development
+paradigm, including the Serverless world. In AWS Lambda, I was not
+satisfied with any of the approach that I have found. I have covered
+this topic previously and [come up with a simple convention](https://www.ceilfors.com/2017/12/03/dependency-injection-in-aws-lambda-nodejs.html).
+That convention works, but I really want to see if I can make it better.
+Introducing [Laconia](https://github.com/ceilfors/laconia).
 
-I'm going to a use a similar example code that I have used in my previous blog post again,
-but do note that it's not a direct comparison as AWS Lambda now supports Node 8 hence async/await
-is now used in this post. So we have a Lambda that will always return a list of tweets from user id 1000.
-In our unit test, we’d like to make sure that this Lambda is unit tested by verifying that the number 1000 (think user id)
-is used when tweets are being retrieved.
+![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/laconia-shield.png)
+
+Laconia is a micro framework that I've been developing recently. It is taking a
+very lightweight approach to tackle the DI problem, and specifically designed for
+Lambda. Package size matters for your Lambda performance, Laconia DI package size
+is currently only about 12 KB when zipped.
+
+# The Handler
+
+I'm going to a use a similar scenario that I have used in my previous blog post,
+simply, we have a Lambda that will always return a list of tweets from user id 1000.
 
 With Laconia, the Lambda can be written like so:
 
@@ -26,7 +30,7 @@ With Laconia, the Lambda can be written like so:
 const { laconia } = require("laconia-core");
 
 // Create dependencies
-const deps = async () => {
+const instances = async () => {
   const password = await getPassword();
   return { twitterService: new TwitterService(password) };
 };
@@ -37,10 +41,15 @@ const handler = ({ twitterService }) => {
 };
 
 // Bootstrap laconia
-exports.handler = laconia(handler).register(deps);
+exports.handler = laconia(handler).register(instances);
 ```
 
+TBD That's it! notice how blah blah
+
 ## Unit Testing
+
+In our unit test, we’d like to make sure that this Lambda is unit tested by verifying that the number 1000 (think user id)
+is used when tweets are being retrieved.
 
 Let's see how we can test the lambda code that we have written in the previous section.
 As unit testing is a first class citizen in Laconia, Laconia
