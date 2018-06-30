@@ -4,13 +4,76 @@ title:  "Learnings from London LeadDev 2018"
 comments: true
 ---
 
-# Don't forget about the humans
+This post captures my learnings from the
+[The London Lead Developer 2018](https://london2018.theleaddeveloper.com/) conference.
 
-Trends
+# No one knows your job, except you
 
-@alicegoldfuss
+> The higher up you go, fewer people will tell you you're messing up.
+> You become the person most equipped to know what's going wrong, and fix it.
+> So how to know when you're messing up? Self-awareness
+>
+> _- @aliciatweet_
 
-# What makes a team, a team?
+You are supposed to code. No, you are supposed to embrace no coding life. I think, you are too busy
+lately in a meeting and not spending enough time with the team. Enough, you are coding too much.
+
+If you have been in a Tech Lead position for quite some time, you should be very familiar
+with this problem. Everyone around you will a different expectation on
+what you role should be. _Always read the the job description_, said @danpersa. Company A
+might see Tech Lead as a Engineering Manager, Company B might see Tech Lead as a Lead Developer,
+Company C see Tech Lead as an Architect.
+
+@kevingoldsmith shared a good tips on how you should be handling this situation. Creating a
+_joint working agreement_ by sticky notes brainstorming with your colleauges,
+on your first ever 1:1. The brainstorming session would be about
+sharing the expectations the two of you have on each other. At the end of the session,
+go through each cards and make sure that a common understanding is reached.
+
+Feedback, feedback, feedback, it goes without saying and almost every speakers
+reiterated the importance of feedback. I highly recommend you to gather feedback on every 1:1s.
+Sometimes feedback can sometime only do so much, which is why @aliciatweet talked about
+the importance of self-awareness.
+
+So, should you code or not as a Tech Lead? That will be a topic for another day.
+
+# The cost of improvements that no one talks about
+
+In a team improvement effort, process has always been the lowest hanging fruit. It is
+important to improve your process, but always keep an eye of the cultural shifts in your team
+as the result of a process change as it might go into a negative direction.
+
+> "Pairing/Mobbing by default all increased throughput.
+> But, they also all increased team friction. After too much friction, it wasn’t fun any longer."
+>
+> - @pia_nillson.
+
+This is why I find @pia_nillson's talk to be very interesting. She suggests the optimisation of work
+that you are doing correlates to higher friction, which makes a lot of sense! Pairing forces you
+to communicate to your pair for the entire day. I've also heard a lot of developers struggling to
+pair due to various reasons. Limiting WIP will force multiple pairs to collaborate
+on a single end-to-end story and complete them together. She recommends a couple of antidotes,
+each of which worth Googling for:
+
+1.  Psychological safety: Confidence I won’t be blamed or laughed at if I make a mistake.
+    Ask stupid questions, "I think this sucks" > "This sucks", appreciation in retrospective.
+2.  Active listening: Don't interrupt.
+    Yes and’ technique to build on others’ idea
+3.  Friendly feedback: Non-Violent Communication
+    Turn up the Good: Focus on what’s going well and turn that up (retrospective)
+4.  Answer Why: Purpose of the team
+    OKR, Goal must not have solution, "Despicable design"
+
+Putting team improvements aside, the other improvements that you might want to have
+is on technology. New technologies, aren't they exciting? Containers are still on the rise
+and a lot of teams want to adopt them. _Containers need headcount_, said @alicegoldfuss.
+This should be quite an eye opener for a team that wants to build a container platform.
+The list of skills that she thinks is required to setup a team to manage this (yes, a team is required):
+operations, deployment, monitoring, networking, kernel engineer, infosec, internal adoption,
+project manager. You should at least have 4 people, with a maximum of 8 people in the team.
+There is no such thing as a free lunch.
+
+# Delivering business values, together
 
 Pia briefly talks about this in Spotify where people are always static.
 xxx also briefly said that in the currendy industry, we expect people to
@@ -27,50 +90,29 @@ to make things happen even when you are not around. This is one of the process
 that will outlive you. Make sure that most documentation are updated and easy
 for people to get context of what we are going on.
 
-# Learn from non-software industries
+> First, try 3 value based questions. Can we BIN it - do we need to do it?
+> Can the THIN it - take a story and make it less? Can we build the 20% that delivers 80% value?
+> Can we SPLIT it, to more than one story that provides customer value?
+> BIN, THIN, SPLIT - we have smaller stories - but they still deliver values.
+> Talk about value, not size or effort.
+>
+> - @adrianh
 
-Nick Means smashed it again with his story. The story that has been told here
-is a story from other industry. This time, it's a Nuclear Reactor plant.
-https://en.wikipedia.org/wiki/Three_Mile_Island_accident. I'll not cover in depth
-on what's going on, but I'd recommend you to watch this talk when it's made available!
+# Growth of others, and you
 
-Broken windows theory for example is also happening in the accident.
-In the operations office, there are a wall of alarms. When one of the alarm is triggered
-off, no one notices as there are always 50 alarms that no one cares about!
+> Don't praise the knowledge, praise thethirst for knowledge - ClareSudbery
 
-Historical learning is one of the thing that frequently happens in software development team.
-New people always come to a new team with all of their previous learnings from other teams.
-The problem is, sometimes the learning that we have are not always applicable in every team
-due to fundamental differences e.g. culture, dynamic. This accident shows an interesting
-related issue where the engineers make a false decision based on a smaller scale reactor plant,
-due to their experience in the Navy.
+> A gardener doesn't tell plants how to grow. They create the best environment for plants to flourish, but you still need to know how to garden and what to weed out - @aliciatweet
 
-# Coding or no coding?
+Junior.next() talks about the importance of helping junior growing.
+Internship
 
-xyz talks about raeding job description.
+> Supporters, you can invest your time, create opportunities, and give feedback - @tara_ojo
 
-Rule of thumb is:
-30% coding
-Remember to scale yourself as per xyz said, you might not be needed in that meeting. Delegate, or ignore.
+Some talks are very new Leads, some are for higher ups.
+Alicia Liu and Christian (scaling the team) talks about the importance
+of maintaining your mental health. Exercise and meditation were recommended.
 
-If you are always stuck in a meeting, you are doing it wrong. I wouldn't call myself
-a Lead Dev when this happens, I'd call myself Lead Meeting Manager or something.
+> You need stress to grow, but also need time to recover from stress - @aliciatweet
 
-Embrace "interruptions" ??
-
-About coding. The truth is, most other people in different roles won't know what you
-are doing anyway! In my team, I have a Project Manager which tells me that she doesn't expect
-me to code at all in this project as a Tech Lead. This is where feedback is very important,
-as per what every speakers have reiterated in the conference. No one talks about how
-difficult systemising feedbacks are. Different people will have a different expectation of
-you. I'm still always getting interesting feedback like "But you are a tech lead, not team
-lead".
-
-I don't know why everyone talks about embracing no coding and embrace the joy of leading.
-That will give you a sheer of relief for a while. People want to learn from you as well.
-What are you "leading" with if you can't code anymore? I wouldn't call myself a lead "developer"
-if I don't code. I'll be a little controversial here, but you **have to** code a minimum of
-30% in your team.
-
-Successful software delivery. If you think coding is required to help you understand
-what's going on in the project, do it.
+> Reading is important too - a lot of successful people credit reading - @cmccarrick
