@@ -4,31 +4,34 @@ title:  "Thoughts and Learnings from London LeadDev 2018"
 comments: true
 ---
 
-Sorted in arbitrary order, let's dive in.
+This post captures my thoughts and learnings from
+[The Lead Developer 2018](https://london2018.theleaddeveloper.com/) conference.
+They are split into five sections and sorted in arbitrary order, and the last one
+is some of the interesting resources I've collected from the talks.
 
 # No one knows your job, except you
 
-> Always read the the job description - _@danpersa_
+> Always read the job description - _@danpersa_
 
 You are supposed to code. No, you are supposed to embrace the life of no coding. I think, you are too busy
 lately in meetings and not spending enough time with the team. Enough, you are coding too much.
 
 If you have been in a Tech Lead position for quite some time, you should be very familiar
 with this problem. Everyone around you will a different expectation on
-what you role should be, and I'm not only talking about the coding expectation of your role.
-@danpersa talked about the importance reading your job description. Company A
-might see Tech Lead as a Engineering Manager, Company B might see Tech Lead as a Lead Developer,
+what your role should be, and I'm not only talking about the coding expectation of your role.
+@danpersa talked about the importance of reading your job description. Company A
+might see Tech Lead as an Engineering Manager, Company B might see Tech Lead as a Lead Developer,
 Company C see Tech Lead as an Architect. This is especially a good tip if you are looking for a new job.
 
-You should also manage your colleagues expectation when faced with this kind of problem.
+You should also manage your colleagues' expectation when faced with this kind of problem.
 @kevingoldsmith shared a good tip on how you can do this:
 brainstorm with your colleagues with sticky notes to create a
 _joint working agreement_, on your first 1:1. Share the expectations the two of you have on
 each other during the brainstorming session. At the end of the session,
-go through each cards and make sure that a common understanding is reached.
+go through each card and make sure that a common understanding is reached.
 
-> The higher up you go, the fewer people will tell you you're messing up.
-> You become the person most equipped to know what's going wrong, and fix it.
+> The higher up you go, the fewer people will tell you're messing up.
+> You become the person most equipped to know what's going wrong and fix it.
 > So how to know when you're messing up? Self-awareness
 >
 > _- @aliciatweet_
@@ -50,8 +53,8 @@ negative impact it might cause to your team.
 > _- @pia_nillson_
 
 This is why I find @pia_nillson's talk to be very interesting. She suggests that optimisation of work
-correlates to higher team friction, which makes a lot of sense! Pairing forces you
-to communicate to your pair for the entire day. Limiting WIP will force multiple pairs to collaborate
+correlates with higher team friction, which makes a lot of sense! Pairing forces you
+to communicate with your pair for the entire day. Limiting WIP will force multiple pairs to collaborate
 on a shared end-to-end story. She recommends a couple of antidotes,
 each of which worth Googling for:
 
@@ -62,21 +65,21 @@ each of which worth Googling for:
 3.  Friendly feedback: Non-Violent Communication.
     Turn up the Good: Focus on what’s going well and turn that up (retrospective)
 4.  Answer Why: Purpose of the team.
-    OKR, Goal must not have solution, "Despicable design"
+    OKR, Goal must not have the solution, "Despicable design"
 
 The other type of improvements that you might want to have on a team is a technological
 improvement. New technologies, aren't they exciting? Containers are still on the rise
 and a lot of teams want to adopt them. "Containers need headcount", said @alicegoldfuss.
-This should be quite an eye opener for a team that wants to build a container platform.
-The list of skills that she thinks is required to setup a team to make this happen (yes, a team is required):
+This should be quite an eye-opener for a team that wants to build a container platform.
+The list of skills that she thinks is required to set up a team to make this happen (yes, a team is required):
 operations, deployment, monitoring, networking, kernel engineer, infosec, internal adoption,
-project manager. You should at least have 4 people, with a maximum of 8 people in the team.
+project manager. You should at least have 4 people, with a maximum of 8 people on the team.
 There is no such thing as a free lunch.
 
-# Countering distraction with goal setting
+# Countering distraction with a clear goal
 
 A couple of speakers briefly talked about how a team is never static nowadays.
-There is always a change in a team that causes _distraction_. This change can be due
+There is always a change in a team that causes a _distraction_. This change can be due
 to various reason such as a team member change, a senior leadership change, a priority change,
 reorganisation, or even just a desk move.
 It is therefore important for a team to always be prepared for a change.
@@ -88,15 +91,15 @@ It is therefore important for a team to always be prepared for a change.
 It is too easy for developers to lose the big picture when they are focused
 on solving a specific problem. Regardless of the type of the distraction
 your team is facing, this problem must be counteracted by defining a team's goal.
-Regularly show how your team's work fits in the bigger picture and relate it
+Regularly show how your team's work fits into the bigger picture and relate it
 to the team's goal. As per what @danpersa said, you must unlearn the principle of DRY in this
-context, reptition is key! A specific process of setting a goal can be adopted
+context, repetition is key! A specific process of setting a goal can be adopted
 from Google, it's called OKR (as covered in the previous section).
 
 The goal that you are trying to achieve as a team should also be aligned with
 delivering real values to your users or customers.
 There is no point in achieving a goal that does not deliver business values, nor it
-be helpful to counter team's distraction.
+is helpful to counter team's distraction.
 
 > BIN, THIN, SPLIT - we have smaller stories - but they still deliver values.
 > Talk about value, not size or effort.
@@ -111,7 +114,7 @@ that it's less horrid:
 2.  Can we THIN it - take a story and make it less? Can we build the 20% that delivers 80% value?
 3.  Can we SPLIT it - to more than one story that provides customer value?
 
-# Growth of others, and yours
+# The growth of others, and yours
 
 > A gardener doesn't tell plants how to grow.
 > They create the best environment for plants to flourish,
@@ -119,50 +122,50 @@ that it's less horrid:
 > _- @aliciatweet_
 
 The last section but not the least. Most of the conference attendees were probably
-interested in upskilling themselves. Fortunately a lot of speakers have reminded us
+interested in upskilling themselves. Fortunately, a lot of speakers have reminded us
 that growing others are equally important, and that's part of your job.
-There are different level of people that you can help grow, they are:
+There are different levels of developer that you can help grow. They are
 interns, juniors, experienced, and yourself. Let's start with the interns and the juniors.
 
 > You can invest your time, create opportunities, and give feedback
 > _- @tara_ojo_
 
 It's quite a revelation to hear from @WebDevBev on how difficult it is
-to get into tech industries. She couldn't join appreticeship as she owns a non-tech
-degree. The apprenticeship system just excludes her rightaway. She couldn't join
-a bootcamp as it will cost her £8000. She couldn't join an unpaid internship,
-as she has a dependant. If you have an intern in your team, it goes away saying,
-invest your time while the person is in your team.
+to get into tech industries. She couldn't join apprenticeship as she owns a non-tech
+degree. The apprenticeship system excludes people with any degree. She couldn't join
+a boot camp as it will cost her £8000. She couldn't join an unpaid internship,
+as she has a dependant. If you have an intern on your team, it goes away saying,
+invest your time while the intern is on your team.
 
-@tara_ojo has conveniently provided a pratical tips on how you can invest your time
+@tara_ojo has conveniently shared practical tips on how you can invest your time
 to grow interns and juniors:
 
 1.  Stretch them. I always used the Goldilocks principle, or shoe sizing
-2.  Keep track of their achievement, this will help on their promotion
+2.  Keep track of their achievement, this will help with their promotion
 3.  Pairing, give them the keyboard
 4.  Give feedback, regularly
 
 > Don't praise the knowledge, praise the thirst for knowledge
 > _- @ClareSudbery_
 
-There is a reason why @ClareSudbery has dedicated an entire talk on growth of
+There is a reason why @ClareSudbery has dedicated an entire talk on the growth of
 experienced developers, because it is hard. She reiterated the significance of empathy,
 which should not be excluded even for experienced developers. One of the key takeaway for
 me is on the tips for _praising_. On my entire career, it is very rare (probably never) for me
 to praise other developers as I need developers to continuously be curious and learn
 based on their intrinsic value. You don't want a developer to do something
-just to be praised by someone. Which is why what she said on praising strucks me, I'll
+just to be praised by someone. Which is why what she said on praising struck me, I'll
 definitely give it another thought.
 
 > Leading takes energy, and you can't lead when you are burnout or ill.
 > _- @cmccarrick_
 
 Now, back to you. I won't be covering much here except for the fact that the speakers who
-are sitting on the higher ups (above Lead developer role) were talking about health. The speakers
+are sitting on the higher-ups (above Lead developer role) were talking about health. These speakers
 were @cmccarrick (SVP of Platform Engineering) and @aliciatweet (VP of Engineering). In simple words,
 if you are looking to step up your career, be also ready to step up your stress handling skills.
-The unanimous tips to recover or
-handle stress were regular meditation and regular exercise. Yes, I repeated the word _regular_ twice.
+The unanimous tips to handle and recover from stress
+were regular meditation and regular exercise. Yes, I repeated the word _regular_ twice.
 
 That's all for now, good luck!
 
@@ -179,5 +182,5 @@ That's all for now, good luck!
 | @cmccarrick    | Deep Work                                    | [Book](https://www.goodreads.com/book/show/25744928-deep-work)                                                             |
 | @adrianh       | User Story Mapping                           | [Book](https://www.goodreads.com/book/show/22221112-user-story-mapping)                                                    |
 | @nmeans        | The Field Guide to Understanding Human Error | [Book](https://www.goodreads.com/book/show/376964.Field_Guide_to_Understanding_Human_Error)                                |
-| @aliciatweet   | How depression made ma morning person        | [Blog](https://betterhumans.coach.me/how-depression-made-me-a-morning-person-cda4889662ff)                                 |
+| @aliciatweet   | How depression made me a morning person      | [Blog](https://betterhumans.coach.me/how-depression-made-me-a-morning-person-cda4889662ff)                                 |
 | @ramtop        | Kintsugi                                     | [Wiki](https://en.wikipedia.org/wiki/Kintsugi)                                                                             |
