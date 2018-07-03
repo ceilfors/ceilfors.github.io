@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Better Dependency Injection with Laconia (AWS Lambda - Node.js)"
-tags: aws di ioc lambda serverless laconia laconia
+tags: aws di ioc lambda serverless laconia
 comments: true
 ---
 
@@ -14,9 +14,9 @@ Introducing [Laconia](https://github.com/ceilfors/laconia).
 
 ![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/laconia-shield.png)
 
-Laconia is a micro framework that I've been developing recently. It is taking a
-very lightweight approach to tackle the DI problem, and specifically designed for
-Lambda. Package size matters for your Lambda performance, Laconia DI package size
+Laconia is a micro framework that I've been developing recently. It is design
+specifically for Lambda and is taking a very lightweight approach.
+Package size matters for your Lambda performance, hence Laconia core package size
 is currently only about 12 KB when zipped.
 
 # The Handler
@@ -29,7 +29,7 @@ With Laconia, the Lambda can be written like so:
 ```js
 const { laconia } = require("laconia-core");
 
-// Create dependencies
+// Create the dependencies
 const instances = async () => {
   const password = await getPassword();
   return { twitterService: new TwitterService(password) };
@@ -44,17 +44,18 @@ const handler = ({ twitterService }) => {
 exports.handler = laconia(handler).register(instances);
 ```
 
-TBD That's it! notice how blah blah
+That's it! Notice how clean the handler code is as it's now responsible
+purely on the business logic. The the other hand, the dependencies
+creation is also encapsulated in a single function and can be implemented
+simply by returning an object.
 
 ## Unit Testing
 
-In our unit test, we’d like to make sure that this Lambda is unit tested by verifying that the number 1000 (think user id)
-is used when tweets are being retrieved.
-
-Let's see how we can test the lambda code that we have written in the previous section.
-As unit testing is a first class citizen in Laconia, Laconia
+In our unit test, we will make sure that this Lambda is unit tested by verifying that
+the user id 1000 is used when tweets are being retrieved. As unit testing is a first
+class citizen in Laconia, testing your handler function will be a breeze. Laconia
 provides `run` method to run your Lambda handler code without worrying on
-your dependencies instantiation. Let's see the following example.
+your dependencies creation. Let's see it in action in the following example:
 
 ```js
 const lambda = require("./lambda");
@@ -62,28 +63,32 @@ const lambda = require("./lambda");
 let twitterService;
 
 beforeEach("mock dependency", () => {
-  // No `exports` hack anymore
+  // Creates the twitterService. No `exports` hack
   twitterService = { getLatestTweets: jest.mock() };
   twitterService.getLatestTweets.returns(Promise.resolve());
 });
 
 it("should get tweets for user 1000", () => {
-  // No need to require a different function to test your logic
+  // Run your exported handler function with the mocked dependencies
   return lambda.run({ twitterService });
   expect(twitterService.getLatestTweets).toBeCalledWith(1000);
 });
 ```
 
-## The Laconia Context
+You can also still test your handler function as normal by invoking
+the lambda like a normal function if needed. All of the dependencies
+that you declare will be instantiated of course.
+
+## Where are the `event` and `context` object?
 
 When you use Laconia, your dependencies will live around an object
 called LaconiaContext. LaconiaContext is the object that we have been
-destructuring in handler function to retrieve `twitterService`,
+destructuring in the handler function to retrieve the `twitterService`,
 and the object that we have created in the unit test to pass `twitterService`.
 
 _Everything that your Lambda needs_ will be contained by LaconiaContext.
 This is a very simple and important concept in Laconia. Notice how AWS `event` and
-`context` objects are not in sights anymore. These AWS objects lives inside LaconiaContext.
+`context` objects are not in sights anymore because they live inside LaconiaContext.
 Intuitively, they are accessible in your handler function via `event` and `context`
 keys:
 
@@ -91,7 +96,7 @@ keys:
 const handler = ({ event, context }) => {};
 ```
 
-It is very common to configure your Lamdba via environment variables. LaconiaContext
+As it is very common to configure your Lambda via environment variables, LaconiaContext
 also contains the `process.env` object and make it available via `env` key:
 
 ```js
@@ -101,16 +106,17 @@ const handler = ({ env }) => {
 ```
 
 You might ask why would I need to access my environment variables this way?
-This is again due to testability. If you use `process.env` in your code, you'd have to set
-the enviroment variables you need in your unit test. You'll also have to make sure
+This is for better testability of your code. If you use `process.env` in your code, you'd have to set
+the enviroment variables you need in your unit test globally. As it's being set
+globally, you'll also have to make sure
 that you are resetting the environment variables after your test run to make sure that
-it doesn't interfere with your other test scenarios for example.
+it doesn't interfere with your other test scenarios.
 
 ## Closing
 
 Laconia makes it possible for you to semantically split the responsibility
-of dependencies creation and your handler logic. Declaring the dependencies that
-you need in the handler function is made lightweight by just using destructuring.
+of your creation of dependencies and handler logic. Declaring the dependencies that
+you need in the handler function is made lightweight by using destructuring.
 
 I also believe that a well written Lambda should be small and cohesive, hence
 there should not be a need of having an automatic dependencies wiring. This is reflected
@@ -122,4 +128,4 @@ to have a workaround like exporting the _real handler_ function differently or u
 the `exports` object like what I have covered in my previous test.
 
 Lastly, Laconia is still very new, please comment if you have any feedback on this
-framework!
+framework. There are more to come!
