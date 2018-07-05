@@ -15,7 +15,8 @@ Introducing [Laconia](https://github.com/ceilfors/laconia).
 ![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/laconia-shield.png)
 
 Laconia is a microframework that I've been developing recently. It is designed
-specifically for Lambda hence it is taking a very lightweight approach.
+specifically for Lambda hence it is taking a very lightweight approach to support
+Dependency Injection.
 Package size matters for your Lambda performance and Laconia core package size
 is currently only about 12 KB when zipped.
 
@@ -58,19 +59,20 @@ provides `run` method to run your handler function while bypassing the
 objects creation step. Let's see it in action in the following example:
 
 ```js
-const lambda = require("./lambda");
+const { handler } = require("./lambda");
 
 let twitterService;
 
-beforeEach("mock dependency", () => {
-  // Creates the twitterService. No `exports` hack
-  twitterService = { getLatestTweets: jest.mock() };
-  twitterService.getLatestTweets.returns(Promise.resolve());
+beforeEach(() => {
+  // Creates a mocked twitterService
+  twitterService = {
+    getLatestTweets: jest.fn().mockReturnValue(Promise.resolve())
+  };
 });
 
 it("should get tweets for user 1000", () => {
-  // Run your exported handler function with the mocked dependencies
-  return lambda.run({ twitterService });
+  // Runs your exported handler function with the mocked dependencies
+  handler.run({ twitterService });
   expect(twitterService.getLatestTweets).toBeCalledWith(1000);
 });
 ```
@@ -82,8 +84,8 @@ that you have will be instantiated of course).
 ## Where are the `event` and `context` objects?
 
 When you use Laconia, your dependencies will live around an object
-called LaconiaContext. LaconiaContext is the object that we have been
-destructuring in the handler function to retrieve the `twitterService`,
+called LaconiaContext. LaconiaContext is the object that we have
+destructured in the handler function to retrieve the `twitterService`,
 and the object that we have created in the unit test to pass `twitterService`.
 
 _Everything that your Lambda needs_ will be contained by LaconiaContext.
@@ -114,7 +116,7 @@ globally, you'll also have to make sure
 that you are resetting the environment variables after your test run to make sure that
 it doesn't interfere with your other test scenarios.
 
-## Summary
+## Wrapping Up
 
 Laconia makes it possible for you to semantically split the responsibility
 of your objects creation and handler logic. Declaring the dependencies that
