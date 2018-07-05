@@ -1,4 +1,9 @@
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: sans-serif;
   text-align: left;
 }
@@ -16,6 +21,11 @@ blockquote p {
 
 img {
   max-width: 100%;
+}
+
+img[src$="center"] {
+  display: block;
+  margin: 0 auto;
 }
 
 /* Override Pure CSS to support pygments. */
@@ -57,7 +67,7 @@ pre.highlight {
   font-family: Georgia, "Cambria", serif;
 }
 .posts {
-  color:#666;
+  color: #666;
 }
 
 @media (max-width: 480px) {
@@ -65,52 +75,51 @@ pre.highlight {
     width: 100%;
   }
   ul.posts .separator {
-    display:none;
+    display: none;
   }
   ul.posts a {
-    display:block;
+    display: block;
   }
 }
 
 /** Adopted from Pure CSS as redcarpet doesn't support CSS class. **/
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    empty-cells: show;
-    border: 1px solid #cbcbcb;
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  border: 1px solid #cbcbcb;
 }
 
 table caption {
-    color: #000;
-    font: italic 85%/1 arial, sans-serif;
-    padding: 1em 0;
-    text-align: center;
+  color: #000;
+  font: italic 85%/1 arial, sans-serif;
+  padding: 1em 0;
+  text-align: center;
 }
 
 table td,
 table th {
-    border-left: 1px solid #cbcbcb;
-    border-width: 0 0 0 1px;
-    font-size: inherit;
-    margin: 0;
-    overflow: visible;
-    padding: 0.5em 1em;
+  border-left: 1px solid #cbcbcb;
+  border-width: 0 0 0 1px;
+  font-size: inherit;
+  margin: 0;
+  overflow: visible;
+  padding: 0.5em 1em;
 }
 table td:first-child,
 table th:first-child {
-    border-left-width: 0;
+  border-left-width: 0;
 }
 table thead {
-    background: #e0e0e0;
-    color: #000;
-    text-align: left;
-    vertical-align: bottom;
+  background: #e0e0e0;
+  color: #000;
+  text-align: left;
+  vertical-align: bottom;
 }
 table td {
-    background-color: transparent;
+  background-color: transparent;
 }
 table td {
-    border-bottom: 1px solid #cbcbcb;
+  border-bottom: 1px solid #cbcbcb;
 }
-table tbody > tr:last-child td,
-
+tabletbody>tr: last-child td;

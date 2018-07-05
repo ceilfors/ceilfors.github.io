@@ -12,12 +12,12 @@ this topic previously and [come up with a simple convention](https://www.ceilfor
 That convention works, but I really want to see if I can make it even better.
 Introducing [Laconia](https://github.com/ceilfors/laconia).
 
-![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/laconia-shield.png)
+![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/shield.png?style=center)
 
 Laconia is a microframework that I've been developing recently. It is designed
 specifically for Lambda hence it is taking a very lightweight approach to support
 Dependency Injection.
-Package size matters for your Lambda performance and Laconia core package size
+Package size matters for your Lambda performance, hence Laconia core package size
 is currently only about 12 KB when zipped.
 
 # The Handler
