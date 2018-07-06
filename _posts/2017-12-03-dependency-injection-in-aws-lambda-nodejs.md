@@ -5,6 +5,11 @@ tags: aws di ioc lambda serverless
 comments: true
 ---
 
+> **UPDATE: 05 Jul 2018**  
+> I have developed a micro framework designed for
+> AWS Lambda with Dependency Injection support. Check out the
+> [introduction here](https://medium.com/@ceilfors/better-dependency-injection-with-laconia-aws-lambda-node-js-c640ca37134d)!
+
 Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
 This post will run through you a clean simple idea on how to achieve it with Node.js without the use
 of any framework or library.
@@ -15,15 +20,14 @@ the number 1000 (think user id) is used when tweets are being retrieved. The han
 written like this:
 
 ```javascript
-const TwitterService = require('./lib/twitter-service')
+const TwitterService = require("./lib/twitter-service");
 
 exports.handler = (event, context, callback) => {
-  const twitterService = new TwitterService('password')
-  return twitterService.getLatestTweets(1000)
-    .then(tweets => {
-      callback(null, tweets)
-    })
-}
+  const twitterService = new TwitterService("password");
+  return twitterService.getLatestTweets(1000).then(tweets => {
+    callback(null, tweets);
+  });
+};
 ```
 
 As you can see, this is a classic violation of Dependency Inversion Principle as the `new` keyword is
@@ -49,16 +53,15 @@ dependency to become the module's property!
 In our scenario, that is the twitterService:
 
 ```javascript
-const TwitterService = require('./lib/twitter-service')
+const TwitterService = require("./lib/twitter-service");
 
-exports.twitterService = new TwitterService('password')
+exports.twitterService = new TwitterService("password");
 
 exports.handler = (event, context, callback) => {
-  return exports.twitterService.getLatestTweets(1000)
-    .then(tweets => {
-      callback(null, tweets)
-    })
-}
+  return exports.twitterService.getLatestTweets(1000).then(tweets => {
+    callback(null, tweets);
+  });
+};
 ```
 
 Note that the handler function is now using `exports.twitterService`.
@@ -70,7 +73,7 @@ the number 1000 is used, which was the original goal of this post:
 const lambda = require('./lambda')
 ...
 
-describe('lambda', function () { 
+describe('lambda', function () {
   let twitterService
 
   beforeEach('mock dependency', function () {
@@ -92,12 +95,12 @@ describe('lambda', function () {
 Notice the code example we've been using:
 
 ```javascript
-exports.twitterService = new TwitterService('password')
+exports.twitterService = new TwitterService("password");
 ```
 
 This is a bad practice as we are storing our twitter password as plaintext (Yes I know that twitter
 authentication requires more than this, I'm just using this as an example), hence potentially
-the need of reading the secrets from somewhere else. The convention that we had 
+the need of reading the secrets from somewhere else. The convention that we had
 previously will not suffice.
 
 On top of that, the code that we have above will always run before it is mocked. If you have a
@@ -106,8 +109,8 @@ this is the nature of `require`.
 
 Because of these two problems, I have a convention that I always use now to export my dependencies:
 
-* Export a function instead of object, so that the heavy operation will not run until you call it
-* Return a promise, so that you can have async operation when bootstrapping the dependency e.g. reading files, hitting other AWS service, etc.
+- Export a function instead of object, so that the heavy operation will not run until you call it
+- Return a promise, so that you can have async operation when bootstrapping the dependency e.g. reading files, hitting other AWS service, etc.
 
 With this convention, the code then would now look like this:
 
@@ -182,6 +185,7 @@ import * as lambda from './lambda'
 ```
 
 # Frameworks or libraries
+
 Although there are quite a number of IoC libraries or frameworks out there, I find that
 most of them are an overkill for my need so far. I believe that Lambdas that are designed
 well should be very small and contained that you would not have a lot of dependencies which are
