@@ -28,7 +28,7 @@ simply, we have a Lambda that will always return a list of tweets from user id 1
 With Laconia, the handler function can be written like this:
 
 ```js
-const { laconia } = require("laconia-core");
+const laconia = require("@laconia/core");
 
 // Creates the dependencies
 const instances = async () => {
