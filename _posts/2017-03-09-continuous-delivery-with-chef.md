@@ -11,7 +11,7 @@ have not been easy. Documentations and resources surrounding this topic are quit
 I hope this writing will be helpful and do leave comments to other readers if you have found better
 ways of achieving what I'm trying to do.
 
-# Setup
+### Setup
 
 The usage of Chef in this post utilises Chef Server. You will find that most of the commands
 written in this post are coupled with Chef Server, although you should be able to map it to
@@ -44,7 +44,7 @@ will ensure that our upstream cookbook dependencies are stable.
 If you would like to go fancier, you can also
 setup your own Chef Supermarket although I will not be covering that.
 
-# Deployment Pipeline
+### Deployment Pipeline
 
 Here is the full example of a deployment pipeline when it is implemented with Chef:
 
@@ -57,7 +57,7 @@ Stage.
 Observe the confluence of two build streams in the Commit Stage. Any change that happens on your cookbook
 must trigger your acceptance test even when there is no change in your application.
 
-# Cookbook Build
+### Cookbook Build
 
 On every commit made to your git repository, a CI build will kick start a series of build steps.
 Ideally, you will want to
@@ -133,7 +133,7 @@ Here are the typical build steps that you should have in sequential order:
     - If your CI tool support matrix job, use them to test multiple platforms or test suites
       in parallel.
 
-# Environment Cookbook Build
+### Environment Cookbook Build
 
 Earlier in this post, I mentioned that you'll have one git repository for every cookbooks you write.
 There's an exception for *Environment Cookbooks* (again, read [this blog post][pattern] if you haven't read it already
@@ -173,7 +173,7 @@ Because they are kept together now in one repository,
 you can update the `cookbook/attributes/default.rb` file to point to the updated version
 declared in the pom.xml (after the pom.xml version is updated).
 
-# Release Candidate
+### Release Candidate
 
 Every successful cookbook build should produce a release candidate, ready to be run to your targeted
 environments. All the tests we have captured in the previous sections passed.
@@ -215,7 +215,7 @@ Here are the general steps that you should make after the build steps are comple
     [Chef Server's Bookshelf](https://docs.chef.io/server_components.html#server-components)
     is handling thousands of cookbook versions we have.
 
-# Chef Run
+### Chef Run
 
 Once you have uploaded your cookbooks to Chef Server, you are ready to move on the next stage
 of your deployment pipeline. The Chef Run phase will cover your environment configuration, application
@@ -275,7 +275,7 @@ Using Acceptance Stage as an example target stage, here are the typical steps th
     You will suffer from knife ssh bad handling of status reports when hitting multiple nodes i.e.
     it is hard to determine the node has deployment failure.
 
-# Smoke test
+### Smoke test
 
 Your deployment will not complete without smoke tests execution. Smoke tests must be executed after every
 chef-client run you make. The smoke tests you write should run fast to verify that your deployment
@@ -316,7 +316,7 @@ Example smoke tests:
     written in the footer or somewhere in the web page has the correct version by `curl`-ing.
     You get the gist.
 
-# Promotion to Production
+### Promotion to Production
 
 This is the final stage of our deployment pipeline where the trigger of the phase is not automated.
 You will need to make sure that your application binaries, application configuration, environment

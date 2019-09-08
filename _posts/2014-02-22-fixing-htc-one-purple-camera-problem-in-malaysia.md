@@ -15,7 +15,7 @@ Are you having purple tints in your pictures? Your friends think that you are
 using purple instagram filter? You have a purple camera problem.
 As annoying as it is, this only happens in a few batches of HTC One.
 
-## Not a software issue
+### Not a software issue
 There are two speculations to fix this purple camera problem; software and hardware.
 I'm going to tell you upfront and save your time. 
 I'd got mine fixed by replacing the **camera module**.
@@ -26,7 +26,7 @@ So, **don't wait for the update nor waste your time flashing**. Send it over bef
 I had tried to flash my phone to Android version 4.4.2 with the Stock, [Google Play Edition][gpe] and
 [Android Revolution HD][android-revolution-hd] with no success.
 
-## Preparation and contacting HTC
+### Preparation and contacting HTC
 Replacing HTC One's camera module requires you to send your phone to HTC
 and get it serviced. HTC is providing a free pick up service by UPS, use it!
 
@@ -66,7 +66,7 @@ details in this post). Hence, send the request now and keep it short, the key po
 - You need the camera module replaced.
 - You need a pick up service and the UPS tracking number.
 
-## Waiting duration and HTC efficiency
+### Waiting duration and HTC efficiency
 These are the raw statistics from my experience. I'm not going to judge whether
 they are fast or slow. You be the judge whether or not it is worth waiting for.
 After reading some of comments in HTC Malaysia's facebook, your waiting duration should
@@ -78,7 +78,7 @@ Total working days at UPS: 5
 Total working days waiting for email reply: 1 (first day)  
 **Total working days waiting**: 20  
 
-### Chronology
+#### Chronology
 2014-01-20 [Email sent][htc-email] for phone pick up request.  
 2014-01-21 Email received with UPS tracking number.  
 2014-01-22 UPS picked up my phone.  
@@ -91,7 +91,7 @@ Total working days waiting for email reply: 1 (first day)
 2014-02-17 Email received with UPS tracking number.  
 2014-02-17 UPS delivered my phone to me.  
 
-## Diagnose your phone after you get it back
+### Diagnose your phone after you get it back
 
 ![Return box]({{ site.url }}/assets/image/{{page.id}}/box.jpg)
 

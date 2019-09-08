@@ -5,14 +5,14 @@ tags: aws di ioc lambda serverless
 comments: true
 ---
 
+Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
+This post will run through you a clean simple idea on how to achieve it with Node.js without the use
+of any framework or library.
+
 > **UPDATE: 05 Jul 2018**  
 > I have developed a micro framework designed for
 > AWS Lambda with Dependency Injection support. Check out the
 > [introduction here](https://medium.com/@ceilfors/better-dependency-injection-with-laconia-aws-lambda-node-js-c640ca37134d)!
-
-Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
-This post will run through you a clean simple idea on how to achieve it with Node.js without the use
-of any framework or library.
 
 Imagine that we have a Lambda that will always return a list of tweets from a certain user.
 In our unit test, we'd like to make sure that this Lambda is unit tested by verifying that
@@ -33,7 +33,7 @@ exports.handler = (event, context, callback) => {
 As you can see, this is a classic violation of Dependency Inversion Principle as the `new` keyword is
 clearly shouting in the code, waiting to be extracted out.
 
-# The exports object
+### The exports object
 
 Now here is the challenge. AWS Lambda handler function is an entry point for both injecting the
 dependencies and running the function. This
@@ -90,7 +90,7 @@ describe('lambda', function () {
 })
 ```
 
-# 'Promise' a convention
+### 'Promise' a convention
 
 Notice the code example we've been using:
 
@@ -147,7 +147,7 @@ deployed:
 ...
 ```
 
-# ES6 import/export
+### ES6 import/export
 
 If you are transpiling your code (AWS Lambda only supports NodeJS 6.10),
 this approach of dependency injection would also work with ES6 modules. The solution
@@ -184,7 +184,7 @@ import * as lambda from './lambda'
 ...
 ```
 
-# Frameworks or libraries
+### Frameworks or libraries
 
 Although there are quite a number of IoC libraries or frameworks out there, I find that
 most of them are an overkill for my need so far. I believe that Lambdas that are designed

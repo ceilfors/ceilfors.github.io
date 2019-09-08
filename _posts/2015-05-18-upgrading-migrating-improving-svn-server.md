@@ -20,7 +20,7 @@ __Envisioned state:__
 - SSO with LDAP group as authorization strategy and a single authz file
 - DNS and SSL offloading via reverse proxy
 
-## Exporting the repository
+### Exporting the repository
 
 To migrate a SVN repository, you must export or *dump* the repository, transfer it over to the new server, and load it to a new repository. The export process will produce a dump file.
 
@@ -40,7 +40,7 @@ amount of work needed to accomplish this while still maintaining the
 integrity of the repository. __It does not guarantee the most optimized
 repository state as a dump and subsequent load would__.
 
-## Repairing the dump - non-LF line endings
+### Repairing the dump - non-LF line endings
 
 If your SVN repository is as old as ours, you might hit the error below:
 
@@ -68,7 +68,7 @@ It's crucial to determine if a property requires `eolfix-prop` or `eolfix-revpro
 - Versioned Properties: eolfix-prop
 - Unversioned Properties: eolfix-revprop
 
-## Repairing the dump - svn:externals
+### Repairing the dump - svn:externals
 
 Most of our __svn:externals__ are having absolute URLs. This will no longer work in our new server. The fastest way to resolve this issue is to repair the dump files.
 
@@ -89,7 +89,7 @@ svndumptool.py transform-prop svn:externals "(\S*)\s+(svn://server-name/uk)(/\S*
 
 To migrate various other svn:externals format, refer to this [SO thread](http://stackoverflow.com/questions/21292688/regex-for-svndumptool).
 
-## Importing and finalizing migration
+### Importing and finalizing migration
 Do the following in the new server:
 
 - Create a new SVN repository
@@ -104,7 +104,7 @@ svnadmin verify repository_path
 rsync --exclude "*.tmpl" user@old-server:old_repository_path/hooks/* repository_path/hooks
 ```
 
-## Improving authentication and authorization strategy
+### Improving authentication and authorization strategy
 In the *envisioned state*, I want to use SSO as our authentication strategy. Since we are using CollabNet Subversion Edge 4.0.14, it is very easy to setup SSO as everything is GUI based and everything is already well integrated.
 
 The authorization part is the tricky bit. Previously we have a problem where each of the SVN repositories are having their own authz files, and it is a nightmare to migrate all of them to a single authz file in SVN Edge. The solution that I come up with is to use LDAP groups to authorize SVN users. It is however not simple to achieve this in SVN server because the authorization is tight to authz file.
@@ -121,7 +121,7 @@ Read the script's documentation on how you can make use of it. The rest is prett
 
 Then run the script in cron. You can get the script [here](http://serverfault.com/a/401181) for reference. In addition to the merging, I also backup the previous authz file every time the cron runs.
 
-## Pretty URL with https
+### Pretty URL with https
 To have a pretty URL with https, you need to have a DNS that points to a reverse proxy,
 and a reverse proxy that forwards port 443 to 18080. This generates some problems.
 
