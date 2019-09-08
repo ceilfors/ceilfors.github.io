@@ -3,6 +3,8 @@ layout: post
 title:  "Why is substring method's end index exclusive?"
 tags: programming string
 comments: true
+redirect_from:
+  - /2014/02/09/why-is-substring-methods-endindex-exclusive
 ---
 
 Imagine you have a string `s = "01234"`. You want to extract the substring of "123" from it.
@@ -23,7 +25,7 @@ Why is this strange behavior? This is because
 Without rationalization, our little brain just forgets this behavior.
 I will rationalize this behavior thus remembering it will be easier.
 
-## Made for real use cases
+### Made for real use cases
 There are two conventions being discussed to extract the substring of "123" (I will use only python
 for shorter code starting from here). The two conventions are:
 
@@ -71,7 +73,7 @@ into a program. This is actually the problem that has been given at the very beg
 of this post. We *already know* that we want to extract "123" before even we code them.
 **The caret index method** will help you find the end index for this particular use case.
 
-## The caret index method
+### The caret index method
 Finding the end index for a predetermined character is easy with the caret index method.
 This method requires a simple tweak of the definition _index_. The index should be seen as
 a _caret index_.
@@ -96,7 +98,7 @@ Going back to the initial problem, "123" will be extracted out like so:
 0|123|4 # caret start index 1, caret end index 4
 ```
 
-## Bonus: Groovy gotcha
+### Bonus: Groovy gotcha
 Be careful when you are using Groovy. If you slice the string the Groovy way, you will get "123":
 
 ```groovy

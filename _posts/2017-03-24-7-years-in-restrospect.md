@@ -2,13 +2,15 @@
 layout: post
 title:  "7 Years in Retrospect"
 comments: true
+redirect_from:
+  - /2017/03/24/7-years-in-restrospect
 ---
 
 After 7 years of working for Experian, I'm finally moving on to the second job of my life.
 I'm capturing the learnings and observations throughout those years here, something
 that I'll be able to look back on to remind myself in the future.
 
-# Don't hide your passion
+### Don't hide your passion
 
 Most of us live in a non-programmer-friendly society.
 We have words like geek or nerd which have negative connotation to dis programmers. You are socially
@@ -27,7 +29,7 @@ I've got to know a lot of good programmers. I
 met passionate managers who have kindly given me guidance.
 It might be why I was hired as a Software Engineer despite being a fresh graduate.
 
-# You don't get what you don't ask
+### You don't get what you don't ask
 
 I had met colleagues who would complaint about how underpaid they are.
 The innocent me would ask, "Why don't you ask for more?". More often than not, the answers
@@ -63,7 +65,7 @@ Even after the role change, I asked for my job scope to be changed by
 including more *engineering* and reducing *administration* tasks. I gathered data from the internet
 on various companies' build engineer job descriptions then ask for the change.
 
-# Utilise your unused power
+### Utilise your unused power
 
 > The manager’s function is not to make people work, but to make it possible for people to work.  
   ― *Tom DeMarco, Peopleware*
@@ -94,7 +96,7 @@ Someone somewhere should have used the unused power to set the common goal.
 Remember, the people below your pay grade often are struggling with problems that can only be solved by you
 (without them realising).
 
-# The mistakes on team structure
+### The mistakes on team structure
 
 Placing multiple stakeholders in one team will not work.
 All of them will have different interests and priorities which will cause a disruption
@@ -113,7 +115,7 @@ setting up a remote team if you don't gain
 [access to better talent pools](https://martinfowler.com/articles/remote-or-co-located.html).
 Of course, all of the above must be satisfied for the remote team to be successful.
 
-# Use a walking skeleton whenever you can
+### Use a walking skeleton whenever you can
 
 A [walking skeleton](http://blog.codeclimate.com/blog/2014/03/20/kickstart-your-next-project-with-a-walking-skeleton/)
 works well in various aspects of software development.

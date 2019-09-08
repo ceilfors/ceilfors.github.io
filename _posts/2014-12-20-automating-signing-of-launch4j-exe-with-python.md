@@ -3,6 +3,8 @@ layout: post
 title:  "Automating Signing of Launch4j's exe with Python"
 tags: python launch4j
 comments: true
+redirect_from:
+  - /2014/12/20/automating-signing-of-launch4j-exe-with-python
 ---
 
 One of the manual release step that we have is to sign the installers of our products.

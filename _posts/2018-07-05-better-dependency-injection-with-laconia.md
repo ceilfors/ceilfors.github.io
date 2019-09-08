@@ -3,6 +3,8 @@ layout: post
 title: "Better Dependency Injection with Laconia (AWS Lambda - Node.js)"
 tags: aws di ioc lambda serverless laconia
 comments: true
+redirect_from:
+  - /2018/07/05/better-dependency-injection-with-laconia
 ---
 
 Dependency Injection is an important design pattern in any software development
@@ -12,7 +14,7 @@ this topic previously and [come up with a simple convention](https://www.ceilfor
 That convention works, but I really want to see if I can make it even better.
 Introducing [Laconia](https://github.com/ceilfors/laconia).
 
-![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/shield.png?style=center)
+![Laconia Shield](/images/{{page.id}}/shield.png?style=center)
 
 Laconia is a microframework that I've been developing recently. It is designed
 specifically for Lambda hence it is taking a very lightweight approach to support
@@ -20,7 +22,7 @@ Dependency Injection.
 Package size matters for your Lambda performance, hence Laconia core package size
 is currently only about 12 KB when zipped.
 
-# The Handler
+### The Handler
 
 I'm going to a use a similar scenario that I have used in my previous blog post,
 simply, we have a Lambda that will always return a list of tweets from user id 1000.
@@ -50,7 +52,7 @@ The instances function is responsible for creating the objects that you need
 in your handler function. The handler function is responsible to execute
 your business logic.
 
-## Unit Testing
+### Unit Testing
 
 In our unit test, we will make sure that
 the user id 1000 is used when the tweets are being retrieved. As unit testing is a first
@@ -81,7 +83,7 @@ You can also still test your handler function as normal by invoking
 the lambda as a function if needed (All of the dependencies
 that you have will be instantiated of course).
 
-## Where are the `event` and `context` objects?
+### Where are the `event` and `context` objects?
 
 When you use Laconia, your dependencies will live around an object
 called LaconiaContext. LaconiaContext is the object that we have
@@ -116,7 +118,7 @@ globally, you'll also have to make sure
 that you are resetting the environment variables after your test run to make sure that
 it doesn't interfere with your other test scenarios.
 
-## Wrapping Up
+### Wrapping Up
 
 Laconia makes it possible for you to semantically split the responsibility
 of your objects creation and handler logic. Declaring the dependencies that

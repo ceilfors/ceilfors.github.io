@@ -1,0 +1,45 @@
+// Override style that are not working from the theme
+
+// The theme list elements are not indented properly
+ul, ol {
+	list-style-position: outside;
+	padding-inline-start: 20px;
+
+	@include mq(laptop) {
+		padding-inline-start: 40px;
+	}
+}
+.single li p {
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 15px;
+	max-width: 100%;
+}
+
+// The theme blockquote is overly large
+.single blockquote p {
+	border-left: 2px solid #ee983d;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: $h3-small;
+	font-weight: $h3-weight;
+	padding: 10px 0 10px 20px;
+
+	@include mq(tabletp) {
+		font-size: $h3-medium;
+	}
+
+	@include mq(tabletl) {
+		max-width: 75%;
+	}
+
+	@include mq(laptop) {
+		font-size: $h3-large;
+		max-width: 70%;
+		padding: 20px 0 20px 40px;
+	}
+
+	@include mq(desktop) {
+		max-width: 65%;
+	}
+}

@@ -2,6 +2,8 @@
 layout: post
 title:  "Debian Interchange"
 tags: linux
+redirect_from:
+  - /2014/01/20/debian-interchange
 ---
 
 This post contains all of the ritual I had done during my
@@ -9,7 +11,7 @@ This post contains all of the ritual I had done during my
 Though this laptop is not a [Ubuntu Desktop certfied hardware][ubuntu-certified-list],
 I don't encounter much firmware issues.
 
-## Switch distribution
+### Switch distribution
 It didn't take me long to switch to [testing distribution][testing]
 after some of the packages I need are not available or outdated in *squeeze*
 e.g. gradle, android-tools-fastboot, android-tools-adb, etc.
@@ -20,7 +22,7 @@ looking for some mirrors txt file to no avail. Maybe it's
 not mainted anymore. I was using [netselect-apt][netselect-apt]
 to find the festest mirror instead. Works like charm.
 
-## Audio
+### Audio
 As usual, I need to cure my loyal patient, PulseAudio. This guy
 is ill on the current  stable and testing distributions. ArchLinux's
 Wiki is always my best friend here. It has a long list of well
@@ -34,27 +36,29 @@ After switching to *jessie* (the testing distribution as of now),
 my audio volume is randomly jumping to 100%! Thanks to ArchWiki again,
 [disabling the `flat-volumes`][arch-jump] fixes this issue.
 
-## Environment variables
+### Environment variables
 [Setting environment variables in KDE][env] is quite simple.
 Just add a file in the exactly same location that look like this:
-{% highlight bash %}
-    ○ → cat ~/.kde/env/path.sh
-    export PATH=/opt/bin:$PATH
-    export JAVA_HOME=/opt/jdk1.6.0_45
-{% endhighlight %}
 
-## East Asian Fonts
+```bash
+○ → cat ~/.kde/env/path.sh
+export PATH=/opt/bin:$PATH
+export JAVA_HOME=/opt/jdk1.6.0_45
+```
+
+### East Asian Fonts
 All of the ttf-* fonts are replaced with fonts-* in testing distribution.
 As of this post, most of the articles out there [are][outdated2]
 [outdated][outdated1]. I found most of the right fonts to be installed
 in the [Debian fonts subsection page][fonts].
 
 These are the fonts that I install:
-{% highlight bash %}
-sudo aptitude install fonts-arphic-uming fonts-wqy-zenhei fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
-{% endhighlight %}
 
-## .bash?rc?profile?
+```bash
+sudo aptitude install fonts-arphic-uming fonts-wqy-zenhei fonts-ipafont-mincho fonts-ipafont-gothic fonts-unfonts-core
+```
+
+### .bash?rc?profile?
 Ok, I have forgotten the role of each of these files again. I was having
 a hard time configuring [bash-it][bash-it] for my non-login shell.
 [This][superuser] is the best answer I have found so far. I end up sourcing

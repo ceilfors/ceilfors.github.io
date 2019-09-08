@@ -2,14 +2,16 @@
 layout: post
 title:  "Another day, another distrohop"
 tags: linux
+redirect_from:
+  - /2014/01/17/another-day-another-distrohop
 ---
 
 Ubuntu, Linux Mint, Arch Linux, ArchBang, CrunchBang, and finally I did another distrohop to Debian. I don't think I'm one of those [proud distrohopper][distrohopper] yet with this hop. Though my first few hops was quite intensive, CrunchBang has made me stayed for almost [6 months][crunchbang-first-post]. I'm also not in a quest to find a [perfect distro][urban]. What I really want now is just a **stable enough** distro. I need to balance getting things done and learning Linux. That's what the hop is all about. 
 
-## Before Debian
+### Before Debian
 Before I switched to Debian, I was a happy user of CrunchBang. Great community, groovy speed and very lightweight. A fresh boot only consumes roughly about 200 mb of my RAM. As a matter of fact, I will use CrunchBang if I need other Linux machine. So why is the hop?
 
-## Living on the bleeding edge
+### Living on the bleeding edge
 I switched to [Debian sid][sid] in CrunchBang to live on the bleeding edge. The more problems I fix, the more I have learned. Unfortunately some of them just couldn't be fixed. Heck, or you can say that I had given up. I learnt a lot from the community in CrunchBang's IRC, but this time the response is:  
 
 > Are you using sid? You have to wait a little bit longer, son.

@@ -3,13 +3,15 @@ layout: post
 title:  "Jenkins vs Bamboo"
 tags: subversion svn python
 comments: true
+redirect_from:
+  - /2015/06/22/jenkins-vs-bamboo
 ---
 
 *Disclaimer: I have 1 year experience with Jenkins and 0 experience with Bamboo, so I might be wrong on certain points Bamboo. Open for feedbacks in the comments.*
 
 We have just adopted Stash in our infrastructure, that means another Atlassian product adoption. There are motivations to sync up all of our infrastructure to use Atlassian products because they are known for their seamless integration. This research is done to explore the possibility of replacing Jenkins with Bamboo.
 
-## Atlassian applications integration
+### Atlassian applications integration
 *Winner: Bamboo*
 
 As an Atlassian product, Bamboo wins the fight hands down. It integrates with JIRA, Stash and FishEye seamlessly. All of the connections are maintained consistently in application links like any other Atlassian products. You can find the massive list of integration features [here](https://confluence.atlassian.com/display/BAMBOO/Integrating+Bamboo+with+Atlassian+applications).
@@ -27,7 +29,7 @@ The below are the integration features that we think are important in Bamboo and
 | JIRA | Deployment Panel | No. We can use JIRA REST API to add a comment at the very least. |
 | JIRA | Viewing build results in JIRA | Yes. Supported by a [Stash plugin](https://marketplace.atlassian.com/plugins/com.marvelution.jira.plugins.jenkins) or a [Jenkins plugin](https://wiki.jenkins-ci.org/display/JENKINS/JIRA+Plugin). |
 
-## UX and UI Features
+### UX and UI Features
 *Winner: Tie*
 
 The user experience quality of Bamboo is very good. First of all it's consistent with the rest of the Atlassian products. For a first time user of Bamboo, I manage to understand most of the features and it's guiding you through all of the process of creating a new plan nicely. Atlassian documentations are very good for beginners as usual. The feature that I'm most impressed about is how it treats [deployment as first class](http://blogs.atlassian.com/2013/07/release-management-jira-bamboo/). The concept of Stage that replaces Jenkins downstreams are also very nice. Bamboo also has multiple branch build support out of the box. All of these requires manual configuration in Jenkins.
@@ -40,7 +42,7 @@ Jenkins can only be complete with its plugins. Basic features are readily availa
 
 However due to it's vast number of plugins, it can be a daunting task for a beginner to figure out which plugin actually works. A wrong combination of plugins might break your build as well. It will take time for the users to be familiar with the interface. Because the plugins are developed freely, some of them are having inconsistent UI.
 
-## Maintainability
+### Maintainability
 *Winner: Jenkins*
 
 Jenkins has [job-dsl-plugin](https://github.com/jenkinsci/job-dsl-plugin) and [workflow-plugin](https://github.com/jenkinsci/workflow-plugin). These two plugins enables build engineers to orchestrate Jenkins with Groovy DSLs (and templates). All of the DSLs can be stored in VCS and changes can be properly audited and reverted if needed. job-dsl-plugin also supports job templates which reduce a lot of manual configurations. The other big win is that we can attract simple change to be done by developers because it's all Java/Groovy code. Besides the DSL, Jenkins has a script console where the build engineers can execute any arbitrary Groovy scripts to configure the jobs. You can even execute these scripts remotely from your favourite IDE.
@@ -49,7 +51,7 @@ Jenkins has [job-dsl-plugin](https://github.com/jenkinsci/job-dsl-plugin) and [w
 
 Jenkins stores it's configuration and build result as XML, Bamboo is storing them in RDBMS. The XML approach makes Jenkins very flexible and portable. You can easily migrate Jenkins jobs across multiple instances just by copying the configuration. You [can't do this in Bamboo](https://jira.atlassian.com/browse/BAM-1223). Storing the configuration in XML has enabled Jenkins to be configured if they are not available in the UI such as reseting build number that [Bamboo can't do](https://jira.atlassian.com/browse/BAM-10282). Also some of the system administrators who are more confident with their sys admin skills can configure the jobs by changing the XMLs directly.
 
-## Scalibility
+### Scalibility
 *Winner: Jenkins*
 
 To scale out CI servers, more remote slaves are needed. The more agents or slaves you have, the more horizontally scaled you are. Bamboo license are priced per remote agents. You can have unlimitted amount of slaves in Jenkins OSS. Jenkins enterprise are priced per slaves as well.
@@ -66,14 +68,14 @@ It is important to have your CI server with High Availability as we can't afford
 
 When a software grows, a software will need to be tested in a matrix of platform e.g. multiple databases, webservers, jdk, etc. Jenkins supports Matrix project configuration. Configure one job, and the job will be executed repeatedly in all of the platform matrices configured. This is [not](https://answers.atlassian.com/questions/27892/bamboo-multi-configuration-plans) [supported](https://answers.atlassian.com/questions/218887/what-is-the-bamboo-equivalent-of-a-jenkins-matrix-job) in Bamboo.
 
-## Upgrade steps
+### Upgrade steps
 *Winner: Jenkins*
 
 Bamboo has a clear upgrade documentation though too hefty as compared to Jenkins. You need to do a backup for all of the home directories, babysit the update process and monitor the log files. Bamboo may also require a reindex after the upgrade.
 
 What's not easier than dropping a war to tomcat? Jenkins is clearly a winner. Jenkins doesn't change your XMLs during the upgrade as the communities are crazy about backward compatibility. Not happy with the later version? Drop in the previous war. When you are happy with the new version, there is a click of a button away from updating all of your configuration to the latest model.
 
-## Job market and adoption rate
+### Job market and adoption rate
 *Winner: Jenkins*
 
 #### Company adoption
@@ -92,7 +94,7 @@ What's not easier than dropping a war to tomcat? Jenkins is clearly a winner. Je
 - Jenkins has 8543 jobs posted.
 - Bamboo has 1496 jobs posted (including some [non relevant jobs](http://venturefizz.com/jobs/human-resources-generalist-at-virgin-pulse-framingham-ma?utm_source=Indeed&utm_medium=organic&utm_campaign=Indeed)).
 
-## Price and support
+### Price and support
 *Winner: Jenkins*
 
 Bamboo is a commercial software. Jenkins comes with two flavors, free and enterprise. The commercial support of Jenkins Enterprise comes from Cloudbees. The price can't be compared here as Cloudbees is not displaying the price in their site.
@@ -101,7 +103,7 @@ Both Jenkins and Bamboo have numerous bugs and you will definitely run into prob
 
 Besides support, Bamboo product naming makes it [less Google-able](https://www.google.co.uk/#q=bamboo%20scale).
 
-## Summary
+### Summary
 Bamboo is easy to use, good looking and has good Atlassian integration. Jenkins is rough around the edges, but far more flexible than Bamboo. When Jenkins is running standalone, it's obvious that it's far more superior than Bamboo. Bamboo shines when it's placed with other Atlassian applications with its good UX.
 
 The decision of the adoption should fall down on the stakeholders priorities. Is integration more important? Is maintainability and scalability more important?
