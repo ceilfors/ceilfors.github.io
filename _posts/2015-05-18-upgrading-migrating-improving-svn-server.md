@@ -3,6 +3,8 @@ layout: post
 title:  "Guide on upgrading, migrating, and improving SVN Server"
 tags: subversion svn python
 comments: true
+redirect_from:
+  - /2015/05/18/upgrading-migrating-improving-svn-server
 ---
 
 Long story short, this guide will help you to go from the *current state* to the *envisioned state*.

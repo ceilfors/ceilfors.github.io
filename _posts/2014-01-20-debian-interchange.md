@@ -2,6 +2,8 @@
 layout: post
 title:  "Debian Interchange"
 tags: linux
+redirect_from:
+  - /2014/01/20/debian-interchange
 ---
 
 This post contains all of the ritual I had done during my

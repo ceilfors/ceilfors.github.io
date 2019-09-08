@@ -3,6 +3,8 @@ layout: post
 title:  "Jenkins vs Bamboo"
 tags: subversion svn python
 comments: true
+redirect_from:
+  - /2015/06/22/jenkins-vs-bamboo
 ---
 
 *Disclaimer: I have 1 year experience with Jenkins and 0 experience with Bamboo, so I might be wrong on certain points Bamboo. Open for feedbacks in the comments.*

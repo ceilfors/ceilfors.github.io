@@ -3,6 +3,8 @@ layout: post
 title:  "Continuous Delivery with Chef"
 tags: chef
 comments: true
+redirect_from:
+  - /2017/03/09/continuous-delivery-with-chef
 ---
 
 The journey I had on achieving Continuous Delivery using Chef

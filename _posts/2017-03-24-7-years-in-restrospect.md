@@ -2,6 +2,8 @@
 layout: post
 title:  "7 Years in Retrospect"
 comments: true
+redirect_from:
+  - /2017/03/24/7-years-in-restrospect
 ---
 
 After 7 years of working for Experian, I'm finally moving on to the second job of my life.

@@ -2,6 +2,8 @@
 layout: post
 title:  "Another day, another distrohop"
 tags: linux
+redirect_from:
+  - /2014/01/17/another-day-another-distrohop
 ---
 
 Ubuntu, Linux Mint, Arch Linux, ArchBang, CrunchBang, and finally I did another distrohop to Debian. I don't think I'm one of those [proud distrohopper][distrohopper] yet with this hop. Though my first few hops was quite intensive, CrunchBang has made me stayed for almost [6 months][crunchbang-first-post]. I'm also not in a quest to find a [perfect distro][urban]. What I really want now is just a **stable enough** distro. I need to balance getting things done and learning Linux. That's what the hop is all about. 

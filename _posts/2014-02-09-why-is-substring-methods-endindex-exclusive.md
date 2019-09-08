@@ -3,6 +3,8 @@ layout: post
 title:  "Why is substring method's end index exclusive?"
 tags: programming string
 comments: true
+redirect_from:
+  - /2014/02/09/why-is-substring-methods-endindex-exclusive
 ---
 
 Imagine you have a string `s = "01234"`. You want to extract the substring of "123" from it.

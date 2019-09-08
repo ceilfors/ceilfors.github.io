@@ -4,7 +4,7 @@ title: "Better Dependency Injection with Laconia (AWS Lambda - Node.js)"
 tags: aws di ioc lambda serverless laconia
 comments: true
 redirect_from:
-- /2018/07/05/better-dependency-injection-with-laconia.html
+  - /2018/07/05/better-dependency-injection-with-laconia
 ---
 
 Dependency Injection is an important design pattern in any software development

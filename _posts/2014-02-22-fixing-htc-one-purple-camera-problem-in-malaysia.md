@@ -3,6 +3,8 @@ layout: post
 title:  "Fixing HTC One Purple Camera Problem in Malaysia"
 tags: android htc-one malaysia
 comments: true
+redirect_from:
+  - /2014/02/22/fixing-htc-one-purple-camera-problem-in-malaysia
 ---
 
 *tl;dr: I've got my phone fixed by replacing the camera module by HTC in 14 working days.*

@@ -3,6 +3,8 @@ layout: post
 title: "Dependency Injection in AWS Lambda Handler (Node.js)"
 tags: aws di ioc lambda serverless
 comments: true
+redirect_from:
+  - /2017/12/03/dependency-injection-in-aws-lambda-nodejs
 ---
 
 Dependency Injection is an important design pattern, and it should practiced in the AWS Lambda world too.
