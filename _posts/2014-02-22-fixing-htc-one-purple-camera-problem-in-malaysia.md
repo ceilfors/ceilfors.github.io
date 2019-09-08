@@ -95,7 +95,7 @@ Total working days waiting for email reply: 1 (first day)
 
 ### Diagnose your phone after you get it back
 
-![Return box]({{ site.url }}/assets/image/{{page.id}}/box.jpg)
+![Return box](/images{{page.id}}/box.jpg)
 
 So you've got your phone back. It comes back with a nice return packaging.
 You are happy. Stop right there! During my research,

@@ -14,7 +14,7 @@ this topic previously and [come up with a simple convention](https://www.ceilfor
 That convention works, but I really want to see if I can make it even better.
 Introducing [Laconia](https://github.com/ceilfors/laconia).
 
-![Laconia Shield]({{ site.url }}/assets/image/{{page.id}}/shield.png?style=center)
+![Laconia Shield](/images/{{page.id}}/shield.png?style=center)
 
 Laconia is a microframework that I've been developing recently. It is designed
 specifically for Lambda hence it is taking a very lightweight approach to support
