@@ -16,6 +16,11 @@ ul, ol {
 	max-width: 100%;
 }
 
+// Make article width smaller for better readability
+.wrap {
+	max-width: 1450px;
+}
+
 // The theme blockquote is overly large
 .single blockquote p {
 	border-left: 2px solid #ee983d;
