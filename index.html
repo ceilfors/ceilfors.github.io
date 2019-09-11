@@ -23,7 +23,11 @@ featured_image: /images/social.jpg
 			{% endif %}
 
 			<div class="listing-post__content">
-				<p>{{ post.excerpt }}</p>
+				{% if post.content contains '<!--more-->' %}
+					<p>{{ post.content | split:'<!--more-->' | first | remove: post.featured_image }}</p>
+				{% else %}
+					<p>{{ post.excerpt }}</p>
+				{% endif %}
 				<p><a href="{{ post.url }}" class="button">Read More</a>
 			</div>
 
