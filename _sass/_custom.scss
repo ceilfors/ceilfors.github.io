@@ -48,3 +48,10 @@ ul, ol {
 		max-width: 65%;
 	}
 }
+
+// Make image caption in the middle
+img + em {
+	display: block;
+	text-align: center;
+	font-size: 80%;
+}
