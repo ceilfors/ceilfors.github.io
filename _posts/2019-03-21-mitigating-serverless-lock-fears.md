@@ -2,8 +2,10 @@
 layout: post
 title: Mitigating serverless lock-in fears
 tags: serverless
-featured_image: /images/blog/mitigating-serverless-lock-fears/hexagonal-architecture.png
+featured_image: /images/blog/mitigating-serverless-lock-fears/michael-dziedzic-1bjsASjhfkE-unsplash.jpg
 ---
+
+![](/images/blog/mitigating-serverless-lock-fears/michael-dziedzic-1bjsASjhfkE-unsplash.jpg)
 
 Serverless architecture has fast become a hot topic in tech, thanks partly to
 its promise of drastically reducing your time-to-market. Nonetheless, many IT
@@ -20,13 +22,14 @@ lock-in can be a major concern. While serverless architectures might reduce your
 operational cost, complexity, and engineering lead time, it makes you more
 reliant on your BaaS provider.
 
+<!--more-->
+
 The main reason IT folk fear lock-in is cost, and naturally, we all like to
 avoid additional costs. When it comes to serverless, it's not the case that to
 switch service provider is impossible; it's just costly. We can think of this as
 a lock-in cost. Let's break down what a [lock-in cost][2] is:
 
 ![lock-in cost = migration cost - opportunity gain](/images{{page.id}}/lock-in-cost.png)
-
 _Figure 1: The true lock-in costs aren't always what you expect_
 
 As you can see, for companies considering serverless, lock-in cost isn't simply
@@ -82,7 +85,6 @@ considering the potential cost of lock-in.
   It's AWS-centric as it's one of the most popular serverless platforms today.
 
 ![Example serverless application](/images{{page.id}}/example-application.png)
-
 _Figure 2: An example of a serverless application_
 
 #### Choose a cross-vendor programming language
@@ -114,9 +116,8 @@ pattern that you can adopt is the Hexagonal architecture, where your application
 is isolated from external concerns. Here's an example of how you can apply the
 Hexagonal architecture to your Lambda:
 
-![Hexagonal architecture](/images{{page.id}}/hexagonal-architecture.png)
-
-_Figure 3: Applying Hexagonal architecture to your Lambda_
+![Hexagonal architecture](/images{{page.id}}/hexagonal-architecture.png) _Figure
+3: Applying Hexagonal architecture to your Lambda_
 
 Notice how the core of your application is not dependant on the AWS ecosystem.
 Your migration cost will be reduced as your application core code won't change
@@ -137,10 +138,9 @@ abstraction that you've written for your application. The following example
 shows how a DynamoDB Repository class can be reused by the backend, integration
 test and acceptance test:
 
-![Acceptance Test](/images{{page.id}}/acceptance-test.png)
-
-_Figure 4: A DynamoDB Repository class can be reused by the backend, integration
-test and acceptance test_
+![Acceptance Test](/images{{page.id}}/acceptance-test.png) _Figure 4: A DynamoDB
+Repository class can be reused by the backend, integration test and acceptance
+test_
 
 #### Use standardized technology
 
