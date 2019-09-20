@@ -18,9 +18,9 @@ are also publishing what they have learnt as blogs online, for free.
 Would that mean that everyone can be a technologist now? I'm quite sure that
 knowledge is not the only thing that we need to become a technologist. Talking
 to many technologists, I often discover that many can recite what a conference
-speaker had talked about. More often than not, I wouldn't know how to make use
-of that knowledge in practice. If we can't make use of them, what then is the
-use of knowledge that we have acquired?
+speaker had talked about. More often than not, we wouldn't know how to make use
+of that knowledge in practice. If we can't make use of them, what is the use of
+knowledge that we have acquired?
 
 <!--more-->
 
@@ -31,27 +31,27 @@ effectively. On the other hand, I had an ex-colleague has an art degree. He is
 incredibly effective at his job even when he told me that the amount of his
 actual knowledge is not plenty.
 
-Why is our industry so obsessed with evaluating knowledge memorisation then?
-When I was interviewing for jobs, many people would ask about a very specific
-thing about a particular technology. It's as if I can name all of the Spring
-Framework bean scopes, I must be a very good engineer. Not at all. There's
-definitely something more than the knowledge that we need here to be a knowledge
-worker. If knowledge is not all of it, what then?
+Why is our industry so obsessed with evaluating knowledge memorisation? When I
+was interviewing for jobs, many people would ask about a very specific thing
+about a particular technology. It's as if I can name all of the Spring Framework
+bean scopes, I must be a very good engineer. Not at all. There's definitely
+something more than the knowledge that we need here to be a knowledge worker. If
+knowledge is not all of it, what then?
 
 ![][1]
 
 One differentiator of a fresh graduate me, versus my ex-colleague in comparison
-was years of experience. Are years of experience what we're looking for then?
-Years of experience is definitely something that I get asked quite a lot. Do I
-have 5 years of Java experience? Hang on, are we calculating the total of my
-working hours? Are 8 hours of work counted as day? Do you take your programming
-hobby and weekend into account? Experience is not something that I'm looking for
-here. You and I have definitely met people with X years of experience that
-perform differently. Besides, it's quite a lazy way to coach new technologists,
-they need more than just sole experience.
+was years of experience. Are years of experience the other dimension that we're
+looking for? Years of experience is definitely something that I get asked quite
+a lot. Do I have 5 years of Java experience? Hang on, are we calculating the
+total of my working hours? Are 8 hours of work counted as day? Do you take your
+programming hobby and weekend into account? Experience is not something that I'm
+looking for here. You and I have definitely met people with X years of
+experience that perform differently. Besides, it's quite a lazy way to coach new
+technologists, they need more than just sole experience.
 
-If knowledge is the noun, then what I'm looking for is a verb. It's the verb
-that describes how we're making use of the knowledge. According to [Bloom's
+If knowledge is the noun, what I'm looking for is a verb. It's the verb that
+describes how we're making use of the knowledge. According to [Bloom's
 Taxonomy][2], this verb that we're looking for here is cognitive process. If
 knowledge is what you have developed upon watching those online video courses, a
 cognitive process is what experience has developed on you.
@@ -71,7 +71,7 @@ these are how they affect us:
 ![][4]
 
 The problem with bootcamps is, they are normally only applied to people who are
-looking for jobs for the first time. How then can experienced technologists
+looking for jobs for the first time. How can experienced technologists
 accelerate their cognitive process development? Is cognitive process only
 developed through experience? Many of us don't have the privilege to work in an
 environment that will accelerate our development. Throughout my career, for
