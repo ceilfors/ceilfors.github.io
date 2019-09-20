@@ -11,6 +11,16 @@ Whenever new technologies emerge, the first priority for a technologist is to
 understand the implication of adopting it. Serverless architecture is a case in
 point.
 
+---
+
+This article has been featured in:
+
+- [InfoQ - Characteristics of Serverless Architecture ](https://www.infoq.com/news/2019/08/traits-serverless-architecture/)
+- [ZDNet - Serverless architect emerges as in-demand job role](https://www.zdnet.com/article/how-to-become-a-serverless-architect/)
+- [Hacker News](https://news.ycombinator.com/item?id=20729331)
+
+---
+
 Unfortunately, much of the current literature around serverless architecture
 focuses solely on its benefits. Many of the articles — and examples used — are
 driven by cloud providers — so, unsurprisingly talk up the positives. This
@@ -292,12 +302,6 @@ article._
 
 Originally published at
 [www.thoughtworks.com](https://www.thoughtworks.com/insights/blog/traits-serverless-architecture).
-
-This article has been featured in:
-
-- [InfoQ - Characteristics of Serverless Architecture ](https://www.infoq.com/news/2019/08/traits-serverless-architecture/)
-- [ZDNet - Serverless architect emerges as in-demand job role](https://www.zdnet.com/article/how-to-become-a-serverless-architect/)
-- [Hacker News](https://news.ycombinator.com/item?id=20729331)
 
 ---
 
