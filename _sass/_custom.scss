@@ -15,6 +15,9 @@ ul, ol {
 	margin-top: 15px;
 	max-width: 100%;
 }
+.single ul * ul { // Remove indentation in nested <ul> 
+	margin: 0;
+}
 
 // Make article width smaller for better readability
 .wrap {
