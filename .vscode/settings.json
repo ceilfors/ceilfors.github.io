@@ -3,6 +3,5 @@
   "editor.formatOnSave": false,
   "[markdown]": {
     "editor.formatOnSave": true
-  },
-  "prettier.proseWrap": "always"
+  }
 }
