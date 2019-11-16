@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The principles for adopting serverless architecture
+title: The principles for successful serverless adoption
 tags: serverless
 featured_image: /images/blog/principles-serverless-architecture/austin-neill-ZahNAl_Ic3o-unsplash.jpg
 ---
@@ -105,15 +105,16 @@ invaluable.
 
 Should serverless architecture than just be used for prototyping? A combination
 of faster time to value and technical limitations seems to indicate that we're
-building a prototype. There are many types of prototyping, but the
-[traits of serverless architecture](https://www.ceilfors.com/blog/traits-serverless-architecture)
-have eliminated some of the downsides of prototyping that I wouldn't consider
-the application as a prototype anymore. Solutions built on serverless
-architecture is not a prototype, and we should avoid the word deliberately. When
-people hear about a prototype, people would think about a quick and dirty
-throwaway code or something that will not scale. Elasticity, for example, is one
-of the traits of serverless architecture, hence serverless architecture is not
-falling under the category of a prototype that will not scale.
+building a prototype. There are many types of prototyping, but the [traits of
+serverless
+architecture]({% post_url 2019-07-31-traits-serverless-architecture %}) have
+eliminated some of the downsides of prototyping that I wouldn't consider the
+application as a prototype anymore. Solutions built on serverless architecture
+is not a prototype, and we should avoid the word deliberately. When people hear
+about a prototype, people would think about a quick and dirty throwaway code or
+something that will not scale. Elasticity, for example, is one of the traits of
+serverless architecture, hence serverless architecture is not falling under the
+category of a prototype that will not scale.
 
 The elasticity of serverless architecture is not only aiding your technical
 solution but also your business. Elasticity makes the time for you to validate
@@ -126,7 +127,7 @@ time for you to validate your solution is living longer, you are also getting a
 level of flexibility to reprioritise your requirements. Your business is
 seemingly gaining elasticity too due to serverless architecture.
 
-![](https://lh5.googleusercontent.com/2yo2CZ8m4vC4OnEctVV3BxHrSMTp7tUuXV0TaUGbK8Mqa8dK-W5F2fH1qOoZOdla4tYOlhn0Pt5JeefQk9XNhlqodUk5Tvs9XxcFlvS9coxEDt8yz9kzldQpY9xgKG11YW9CLjh6)
+![](/images{{page.id}}/elastic-time.png)
 
 #### Opportunity gain over lock-in concern
 
@@ -167,8 +168,8 @@ architectural styles. Opportunity gain should be calculated as part of your cost
 calculation, which means your total
 [lock-in cost](https://martinfowler.com/bliki/LockInCost.html) might even
 negative. My advice is to attempt to maximise your opportunity gains and
-minimise your migration cost, which would
-[mitigate your lock-in fears](https://www.ceilfors.com/blog/mitigating-serverless-lock-fears).
+minimise your migration cost, which would [mitigate your lock-in
+fears]({% post_url 2019-03-21-mitigating-serverless-lock-fears %}).
 
 ### Leverage commodities first
 
@@ -330,9 +331,8 @@ services which fall on the far right here from the AWS serverless spectrum,
 first. These examples are Athena, SNS, SQS, Step Functions, S3, DynamoDB,
 Lambda.
 
-![](https://lh3.googleusercontent.com/lWX_GaAVaODpKpScBcvLQtxSEy8kYVcl4zNr4hfGPGe9H1vNN7p2ta-mNQ6s1m7I54LaJvCS31p9SVUUBgYGCxLHGhSiKFoyXw_5kP7GnH80IWIP0n8jHg9zVFHqNBhAGnFsJKsQ)
-
-Picture of Serverless Spectrum from 2018 AWS re:Invent
+![Serverless Spectrum](/images{{page.id}}/serverless-spectrum.png) _Serverless
+Spectrum from 2018 AWS re:Invent_
 
 By putting a guardrail around your options, you are also forcing the emergence
 of patterns. Patterns can and should be tackled from an organizational level by
@@ -454,7 +454,7 @@ batteries and better Operating Systems.
 A well-sought commodity will form a virtuous cycle that will improve upon
 itself:
 
-![](https://lh4.googleusercontent.com/3oaChJkNoxsRS0JWmtCGZTdKrI3MGsyxnZ-vZHhILdbHImPySGPSH_nN4ynDzCJ94fVEh5qhhuHnCYdc2OmYZo6XlqCjLzLJ7zv4IMw2l-lbF0mfVnPjT4ZJ_KPh38gG03nYQqFA)
+![commodity virtuous cycle](/images{{page.id}}/commodity-cycle.png)
 
 A serverless platform is falling into the category of well-sought commodity, and
 the virtuous cycle has alleviated some soft limits a couple of times. Execution
@@ -530,7 +530,7 @@ Introducing duct-tapes to your solution might get costlier over time, and trying
 to overcome the technical limitations may get expensive. This is similar to the
 idea that you should watch out for the last 10% trap:
 
-![](https://lh3.googleusercontent.com/Oc-oaxLcp0kmVROck4TMPCEnkGIVDwZMgEN3fQfcDv-RV7yLerPTPgiSLXZrAbSIbUkKd8_4MIF_C58jjdUyfXqfm-zixZ6oxJoSSeoswd7vFpx3e9f-Kr4twtm-0DBDULxQc05C)
+![Last 10% Trap](/images{{page.id}}/last-10.png)
 
 Although it can get more expensive over time, it's worth reiterating that over
 time the ecosystem around the commodity will grow as well. Libraries, patterns,
@@ -619,6 +619,6 @@ looking into serverless or not.
 
 #### Acknowldgement
 
-My thanks to Seema Satish and Kief Morris for the initial content produced on
-this article. To Martin Fowler who has provided many feedback that leads me to
-do an overhaul to this article for the better.
+My thanks to Seema Satish and Kief Morris for reading and giving feedback on the
+initial version of this article. To Martin Fowler who has provided many feedback
+that leads me to restructure this article for the better.
