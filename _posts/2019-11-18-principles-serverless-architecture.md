@@ -1,6 +1,6 @@
 ---
 layout: post
-title: The principles for successful serverless adoption
+title: Don't adopt serverless without these principles
 tags: serverless
 featured_image: /images/blog/principles-serverless-architecture/austin-neill-ZahNAl_Ic3o-unsplash.jpg
 ---
