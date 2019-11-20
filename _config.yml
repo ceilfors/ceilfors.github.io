@@ -1,5 +1,8 @@
 site: ceilfors.com
 
+url: 
+baseurl: 
+
 collections:
   pages:
     output: true
