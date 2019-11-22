@@ -36,7 +36,7 @@ technologies have to offer better? There is a paradigm shift in serverless. When
 there is a paradigm shift, we need to change the way we think about this new
 paradigm, so that technology can benefit more people in the industry, regardless
 of the organisation size. A set of principles will help you take the journey of
-this mindset shift, and how you should approach the adoption of serverless.
+this paradigm shift, and how you should approach the adoption of serverless.
 
 <!--more-->
 
@@ -44,27 +44,28 @@ this mindset shift, and how you should approach the adoption of serverless.
 
 #### Contents
 
-- [Focus on the business outcome](#focus-on-the-business-outcome)
+- [1. Focus on the business outcome](#1-focus-on-the-business-outcome)
   - [Faster time to value](#faster-time-to-value)
   - [Opportunity gain over lock-in concern](#opportunity-gain-over-lock-in-concern)
-- [Leverage commodities first](#leverage-commodities-first)
+- [2. Leverage commodities first](#2-leverage-commodities-first)
   - [The preferred order of iteration](#the-preferred-order-of-iteration)
   - [Cloud platform over custom-built platform](#cloud-platform-over-custom-built-platform)
   - [Emerging patterns by a guardrail](#emerging-patterns-by-a-guardrail)
-- [Embrace the fundamental shifts](#embrace-the-fundamental-shifts)
+- [3. Embrace the fundamental shifts](#3-embrace-the-fundamental-shifts)
   - [The new fundamentals](#the-new-fundamentals)
   - [Duct-taping the soft limits](#duct-taping-the-soft-limits)
   - [Dealing with the hard limits](#dealing-with-the-hard-limits)
-- [Extract the proven expensive parts](#extract-the-proven-expensive-parts)
+- [4. Extract the proven expensive parts](#4-extract-the-proven-expensive-parts)
   - [The meaning of expensive](#the-meaning-of-expensive)
   - [The meaning of proven](#the-meaning-of-proven)
   - [The meaning of part](#the-meaning-of-part)
   - [The meaning of extract](#the-meaning-of-extract)
 - [Concluding thoughts](#concluding-thoughts)
+  - [Acknowldgement](#acknowldgement)
 
 ---
 
-### Focus on the business outcome
+### 1. Focus on the business outcome
 
 When you are adopting a particular technology, you must have a good reason for
 the adoption. Most of the time technology is created to solve a problem, and
@@ -84,54 +85,19 @@ might lower running cost, which might mean that the unutilised budget can be
 reinvested elsewhere. As the operational overhead of your system is
 significantly reduced, it might mean that development cost is reduced too.
 
-If serverless technology is coming with all these positives outcome, why then do
-we hear contradictory stories? There is always a trade-off in a decision we
+If serverless technology is coming with all these positives outcomes, why then
+do we hear contradictory stories? There is always a trade-off in a decision we
 make, and there is a trade-off in utilising serverless. There are technical
 limitations to serverless, and vendor lock-in concerns still prevail. This is
-why focusing on business outcome over the technical limitations is an important
-mindset shift. Business outcomes must be at the forefront of your mind. The
+why the first important principle that you need to have is to **focus on
+business outcome**. Business outcomes must be at the forefront of your mind. The
 technical limitations, of course, shouldn't be neglected but should be
 approached differently with the next set of principles outlined in this article.
-
-#### Faster time to value
-
-As briefly mentioned before, one of the well-known benefits of serverless is how
-you can deliver value faster to your customers. You are getting a faster time to
-value, which means that it's going to take a less amount of time for you to
-deliver values, iteratively, to your customers. Faster time to value would also
-mean that you'll get to validate your idea quicker. Especially in a competitive
-market, getting to a point where you can learn from your customers quickly is
-invaluable.
-
-Should serverless architecture than just be used for prototyping? A combination
-of faster time to value and technical limitations seems to indicate that we're
-building a prototype. There are many types of prototyping, but the [traits of
-serverless
-architecture]({% post_url 2019-07-31-traits-serverless-architecture %}) have
-eliminated some of the downsides of prototyping that I wouldn't consider the
-application as a prototype anymore. Solutions built on serverless architecture
-is not a prototype, and we should avoid the word deliberately. When people hear
-about a prototype, people would think about a quick and dirty throwaway code or
-something that will not scale. Elasticity, for example, is one of the traits of
-serverless architecture, hence serverless architecture is not falling under the
-category of a prototype that will not scale.
-
-The elasticity of serverless architecture is not only aiding your technical
-solution but also your business. Elasticity makes the time for you to validate
-your solution longer. There are two reasons why you would have a longer
-validation time. Firstly, when a product is struggling when the solution shows
-unexpected demand, the serverless architecture will be able to handle the load
-better by default. Secondly, when a product is showing less demand than
-expected, the business won't have to pay for huge infrastructure cost. As the
-time for you to validate your solution is living longer, you are also getting a
-level of flexibility to reprioritise your requirements. Your business is
-seemingly gaining elasticity too due to serverless architecture.
-
-![](/images{{page.id}}/elastic-time.png)
+First, let's address how this principle drive our thinking on lock-in concerns.
 
 #### Opportunity gain over lock-in concern
 
-It is of course not easy to think about business outcomes if you're heavily
+It is of course not easy to focus on business outcomes if you're heavily
 concerned with vendor lock-in. The serverless services provided by every
 serverless platform are hugely different and not standardized. What if you are
 required to move to another cloud provider? Doesn't that mean that the migration
@@ -147,10 +113,10 @@ would have to purchase a new one. Does that mean that my purchase would cost
 more? Yes, it will, but it will also mean that I can make use of the phone
 before my move. Besides, I could always get a new France compatible charger
 later. Better yet, I can just buy a travel adapter that will convert my UK plug
-to France plug. These travel adapters are also normally very lightweight, and
-will not attempt to abstract every country's possible plugs; shamefully most
-adapter that supports multiple countries I'd bought is always broken fairly
-quickly!
+to France plug. These lightweight travel adapters are also normally the best
+ones as it will not attempt to abstract every country's possible plugs;
+shamefully most adapter that supports multiple countries I'd bought is always
+broken fairly quickly!
 
 When you think about migration to other cloud providers, think about the
 probability of the migration from happening, just like my imaginary move to
@@ -158,20 +124,65 @@ France. If there is a solid requirement that you will have to migrate to another
 cloud in 1 month, for example, then probably you should start your development
 in the new cloud provider anyway rather than debating whether the migration cost
 is going to be expensive. Just like the imaginary phone I purchase, you should
-be getting the main bit of your development moving instead, because otherwise,
-you'll suffer from opportunity costs.
+be getting your development moving instead, because otherwise, you'll suffer
+from opportunity costs.
 
 Opportunity gain should be part of the totality that you're looking into. What
 we are worried in vendor lock-in, is normally the high cost of migration. It is
 a fact that the migration cost will not be zero here, as compared to other
 architectural styles. Opportunity gain should be calculated as part of your cost
 calculation, which means your total
-[lock-in cost](https://martinfowler.com/bliki/LockInCost.html) might even
-negative. My advice is to attempt to maximise your opportunity gains and
-minimise your migration cost, which would [mitigate your lock-in
-fears]({% post_url 2019-03-21-mitigating-serverless-lock-fears %}).
+[lock-in cost](https://martinfowler.com/bliki/LockInCost.html) might even be
+negative. You should attempt to maximise your opportunity gains and minimise
+your migration cost. I have written a separated article to mitigate the
+serverless lock-in fears, you can find it
+[here]({% post_url 2019-03-21-mitigating-serverless-lock-fears %}).
 
-### Leverage commodities first
+#### Faster time to value
+
+Moving away from the negative aspect of serverless, I think it is worth covering
+and reemphasizing what business outcome serverless is bringing to the table. One
+of the well-known benefits of serverless is how you can deliver value faster to
+your customers. You are getting a _faster time to value_, which means that it's
+going to take a less amount of time for you to deliver values, iteratively, to
+your customers. Faster time to value would also mean that you'll get to validate
+your idea quicker. Especially in a competitive market, getting to a point where
+you can learn from your customers quickly is invaluable.
+
+Should serverless architecture than just be used for prototyping? A combination
+of faster time to value and technical limitations seems to indicate that we're
+building a prototype. There are many types of prototyping, but the traits of
+serverless architecture have eliminated some of the downsides of prototyping
+that I wouldn't consider the application as a prototype anymore. Solutions built
+on serverless architecture is not a prototype, and we should avoid the word
+deliberately. When people hear about a prototype, people would think about a
+quick and dirty throwaway code or something that will not scale. Elasticity, for
+example, is one of the traits of serverless architecture, hence serverless
+architecture is not falling under the category of a prototype that will not
+scale. Many technologists have found my other article to be very useful,
+especially in understanding the pros and cons of what the traits of serverless
+architecture brings, you may find [the article
+here]({% post_url 2019-07-31-traits-serverless-architecture %}).
+
+The elasticity of serverless architecture is not only aiding your technical
+solution but also your business. Elasticity makes the time for you to validate
+your solution longer, and there are at least two reasons for that. Firstly, when
+a product is struggling when the solution shows unexpected demand, the
+serverless architecture will be able to handle the load better by default.
+Secondly, when a product is showing less demand than expected, the business
+won't have to pay for huge infrastructure cost. As the time for you to validate
+your solution is living longer, you are also getting a level of flexibility to
+reprioritise your requirements. Your business is seemingly gaining elasticity
+too due to serverless architecture.
+
+The following picture therefore should summarise the outcome serverless is
+bringing to businesses.
+
+![](/images{{page.id}}/elastic-time.png)
+
+### 2. Leverage commodities first
+
+<!-- TODO: Continue reading out loud here -->
 
 When a subject is deemed as a commodity, that subject has been commercialised
 widely so that it is very easy for it to be consumed by anyone. A commodity is
@@ -351,7 +362,7 @@ falls under the definition of commodities, especially if they're integrate-able
 to your existing cloud-based serverless platform. Learn from what they have
 built, and then iterate to a custom-built version of it if you really need to.
 
-### Embrace the fundamental shifts
+### 3. Embrace the fundamental shifts
 
 So far, as per what I have outlined above, you should design your solution with
 a cloud-based serverless platform, with constrained serverless services first.
@@ -506,7 +517,7 @@ When you have learnt enough that you are actually constraints by the hard limit,
 you shall start to extract the proven expensive parts, which will be covered
 in-depth in the next section.
 
-### Extract the proven expensive parts
+### 4. Extract the proven expensive parts
 
 When you are faced with hard limits, the last thing that you want to do is to
 redesign your entire architecture and don't mark your architecture as a legacy,
