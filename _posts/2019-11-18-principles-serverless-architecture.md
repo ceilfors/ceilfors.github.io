@@ -182,8 +182,7 @@ bringing to businesses.
 
 ### 2. Leverage commodities first
 
-<!-- TODO: Continue reading out loud here -->
-
+The second principle that you need to have is to **leverage commodities first**.
 When a subject is deemed as a commodity, that subject has been commercialised
 widely so that it is very easy for it to be consumed by anyone. A commodity is
 those apples that you can purchase from grocery stores or a guitar that you can
@@ -195,27 +194,24 @@ what's happening behind the socket.
 
 Serverless technology is a commodity. When you are adopting the serverless
 architecture, you wouldn't need to know how things work behind the curtain. The
-significant operational aspect of your infrastructure is commoditised. You are
-also commoditizing the components of your architecture by utilising a set of
-commodities provided by your serverless platform. Understanding this principle
-is the key to focus on the business outcome.
+significant operational aspect of your infrastructure is commoditised.
 
 Imagine for a moment when you're trying to buy a newly built house and you
 realize that the house requires its own electric generator. There are no
 portable electric generators that you can buy too. Essentially there are no
-commodities available in the neighbourhood nor in the market. What's being
-provided to you, is a set of instructions on how you can build your own electric
-generator. You would also need to hire experts to build and maintain them if you
-don't have the necessary skills. Now you're having a completely new kind of
-problems, just because you need to find somewhere to live. Wouldn't it be nice
-to have something that just works without your interference?
+commodities available in the market at all. What's being provided to you, is a
+set of instructions on how you can build your own electric generator. You would
+also need to hire experts to build and maintain them if you don't have the
+necessary skills. Now you're having a completely new kind of problems, just
+because you need to find somewhere to live. Wouldn't it be nice to have
+something that just works without your interference?
 
 The adoption of serverless architecture is coming from the same idea. The only
 thing that you're exposed to is an interface provided by a serverless platform.
 When you're utilising Backend as a Service, or BaaS, your electrical socket is
 the SDK or the console. For example in AWS S3, you are just calling putObject
 operation to store a blob, you wouldn't know how and where your blob is being
-stored. They have been commoditized for you, and you can't really see them.
+stored. They have been commoditized for you.
 
 This is how you should perceive serverless architecture, you should have the
 preference to leverage them first.
@@ -232,8 +228,8 @@ technologies:
     architecture
 
 I've seen many organisations approaching the adoption with the first option, and
-I believe this is the wrong order of iteration. As we embrace the idea of
-leveraging commodities first, hence the order of your iteration is really
+I believe this is the wrong order of iteration. If we embrace the idea of
+leveraging commodities first, then the order of your iteration is really
 important.
 
 The order of iteration that you should take is similar to a purchase made in any
@@ -254,27 +250,26 @@ To have this preferred order of iteration, the quality of the commodity must be
 good enough. We prefer to buy vegetables from grocery stores than growing our
 own vegetables because the vegetables that can be bought are good enough. If the
 quality of the vegetables is consistently rotten everywhere, you would probably
-start to consider to grow it on your own. The quality of the serverless platform
-is good that we can iterate in this preferred order.
+start to consider to grow it on your own. In my experience, the quality of the
+serverless platform is good that we can iterate in this preferred order.
 
 #### Cloud platform over custom-built platform
 
-A serverless platform is a key enabler which provides the services that you need
-to build a serverless architecture in. The principle of leveraging commodities
-first here applies when choosing a serverless platform. There are two main
-approaches to choose a serverless platform here: use a cloud platform or build
-your own platform. Naturally speaking, the cloud platform is what you should
-prefer and consider as a commodity.
+A serverless platform is the key enabler which provides the services that you
+need to build a serverless architecture in. The principle of leveraging
+commodities first should be applied when choosing a serverless platform too.
+There are two main approaches to choose a serverless platform here: use a cloud
+platform or build your own platform. Understanding the principle well, the cloud
+platform is what you should consider as a commodity, hence what you should
+prefer to use.
 
 You have to have a mature serverless platform to enable delivery teams to build
-serverless architecture, as the intention is to move as fast as possible to
-deliver your solution to your customers. There are many custom-built serverless
-platforms readily available out there, like Kubeless for example, but the
-operational aspects of your solution will not be commoditized in full. Not only
-you are going to need the expertise to set it up, but you would also need time
-to spin it up to. If you are using the public cloud, you can start to build your
-solution today. As we should always prefer to leverage commodities first, there
-is a preference towards cloud platform over a custom-built platform.
+serverless architecture. There are many custom-built serverless platforms
+readily available out there, like Kubeless for example, but the operational
+aspects of your solution will not be fully commoditized. Not only you are going
+to need the expertise to set it up, but you would also need the time to set it
+up too. If you are using the public cloud, you can start to build your solution
+today.
 
 When you are trying to spin up a custom-built platform, your objective is to
 create an equivalent level quality of service that your cloud is providing.
@@ -283,10 +278,9 @@ service is very expensive. In terms of return of investment, what they are
 building have been battle-hardened by many of their customers. If you are trying
 to build a self-managed platform, you will have to go through the same cycle and
 the Total Cost of Ownership will be very expensive. If you are not on the cloud,
-I highly suggest you rethink about your motivation to adopt a serverless
+I highly suggest you to rethink about your motivation to adopt a serverless
 architecture. Of course, you might have various requirements that might prevent
-you from going to the cloud, like data privacy, they will not be discussed in
-depth here.
+you from going to the cloud, they will not be discussed in depth here.
 
 If your enterprise is big enough, you might argue that you will have the
 capacity to build up your current platform. But is it worth the cost? If you
@@ -301,21 +295,21 @@ about what serverless really means in your organisation. You then discover what
 you need and what you are missing, then take it as learning should you decide
 that you want to start having your own custom-built platform. Although, I should
 mention that there is one caveat with a custom-built serverless platform.
-Serverless architecture is typically built on top of FaaS and BaaS, and one of
-my observations around what's going on in the custom-built platform at the
-moment is the lack of BaaS in the platform. So make sure that you cater for the
-cost of building your required BaaS if you go down the custom-built route. For
-example, if a team needs something of an equivalent of AWS S3, what kind of
-service would you provide to enable teams to adopt serverless architecture?
+Serverless architecture is typically built on top of FaaS and BaaS. At the
+moment, my observations around what's going on in the custom-built platform is
+the lack of BaaS. So make sure that you cater for the cost of building your
+required BaaS if you go down the custom-built route. For example, if a team
+needs something of an equivalent of AWS S3, what kind of service would you
+provide to enable teams to adopt serverless architecture?
 
-Sunk cost fallacy, is perhaps one of the biggest problems of iterating in a
-commoditized industry in the wrong order. Should you start with a custom-built
-serverless platform first, you will have a higher tendency to keep it and
-continue to make your future decisions based on the amount of time and money
-that you have poured into the platform. As briefly outlined above, the cost of
-creating a platform in your organisation is not trivial, hence you will have a
-high sunk cost here. This is similar to how decades ago when using clouds is
-still a niche. Organisations who have heavily invested in building their own
+Sunk cost fallacy, is perhaps one of the biggest problems of taking the wrong
+order of iteration in a commoditized industry. Should you start with a
+custom-built serverless platform first, you will have a higher tendency to keep
+it, and continue to make your future decisions based on the amount of time and
+money that you have poured into the platform. As briefly outlined above, the
+cost of creating a platform in your organisation is not trivial, hence you will
+have a high sunk cost here. This is similar to how decades ago when using clouds
+is still a niche. Organisations who have heavily invested in building their own
 data centres would mostly make their decisions based on the data centre that
 they have.
 
@@ -325,7 +319,7 @@ Given a cloud platform, there are many services that it offers for you to
 choose. When we talked about leveraging commodities first, how do we make sure
 that the services we leverage are the right ones? Unfortunately the word
 serverless is often bloated with other marketing meanings, which means you might
-accidentally pick non-commoditized services that the platform provides, even
+accidentally pick non-commoditizing services that the platform provides, even
 when they're advertised as serverless.
 
 Guardrailing your options here will reduce such error. Decision-making process
@@ -367,23 +361,26 @@ built, and then iterate to a custom-built version of it if you really need to.
 So far, as per what I have outlined above, you should design your solution with
 a cloud-based serverless platform, with constrained serverless services first.
 You might have a couple of concerns here, especially if you have experienced
-serverless architecture before. Where should I store my data? With the technical
-limitations that AWS DynamoDB has, will it sufficient to satisfy my
-requirements? Most of those services are not built on a standard protocol, what
-about vendor lock-in?
+building serverless architecture before. Where should I store my data? With its
+technical limitations, Will DynamoDB be able to satisfy my requirements? Most of
+those services are not built on a standard protocol, what about vendor lock-in?
 
 The mindset shift that you need to have is to acknowledge that you'll always be
 faced with limitations when a commodity is used, and you have to be able to
-embrace its benefits more than its limitations. A commodity is something that
-would normally be developed to target a mass, hence one of its other property is
-a set of limitations because you can't satisfy everyone's needs by being
-generic. Yes, there will be limitations, but I believe that faster time to value
-will outweigh the technical limitations. These serverless services are the new
-fundamentals, and you have to learn to embrace it.
+embrace its benefits more than its limitations. This is why the principle to
+**embrace the fundamental shifts** is really important. A commodity is something
+that would normally be developed to target a mass market, hence one of its other
+property is a set of limitations because you can't satisfy everyone's needs by
+being generic. Yes, there will be limitations, but I believe that faster time to
+value will outweigh the technical limitations (see the
+[focus on business outcome](#1-focus-on-the-business-outcome) principle for more
+on this). These serverless services are the new fundamentals, and you have to
+learn to embrace it.
 
 Embracing new fundamentals, of course, is not easy if you're faced with
-technical limitations. In this section, I outline the mindset shift and approach
-you should take when you are faced with the technical limitations.
+technical limitations. In the following sections, I outline approaches on how
+you should perceive the the new fundamentals, and how to deal with the technical
+limitations.
 
 #### The new fundamentals
 
@@ -400,15 +397,14 @@ there are fundamental shifts in a serverless architecture. One of the main
 fundamental shifts is the usage of BaaS that a platform provides. For example,
 if you're trying to store data in AWS, you have to acknowledge that AWS DynamoDB
 and S3 are the new fundamentals. Failure to recognise this, there will be a lot
-of time-consuming debates when what we're trying to do is to create a simple
-solution. You need to be familiar with your BaaS.
+of time-consuming debates.
 
-Approaches that teams might take might not be applicable anymore without
-embracing these new fundamentals. For example, it's a known approach for teams
-to iterate with a simpler solution first, such as by utilising HashMap or file
-systems to store their data. As FaaS is inherently stateless, you wouldn't be
-able to utilise HashMaps nor filesystems. How then can you embrace the idea of
-validating your solution with simple solutions? One way to think of this
+Some approaches that teams might take might not be applicable anymore if they
+don't embrace these new fundamentals. For example, it's a known approach for
+teams to iterate with a simpler solution first, such as by utilising HashMap or
+file systems to store their data. As FaaS is inherently stateless, you wouldn't
+be able to utilise HashMaps nor filesystems. How then can you embrace the idea
+of validating your solution with simple solutions? One way to think of this
 fundamental shift is, S3 is your new file system, DynamoDB is your new in-memory
 hash, and SQS is your new in-memory queue. You should be able to use these
 services without hesitation.
@@ -432,11 +428,16 @@ When the fundamentals are shifting, they're the new normal. You shouldn't be
 shocked if a house has electrical sockets. On the contrary, you should be
 shocked when a house doesn't have any electrical sockets. It's the norm.
 
+Once you adopt serverless services, you will eventually hit their technical
+limitations. There are two types of technical limitations, soft limits and hard
+limits. I will be discussing on how you can deal with these limits independently
+in the next sections.
+
 #### Duct-taping the soft limits
 
 Soft limits are the technical limitations that can be overcome. Cold start, is
 one of the soft limits of serverless architecture. Due to a cold start, the
-request to your FaaS for the first time may be inconsistently slow due to the
+request to your FaaS for the first time may be inconsistently slow, due to the
 fact that there's an ephemeral compute being spun up behind the scene. Execution
 time limits is another soft limit that you have in FaaS, whereby an AWS Lambda
 can only run for a maximum of 15 minutes. There are tricks that you can do to
@@ -446,21 +447,20 @@ to drop the many benefits of serverless architecture.
 
 Duct-taping techniques have been developed to overcome many serverless soft
 limits out there. For example, the community has gained a better understanding
-of the internal behaviour that affects AWS Lambda's cold start and started to
+of the internal behaviour that affects AWS Lambda's cold start, and started to
 develop tools to keep them warm. Isn't duct-taping hacky, though? Why would we
 adopt these duct-tapes? Yes, duct-taping is hacky, but remember that having some
-limits is the nature of commodities, especially when it's a relatively new
-concept.
+limits is the nature of commodities. concept.
 
-I believe that all these duct-tapes are temporary because well-sought
-commodities will improve by time, and eventually the duct-tapes wouldn't be
+I believe that many of these duct-tapes are temporary because well-sought
+commodities will improve over time, and eventually the duct-tapes wouldn't be
 necessary anymore. There are many soft limits in smartphones when they were
 first popularised. One of them is their short-lived battery. Many started to
 develop duct-taping techniques to overcome this battery problem. People started
 to find ways to charge the phone faster, and third party applications were
-developed. The ecosystem around this problem flourished too, including the
-popularity of battery packs. Years later, smartphones have better built-in
-batteries and better Operating Systems.
+developed to mitigate this problem. The ecosystem around this problem flourished
+too, including the popularity of battery packs. Years later, smartphones have
+better built-in batteries and better Operating Systems.
 
 A well-sought commodity will form a virtuous cycle that will improve upon
 itself:
@@ -468,17 +468,16 @@ itself:
 ![commodity virtuous cycle](/images{{page.id}}/commodity-cycle.png)
 
 A serverless platform is falling into the category of well-sought commodity, and
-the virtuous cycle has alleviated some soft limits a couple of times. Execution
-time limits used to be a technical limitation for many in the past. The time
-limit of AWS Lambda has been changed from originally from 1 minute to 5 minutes,
-then now 15 minutes to satisfy more use cases. Before the time limit was
-increased to 15 minutes, many technologists were duct-taping this limitation,
-one of which by implementing a recursive Lambda. These duct-tapes are no longer
-necessary for most. Azure Functions premium plan eliminated cold start issues,
-where the previously cold start is a big concern in a serverless platform.
+the virtuous cycle has alleviated some of the soft limits a number of times.
+Especially in the software industry, the virtuous cycle can move a lot faster
+than other type of commodities. Execution time limits used to be a technical
+limitation for many in the past. The time limit of AWS Lambda has been changed
+from 1 minute to 5 minutes, then now 15 minutes to satisfy more use cases.
+Before the time limit was increased to 15 minutes, many technologists were
+duct-taping this limitation, and the duct-tapes now are no longer necessary for
+them. Azure Functions premium plan promises to eliminate the cold start issues.
 Workarounds on long-lived connectivity are disappearing as AWS API Gateway now
-supports WebSockets. Especially in the software industry, the virtuous cycle can
-move a lot faster than other commodities.
+supports WebSockets.
 
 #### Dealing with the hard limits
 
@@ -505,26 +504,25 @@ you're building has the right market fit.
 When you are faced with hard limits, I encourage that you first validate if the
 hard limit is going to affect your product feature. I'd been in multiple
 discussions where the business would like to get a response in real-time, and
-later discover that the definition of real-time is not 10ms and the latency of
-serverless architecture wasn't a problem. Validating if your hard limits are
-really a hard limit are important too. Many of the technical limitations in
-serverless architecture are mistakenly seen as hard limits when they're not. One
-example of this is the cold start issue in FaaS. Many technologists thought that
-cold start is a hard limit, while in fact there are maturing duct-taping
-techniques to deal with cold start already.
+later discover that the definition of real-time is not 10ms and the higher
+latency of serverless architecture in the end wasn't a problem for us.
+Validating if your hard limits are really a hard limit are important too. Many
+of the technical limitations in serverless architecture are mistakenly seen as
+hard limits when they're actually soft limits. One example of this is the cold
+start issue in FaaS, as discussed in the previous section.
 
-When you have learnt enough that you are actually constraints by the hard limit,
-you shall start to extract the proven expensive parts, which will be covered
-in-depth in the next section.
+When you have learnt enough that you are actually constraints by the hard
+limits. My advice when this happen to extract the proven expensive parts, which
+is the principle that will be covered next.
 
 ### 4. Extract the proven expensive parts
 
 When you are faced with hard limits, the last thing that you want to do is to
-redesign your entire architecture and don't mark your architecture as a legacy,
+redesign your entire architecture. Don't mark your architecture as a legacy,
 because what you have delivered here is not a prototype. When you don't like the
-apples sold in your nearest grocery store is not good enough, you don't suddenly
-grow your own all of your vegetables, right? In this section, I encourage you to
-only extract the proven expensive parts. When this principle is applied
+apples sold in your nearest grocery store, you don't suddenly grow all of your
+vegetables on your own, right? In this section, I encourage you to **extract the
+proven expensive parts**, and what I mean by it. When this principle is applied
 successfully, the majority of the components in your architecture will still be
 serverless, and the extracted part maybe non-serverless.
 
@@ -532,9 +530,9 @@ Let's dissect each of the words in the principle.
 
 #### The meaning of expensive
 
-Expensive here are the hard limits you are facing with. Expensive may also be
-the duct-tapes that you have. Expensive here can translate to expensive to
-change or expensive to run.
+Working around your technical limitations can get expensive over time. Either
+your solution is getting expensive to change, or expensive to run, either of
+them are falling into this category.
 
 As previously described, there are always limitations from a commodity.
 Introducing duct-tapes to your solution might get costlier over time, and trying
@@ -545,14 +543,11 @@ idea that you should watch out for the last 10% trap:
 
 Although it can get more expensive over time, it's worth reiterating that over
 time the ecosystem around the commodity will grow as well. Libraries, patterns,
-and frameworks will grow and band-aids would be cheap to be purchased too, as
-per described before. One example of how you can warm AWS Lambdas up, there are
-plenty of solutions developed by the community now that will allow you to warm
-them up.
+and frameworks will grow, and duct-tapes would be cheap to be purchased too, as
+per described before.
 
-The solution that you have might be expensive to run as well. You are encouraged
-to track the running cost of your architecture and don't assume that the cost
-will be low. You can introduce a
+You are encouraged to track the running cost of your architecture and don't
+assume that the cost will be low. You can introduce a
 [fitness function for its run cost too](https://www.thoughtworks.com/radar/techniques/run-cost-as-architecture-fitness-function).
 SaaS, which is preferable when your cloud provider doesn't provide the service
 you need, can be costly too depending on its pricing tier. When there is growth,
@@ -561,8 +556,8 @@ you have to make sure that SaaS usages are tracked too.
 
 #### The meaning of proven
 
-Now that you have found a part that might be expensive to change or run, the
-next step is to prove that it's expensive. Proving the expensiveness is
+If you have the sense of which part is expensive to change or run, the next step
+is to prove that they are really expensive. Proving the expensiveness is
 important, as our intuition is often misleading.
 
 Even though your running can get costly, you always have to look into the Total
@@ -601,7 +596,7 @@ out to container technology, like
 Architecture or design principles is the key to having the ability to extract
 only the expensive part. There are many times where design is neglected in
 serverless architecture, and the argument "these are just functions" have been
-used, which is not correct.
+used, which is untrue.
 
 When you design your architecture well, you help reduce the cost of the
 component extraction. This means design principle like SOLID would still apply
@@ -613,10 +608,10 @@ of when you are talking to other components.
 ### Concluding thoughts
 
 It's been a long read, so let's take a step back to recap what you have read. To
-ensure that you're unlocking the benefit of serverless to its full potential, a
-mindset shift is essential. Having a strong set of principles is helpful to have
-this mindset shift, in an organisation of any size. There are 4 core principles
-that I've outlined in this article:
+ensure that you're unlocking the full potential of serverless, a mindset shift
+is essential. Having a strong set of principles is helpful to have this mindset
+shift, in an organisation of any size. There are four principles that I've
+discussed in depth in this article:
 
 1.  Focus on the business outcome
 2.  Leverage commodities first
